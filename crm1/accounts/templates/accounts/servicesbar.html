@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WTL | Services Offered</title>
+  <link rel="icon" href="/static/accounts/images/logo.png">
+
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+    background-color: #ffffff;
+    }
+    .page-container {
+      position: relative;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      padding: 65px 0 25px;
+    }
+    .service {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px;
+      width: 201px;
+      height: 200px;
+      border: 3px solid gray;
+      border-radius: 5px;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    }
+    .service img {
+      width: 150px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 5px 5px 0 0;
+    }
+    .service-description {
+      padding: 10px;
+      text-align: center;
+    }
+    .process-steps {
+      width: 500px;
+    }
+
+    .services-container {
+      margin: auto;
+      padding: 15px;
+      overflow: auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(3, 1fr) repeat(1, auto);
+      justify-content: center;
+      justify-items: center;
+      align-items: center;
+      height: auto;
+      width: 1000px
+    }
+    @media (max-width: 975px) {
+    .services-container {
+      width: auto;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr) repeat(1, auto);
+    }
+  .service {
+    width: 75%;
+  }
+}
+.services-container {
+  position: relative;
+}
+
+.services-title {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 100%;
+  padding-bottom: 40px;
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+.services-title-container {
+  position: absolute;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    padding-bottom: 40px;
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  </style>
+</head>
+
+<div class="page-container">
+  <div class="service-title-container">
+    <h2 class="services-title">Services that we can provide or transport</h2>
+  </div>
+<div class="services-container">
+
+  <div class="service">
+    <img src="/static/accounts/images/services1.png" alt="Service 1">
+    <div class="service-description">
+      <h3>Flatbed</h3>
+    </div>
+  </div>
+
+  <div class="service">
+    <img src="/static/accounts/images/services2.png" alt="Service 2">
+    <div class="service-description">
+      <h3>Dryvan</h3>
+    </div>
+  </div>
+
+  <div class="service">
+    <img src="/static/accounts/images/services3.png" alt="Service 3">
+    <div class="service-description">
+      <h3>Vehicles</h3>
+    </div>
+  </div>
+
+  <div class="service">
+    <img src="/static/accounts/images/services4.png" alt="Service 4">
+    <div class="service-description">
+      <h3>Tiltbed</h3>
+    </div>
+  </div>
+
+  <div class="service">
+    <img src="/static/accounts/images/services5.png" alt="Service 5">
+    <div class="service-description">
+      <h3>Forklift</h3>
+    </div>
+  </div>
+
+  <div class="service">
+    <img src="/static/accounts/images/services6.png" alt="Service 6">
+    <div class="service-description">
+      <h3>Power Only</h3>
+    </div>
+  </div>
+
+  <div class="service">
+    <img src="/static/accounts/images/services7.png" alt="Service 7">
+    <div class="service-description">
+      <h3>Crane</h3>
+    </div>
+  </div>
+
+  <div class="service">
+    <img src="/static/accounts/images/services8.png" alt="Service 8">
+    <div class="service-description">
+      <h3>Expedited</h3>
+    </div>
+  </div>
+
+      <div class="service">
+      <img src="/static/accounts/images/services9.webp" alt="Service 9">
+      <div class="service-description">
+        <h3>Boxtruck</h3>
+      </div>
+    </div>
+
+      <div class="service">
+        <img src="/static/accounts/images/services10.png" alt="Service 10">
+        <div class="service-description">
+          <h3>LiftGate</h3>
+      </div>
+    </div>
+
+      <div class="service">
+      <img src="/static/accounts/images/services11.png" alt="Service 11">
+      <div class="service-description">
+        <h3>Pallets</h3>
+      </div>
+    </div>
+
+    <div class="service">
+    <img src="/static/accounts/images/services12.png" alt="Service 12">
+    <div class="service-description">
+      <h3>Container</h3>
+    </div>
+  </div>
+
+
+  <script>
+  document.querySelectorAll('.service').forEach(function(service) {
+    service.addEventListener('click', function() {
+      window.open('/quote/');
+    });
+  });
+  </script>
+
+
+  </div>
+    </div>
+  </html>

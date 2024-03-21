@@ -1,0 +1,40 @@
+<head>
+  <link rel="icon" href="/static/accounts/images/logo.png">
+    <title>WT | Quote Confirmation</title>
+  <style>
+    .center {
+      width: 300px;
+      height: auto; /* specify a fixed width for the element */
+      margin: auto; /* center the element horizontally */
+      padding-bottom: 20px;
+    }
+
+    .inner-container {
+  max width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+  </style>
+</head>
+
+<body>
+  {% include 'accounts/navbar.html' %}
+
+  {% block content %}
+    <h1 class="center text-center" id="title" style="font-family: 'Trebuchet MS', sans-serif; font-size: 50px; font-weight: 400; margin-top: 50px;">
+      <strong>Thank You</strong>
+    </h1>
+    <div class="outer-container">
+      <div class="inner-container" style="display: flex; justify-content: center;">
+        <p style="font-family: 'Trebuchet MS', sans-serif; font-size: 24px;">We appreciate you submitting your inquiry. Your load information has been received, and a representative will get in touch with you shortly with a rate. Call Client Services at 888-713-0369 if you require immediate assistance. </p>
+      </div>
+    </div>
+  {% endblock %}
+
+
+  {% include 'accounts/footer.html' %}
+</body>

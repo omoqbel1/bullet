@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="/static/accounts/images/logo.png">
+  <title>WTL | Request a quote</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+  {% include 'accounts/navbar.html' %}
+
+  {% block content %}
+    <div class="container" style="padding: 20px; display: flex; justify-content: center;">
+      <form method="post" action="" action = "/thankyou/" style="margin: auto;">
+        {% csrf_token %}
+        <h1 class="text-center" id="title" style="font-family: 'Trebuchet MS', sans-serif; font-size: 50px; font-weight: 400;">
+          <strong>REQUEST A QUOTE</strong>
+        </h1>
+        <div style="display: flex; flex-direction: column; max-width: 300px; justify-content: center; padding-top: 20px;">
+          {% for field in form %}
+            <div class="form-group" style="display: flex; flex-direction: column; max-width: 300px; justify-content: center;">
+              <label class="font-weight-bold">{{ field.label }}</label>
+              {{ field }}
+            </div>
+          {% endfor %}
+          <div class="form-group" style="padding-top: 20px;">
+            <input type="submit" class="btn btn-primary">
+          </div>
+        </div>
+      </form>
+    </div>
+  {% endblock %}
+
+  {% include 'accounts/footer.html' %}
+</body>
+</html>

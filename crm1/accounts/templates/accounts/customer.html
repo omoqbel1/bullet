@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name ="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale1.0">
+  <title>WTL | Services Offered</title>
+  <link rel="icon" href="/static/accounts/images/logo.png">
+
+
+  <style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+  }
+
+  .service {
+    border: 0px solid grey;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 15vw;
+    height: 15vw;
+    padding: 1vw;
+  }
+
+  .service img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px 5px 0 0;
+  }
+
+  .service-description {
+
+    width: 100%;
+    height: 80%;
+    padding: 1vw;
+    text-align: center;
+  }
+
+  .service-description h3 {
+    font-size: 2em; /* 80% of the service-description element's height */
+  }
+
+  .services-container {
+    max-height: 100vh; /* 100% of the viewport height */
+    overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 50vw;
+    width: 100%;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (max-width: 996px) {
+    .service-description h3 {
+      font-size: .8em; /* 1em is equal to the current font size */
+    }
+  }
+
+  @media (max-width: 360px) {
+    .service {
+      width: 100%; /* take up the full width of the viewport */
+      height: auto; /* automatically adjust the height based on the content */
+    }
+
+    .service img {
+      width: 100%; /* take up the full width of the .service element */
+      height: auto; /* automatically adjust the height based on the aspect ratio of the image */
+    }
+
+    .services-container {
+      flex-wrap: wrap; /* allow the .service elements to wrap to the next line */
+      height: auto; /* automatically adjust the height based on the content */
+    }
+  }
+}
+
+
+  </style>
+</head>
+
+<body>
+  <section>
+<div class="services-container">
+  <div class="service">
+    <img src="/static/accounts/images/services1.png" alt="Service 1">
+    <div class="service-description">
+      <h3>Flatbed</h3>
+    </div>
+  </div>
+
+  <div class="service">
+    <img src="/static/accounts/images/services2.png" alt="Service 2">
+    <div class="service-description">
+      <h3>Dryvan</h3>
+    </div>
+  </div>
+
+  <div class="service">
+    <img src="/static/accounts/images/services3.png" alt="Service 3">
+    <div class="service-description">
+      <h3>Vehicles</h3>
+    </div>
+  </div>
+
+  <div class="service">
+    <img src="/static/accounts/images/services4.png" alt="Service 4">
+    <div class="service-description">
+      <h3>Tiltbed</h3>
+    </div>
+  </div>
+
+  <div class="service">
+    <img src="/static/accounts/images/services5.png" alt="Service 5">
+    <div class="service-description">
+      <h3>Forklift</h3>
+    </div>
+  </div>
+
+  <div class="service">
+    <img src="/static/accounts/images/services6.png" alt="Service 6">
+    <div class="service-description">
+      <h3>Power Only</h3>
+    </div>
+  </div>
+
+  <div class="service">
+    <img src="/static/accounts/images/services7.png" alt="Service 7">
+    <div class="service-description">
+      <h3>Crane</h3>
+    </div>
+  </div>
+
+  <div class="service">
+    <img src="/static/accounts/images/services8.png" alt="Service 8">
+    <div class="service-description">
+      <h3>Expedited</h3>
+    </div>
+  </div>
+
+      <div class="service">
+      <img src="/static/accounts/images/services9.png" alt="Service 9">
+      <div class="service-description">
+        <h3>Boxtruck</h3>
+      </div>
+    </div>
+
+      <div class="service">
+        <img src="/static/accounts/images/services10.png" alt="Service 10">
+        <div class="service-description">
+          <h3>LiftGate</h3>
+      </div>
+    </div>
+
+      <div class="service">
+      <img src="/static/accounts/images/services11.png" alt="Service 11">
+      <div class="service-description">
+        <h3>Pallets</h3>
+      </div>
+    </div>
+
+    <div class="service">
+    <img src="/static/accounts/images/services12.png" alt="Service 12">
+    <div class="service-description">
+      <h3>Container</h3>
+    </section>
+    </div>
+  </div>
+</body>
+
+    </div>
+  </html>

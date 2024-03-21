@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Instagram Posts</title>
+</head>
+<body>
+  <div id="instagram-feed"></div>
+  <script>
+    // Use the Fetch API to retrieve data from the Instagram API
+    fetch("https://api.instagram.com/v1/users/self/media/recent?access_token=IGQVJWb1p5NzdXOW9yd2F5SXhubnVOR21HN2tDbTJwRTBnWV9hSlFHcTVVdVQ5aE12MUpYYl82MzlWX01NNDZA3MnVmQk5BWExKVUIxR2s5UVVpMkpRUFZAPcWdhclVpVHQ0LUpvN0JGNGN3eDRwcFZAicgZDZD")
+      .then(response => response.json())
+      .then(data => {
+        // Extract the data for each post
+        let posts = data.data;
+        // Create a container for the posts
+        let feed = document.getElementById("instagram-feed");
+        // Loop through each post
+        for (let i = 0; i < posts.length; i++) {
+          // Extract the image URL
+          let imageUrl = posts[i].images.thumbnail.url;
+          // Extract the caption
+          let caption = posts[i].caption.text;
+          // Extract the likes count
+          let likes = posts[i].likes.count;
+          // Create an image element
+          let img = document.createElement("img");
+          img.src = imageUrl;
+          // Create a caption element
+          let p = document.createElement("p");
+          p.innerHTML = caption;
+          // Create a likes element
+          let span = document.createElement("span");
+          span.innerHTML = likes + " likes";
+          // Add the elements to the feed container
+          feed.appendChild(img);
+          feed.appendChild(p);
+          feed.appendChild(span);
+        }
+      });
+  </script>
+</body>
+</html>

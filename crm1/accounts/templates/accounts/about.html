@@ -1,0 +1,129 @@
+<doctype html>
+<html>
+<title>About us</title>
+<link rel="icon" href="/static/accounts/images/logo.png">
+{% include 'accounts/navbar.html' %}
+
+{% block content %}
+{% endblock %}
+
+<style>
+  .container {
+  padding: 15px;
+  height: 1000px;
+  width: 100vw; /* Set a fixed width for the container */
+  margin: 0 auto; /* Center the container horizontally */
+  }
+  .card {
+    background-color: orange;
+    display: flex;
+    padding: 15px; /* Add a padding on the bottom of the cards */
+    border: 5px solid black; /* Add a border between the cards */
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .card-content {
+    width: 100%;
+  }
+  .square-image {
+    display: block;
+    width: 150px;
+    height: 150px;
+    border: 0px solid black;
+    margin: 0 auto; /* Add a margin on the left and right of the image */
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    width:850px;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    margin: auto;
+  }
+  .grid .card {
+    grid-column: span 1;
+  }
+  .grid .square-image {
+    grid-column: span 1;
+    justify-self: start;
+  }
+
+
+  @media (max-width: 600px) {
+    .grid {
+      width: auto;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(8, 1fr);
+    }
+    .grid .card {
+      grid-row: span 1;
+    }
+    .grid .square-image {
+      grid-row: span 1;
+      justify-self: start;
+    }
+  }
+  @media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 32px;
+  }
+  p {
+    font-size: 16px;
+  }
+}
+  @media only screen and (max-width: 600px) {
+  .container {
+    height: auto;
+    width: auto;
+  }
+}
+
+</style>
+
+<div style="width: 100%; height: auto; background-color: #F0F0F0;">
+  <div style="max-width: 800px; margin: 0 auto; padding: 50px; text-align: center;">
+    <h1 style="font-size: 48px;">About Us</h1>
+    <p style="font-size: 24px;">At Bullets Transport LLC, we are committed to delivering the highest-quality logistics solutions to our customers, through exceptional service and a comprehensive range of transportation options.</p>
+  </div>
+</div>
+
+<div class="container">
+<div class="grid">
+
+  <div class="card">
+    <div class="card-content">
+      <p>Bullets Transport LLC is a transportation company that is dedicated to providing top-quality service to our customers. We understand the importance of delivering goods on time and on budget, which is why we work hard to ensure that our clients are satisfied with our services.</p>
+    </div>
+  </div>
+  <img class="square-image" src="/static/accounts/images/logoabout.png" alt="Logo for about">
+
+
+  <div class="card">
+    <div class="card-content">
+      <p>One way that we save our customers money is by carefully selecting carriers that offer competitive rates and reliable service. We also have a strong network of industry partnerships, which allows us to negotiate favorable rates for our clients.</p>
+    </div>
+  </div>
+  <img class="square-image" src="/static/accounts/images/savemoney.png" alt="Save Money">
+
+
+  <div class="card">
+    <div class="card-content">
+      <p>In addition to saving money for our customers, we also prioritize the safety of our drivers and the general public. We have a $75,000 bond and are fully approved to broker freight with the Department of Transportation (DOT), which means that we adhere to the highest safety standards in the industry.</p>
+    </div>
+  </div>
+  <img class="square-image" src="/static/accounts/images/saftey.png" alt="Saftey">
+
+  <div class="card">
+    <div class="card-content">
+      <p>At Bullets Transport LLC, we take pride in the level of service that we provide to our clients. Whether you are shipping small packages or full truckloads, we are committed to delivering your goods on time and at a competitive price. We are always looking for ways to improve our services and exceed our customers' expectations.</p>
+    </div>
+  </div>
+  <img class="square-image" src="/static/accounts/images/bestservice.png" alt="Best Service">
+  </div>
+</div>
+
+
+{% include 'accounts/footer.html' %}
+</html>

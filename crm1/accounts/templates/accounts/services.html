@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WTL | Services Offered</title>
+  <link rel="icon" href="/static/accounts/images/logo.png">
+  <link href='https://fonts.googleapis.com/css?family=Vegan+Style' rel='stylesheet'>
+  <style>
+    /* Add some style to the page */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      background-color: lightgray;
+      padding: 20px;
+    }
+    .logo {
+      height: 50px;
+      margin-right: 20px;
+    }
+    .company-details {
+      display: flex;
+      flex-direction: column;
+    }
+    .grey-box {
+      background-color: lightgrey;
+      height: 200px;
+      width: 100%;
+      padding: 200px;
+    }
+    .btn {
+      display: inline-block;
+      font-weight: bold;
+      color: #212529;
+      text-align: center;
+      vertical-align: middle;
+      user-select: none;
+      background-color: transparent;
+      border: 1px solid transparent;
+      padding: 1rem 1.5rem;
+      font-size: 1.2rem;
+      line-height: 1.5;
+      border-radius: 0.5rem;
+      width: 200px;
+      height: 50px;
+      PADDING:10PX;
+      transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+    .btn-primary {
+      color: #fff;
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+    .logo2 {
+      font-size: 24px;
+      font-weight: bold;
+      font-family: 'Vegan Style', sans-serif;
+    }
+
+
+  </style>
+</head>
+<body>
+  {% include 'accounts/navbar.html' %}
+  {% block content %}
+  {% endblock %}
+</body>
+</html>
+
+
+  </style>
+</head>
+<body>
+  <!-- Container at the top with logo and company details -->
+  <div class="container">
+    <div class="logo2" id="logo2" style="color: ;">Always Reliable and Fast Service</div>
+  <div class="company-details">
+    <h2>Wired Transport LLC</h2>
+    <p>11003 Antoine Dr</p>
+    <p>Houston, Texas 77086</p>
+    <p>Phone: 888-713-0369</p>
+    <p>Email: wiredtransportllc@gmail.com</p>
+  </div>
+</div>
+
+{% include 'accounts/servicesbar.html' %}
+        </div>
+    </div>
+    </div>  <!-- close the services-container element -->
+
+
+
+<!-- Grey box at the bottom -->
+<!-- Grey box at the bottom -->
+<div class="grey-box" style="text-align: center; padding: 50px 0;">
+  <p>
+    <a class="btn btn-primary btn-lg" href="/quote/" role="button" style="margin: 20px 0;">GRAB A QUOTE</a>
+  </p>
+</div>
+{% include 'accounts/body.html' %}
+
+{% include 'accounts/footer.html' %}
+</body>
+</html>
+
+<script>
+  function animateXTitle() {
+    let title = document.getElementById('logo2');
+    let textList = ['Always dependable and never disappoints', 'Swift and trustworthy service'];
+    let j = 0;
+    let i = 0;
+    let cursor = '<span class="cursor">|</span>';
+
+    setInterval(function() {
+      title.innerHTML = textList[j].substring(0, i+1) + cursor;
+      i++;
+      if (i >= textList[j].length) {
+        i = 0;
+        j++;
+        if (j >= textList.length) {
+          j = 0;
+        }
+      }
+    }, 150);
+  }
+
+  window.onload = function() {
+    animateTitle();
+  }
+</script>

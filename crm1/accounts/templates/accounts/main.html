@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<link rel="icon" href="/static/accounts/images/logo.png">
+<head>
+    <!-- Google tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-253383057-1">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-253383057-1');
+</script>
+  <meta name="google-site-verification" content="hU-ipA-SsBXxQH-Yr2G8VCOePVgT9_zUo0rV4HOSBxs" />
+  <meta charset="utf-8">
+  <title>WTL | Logistics Shipping Company</title>
+  <meta name="description" content="Wired Transport LLC (WTL) specializes in transporting heavy equipment, containers, vehicles, pipes, and any other items you may need moved across the country. Request a quote today">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+  {% include 'accounts/navbar.html' %}
+
+  {% block content %}
+  {% endblock %}
+  {% include 'accounts/servicesbar.html' %}
+  {% include 'accounts/forty.html' %}
+  {% include 'accounts/step.html' %}
+  {% include 'accounts/reviewbar.html' %}
+  {% include 'accounts/footer.html' %}
+</body>
+</html>
