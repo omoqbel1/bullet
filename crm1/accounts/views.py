@@ -42,7 +42,7 @@ def quote(request):
                 'NEW QUOTE',  # Subject
                 message,  # Message
                 'wildmagic@zohomail.com',  # From email
-                ['wildmagic@zohomail.com'],  # List of recipients
+                ['wildmagic@zohomail.com', 'dispatch@bulletstransport.com'],  # List of recipients
                 fail_silently=False,
                 html_message=message  # Set to True to raise an exception if the email fails to send
             )
