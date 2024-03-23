@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Our Process - Transportation Logistics Company</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
   <style>
     .process-steps {
       display: flex;
@@ -23,11 +24,15 @@
       box-shadow: 5px 5px 8px rgba(0,0,0,0.3);
       padding: 20px;
     }
-		.process-steps {
-  	display: flex;
-  	justify-content: center;
-  	align-items: center;
-		}
+    .process-steps {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 20px;
+          border-radius: 10px;
+          width: 100vw;
+          flex-wrap: wrap; /* Added to wrap items instead of scrolling */
+        }
     .process-step::before {
       content: '';
       height: 50px;
@@ -42,11 +47,13 @@
       font-weight: bold;
       line-height: 50px;
     }
-    .process-step h2 {
-      margin: 0;
-      font-size: 18px;
-      color: #333;
-    }
+    .process-step p {
+    color: #000000; /* Dark text for paragraphs */
+  }
+
+  .process-step h2 {
+    color: #000000; /* Dark text for headings */
+  }
 		@media (max-width: 999px) {
     .process-steps {
         flex-direction: column;
@@ -66,9 +73,11 @@
     text-align: center;
 }
 .reviews-title {
+  font-family: 'Roboto Condensed', sans-serif; /* Updated to match the linked font */
   padding-bottom: 30px;
   font-size: 2em;
-  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold; /* Bold */
   text-align: center;
   margin-bottom: 30px;
   text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
@@ -82,7 +91,7 @@
   </style>
   <div class="parent-element233">
     <div class="container233">
-      <span class="reviews-title">How does it work?</span>
+      <span class="reviews-title">HOW DOES IT WORK?</span>
     </div>
   </div>
 </head>
