@@ -5,6 +5,7 @@
   <link rel="icon" href="/static/accounts/images/logo.png">
   <title>Bullets Transport LLC | Request a quote</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvhTA3qIz4wBBu8O5L6Rvll07mw2AC61E&libraries=places&callback=initAutocomplete" async defer></script>
 </head>
 <body>
   {% include 'accounts/navbar.html' %}
@@ -32,5 +33,38 @@
   {% endblock %}
 
   {% include 'accounts/footer.html' %}
+  <script>
+    let autocompleteOrigin, autocompleteDestination;
+
+    function initAutocomplete() {
+      console.log('Initializing Autocomplete');
+
+      // Check if we already have an autocomplete instance and if so, don't create another
+      if (!autocompleteOrigin) {
+        const originInput = document.getElementById('id_origin');
+        if (originInput) {
+          autocompleteOrigin = new google.maps.places.Autocomplete(originInput, {types: ['geocode']});
+          autocompleteOrigin.addListener('place_changed', function() {
+            const place = autocompleteOrigin.getPlace();
+            console.log('Origin place selected:', place);
+          });
+        }
+      }
+
+      if (!autocompleteDestination) {
+        const destinationInput = document.getElementById('id_destination');
+        if (destinationInput) {
+          autocompleteDestination = new google.maps.places.Autocomplete(destinationInput, {types: ['geocode']});
+          autocompleteDestination.addListener('place_changed', function() {
+            const place = autocompleteDestination.getPlace();
+            console.log('Destination place selected:', place);
+          });
+        }
+      }
+    }
+
+    // Listen for the 'load' event in case 'DOMContentLoaded' has already fired
+    window.addEventListener('load', initAutocomplete);
+  </script>
 </body>
 </html>
