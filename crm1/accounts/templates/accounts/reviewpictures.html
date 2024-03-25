@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+<title>Image Slideshow</title>
+<style>
+  .container {
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+    text-align: center; /* Center aligning the child contents */
+  }
+
+  .title-container {
+    font-family: 'Roboto Condensed', sans-serif; /* Updated to match the linked font */
+    padding-bottom: 20px;
+    font-size: 3em;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold; /* Bold */
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+  }
+
+  .slideshow-container {
+    position: relative;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center; /* Center aligning the slides */
+  }
+
+  .slide {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+  }
+
+  .image-container {
+    width: 330px;
+    height: 330px;
+    margin: 4px;
+    border: 4px solid black;
+    box-sizing: border-box;
+    flex: 0 0 auto;
+  }
+
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This will ensure that the images cover the area without losing their aspect ratio */
+  }
+
+  .mySlides {
+    animation-name: fade;
+    animation-duration: 1s;
+    animation-fill-mode: forwards; /* Holds the end state after the animation */
+    opacity: 0; /* Start with slides invisible */
+  }
+
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2; /* Make sure arrows are above the images */
+  }
+
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+
+  @keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+  }
+
+  .fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .slideshow-container, .slide {
+      flex-direction: row; /* Keep the row direction for smaller screens */
+    }
+    .image-container {
+      width: 30%; /* Each image container will take up roughly a third of the width */
+      height: auto; /* Maintain aspect ratio */
+      margin: 1%; /* Provide some space between images */
+      box-sizing: border-box;
+    }
+    .image-container img {
+      width: 100%; /* Image will fill the container */
+      height: 100%; /* Image height will scale based on width to maintain aspect ratio */
+    }
+  }
+
+</style>
+</head>
+<body>
+
+<div class="container title-container">
+  <h2>SHIPMENTS WE HAVE COMPLETED</h2>
+
+</div>
+
+<div class="container slideshow-container">
+  <!-- Each .mySlides div now contains exactly three .image-container divs -->
+  <div class="mySlides fade">
+    <!-- First set of three images -->
+    <div class="slide">
+      <div class="image-container">
+        <img src="/static/accounts/images/img1.png">
+      </div>
+      <div class="image-container">
+        <img src="/static/accounts/images/img2.png">
+      </div>
+      <div class="image-container">
+        <img src="/static/accounts/images/img3.png">
+      </div>
+    </div>
+  </div>
+
+  <!-- Second set of three images (repeat structure as needed) -->
+  <div class="mySlides fade">
+    <div class="slide">
+      <div class="image-container">
+        <img src="/static/accounts/images/img4.png">
+      </div>
+      <div class="image-container">
+        <img src="/static/accounts/images/img5.png">
+      </div>
+      <div class="image-container">
+        <img src="/static/accounts/images/img6.png">
+      </div>
+    </div>
+  </div>
+
+  <div class="mySlides fade">
+    <div class="slide">
+      <div class="image-container">
+        <img src="/static/accounts/images/img7.png">
+      </div>
+      <div class="image-container">
+        <img src="/static/accounts/images/img8.png">
+      </div>
+      <div class="image-container">
+        <img src="/static/accounts/images/img9.png">
+      </div>
+    </div>
+</div>
+
+<div class="mySlides fade">
+  <div class="slide">
+    <div class="image-container">
+      <img src="/static/accounts/images/img10.png">
+    </div>
+    <div class="image-container">
+      <img src="/static/accounts/images/img11.png">
+    </div>
+    <div class="image-container">
+      <img src="/static/accounts/images/img12.png">
+    </div>
+  </div>
+</div>
+
+<div class="mySlides fade">
+  <div class="slide">
+    <div class="image-container">
+      <img src="/static/accounts/images/img13.png">
+    </div>
+    <div class="image-container">
+      <img src="/static/accounts/images/img14.png">
+    </div>
+    <div class="image-container">
+      <img src="/static/accounts/images/img15.png">
+    </div>
+  </div>
+</div>
+
+<div class="mySlides fade">
+  <div class="slide">
+    <div class="image-container">
+      <img src="/static/accounts/images/img16.png">
+    </div>
+    <div class="image-container">
+      <img src="/static/accounts/images/img17.png">
+    </div>
+    <div class="image-container">
+      <img src="/static/accounts/images/img18.png">
+    </div>
+  </div>
+</div>
+
+<div class="mySlides fade">
+  <div class="slide">
+    <div class="image-container">
+      <img src="/static/accounts/images/img19.png">
+    </div>
+    <div class="image-container">
+      <img src="/static/accounts/images/img20.png">
+    </div>
+    <div class="image-container">
+      <img src="/static/accounts/images/img21.png">
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+// Adjusted JavaScript to accommodate sets of three images
+document.addEventListener('DOMContentLoaded', function () {
+  var slideIndex = 0;
+  showSlides();
+
+  function plusSlides(n) {
+    // This will clear the timeout when user manually changes slides
+    clearTimeout(autoSlideTimeout);
+    showSlides(slideIndex += n);
+  }
+
+  function currentSlide(n) {
+    // This will clear the timeout when user manually selects a slide
+    clearTimeout(autoSlideTimeout);
+    showSlides(slideIndex = n);
+  }
+
+  var autoSlideTimeout; // Global timeout variable
+
+  function showSlides() {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1}
+    slides[slideIndex-1].style.display = "block";
+    // Set a timeout to automatically change slides
+    autoSlideTimeout = setTimeout(showSlides, 7500); // Change image every 4 seconds
+  }
+});
+
+</script>
+
+</body>
+</html>
