@@ -108,6 +108,22 @@
       height: 100%; /* Image height will scale based on width to maintain aspect ratio */
     }
   }
+  @media screen and (max-width: 600px) {
+    .slide {
+      display: flex;
+      overflow: hidden;
+    }
+
+    .image-container {
+      width: 450px; /* Set the width of the image container */
+      height: 450px; /* Set the height of the image container */
+    }
+
+    .image-container img {
+      width: 100%; /* Make the image fill the width of the container */
+      height: 100%; /* Make the image fill the height of the container */
+      object-fit: cover; /* Ensure the image covers the container without distorting its aspect ratio */
+    }
 
 </style>
 </head>
@@ -222,39 +238,45 @@
 </div>
 
 <script>
-// Adjusted JavaScript to accommodate sets of three images
 document.addEventListener('DOMContentLoaded', function () {
   var slideIndex = 0;
   showSlides();
 
   function plusSlides(n) {
-    // This will clear the timeout when user manually changes slides
     clearTimeout(autoSlideTimeout);
     showSlides(slideIndex += n);
   }
 
   function currentSlide(n) {
-    // This will clear the timeout when user manually selects a slide
     clearTimeout(autoSlideTimeout);
     showSlides(slideIndex = n);
   }
 
-  var autoSlideTimeout; // Global timeout variable
+  var autoSlideTimeout;
 
   function showSlides() {
     var i;
-    var slides = document.getElementsByClassName("mySlides");
+    var slides;
+
+    if (window.innerWidth <= 600) {
+      slides = document.getElementsByClassName("image-container");
+    } else {
+      slides = document.getElementsByClassName("mySlides fade");
+    }
+
     for (i = 0; i < slides.length; i++) {
       slides[i].style.display = "none";
     }
+
     slideIndex++;
-    if (slideIndex > slides.length) {slideIndex = 1}
+    if (slideIndex > slides.length) {
+      slideIndex = 1;
+    }
+
     slides[slideIndex-1].style.display = "block";
-    // Set a timeout to automatically change slides
-    autoSlideTimeout = setTimeout(showSlides, 7500); // Change image every 4 seconds
+    autoSlideTimeout = setTimeout(showSlides, 7500);
   }
 });
-
 </script>
 
 </body>
