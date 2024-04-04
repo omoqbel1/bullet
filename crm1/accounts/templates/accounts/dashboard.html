@@ -2,36 +2,35 @@
 {% block content %}
 
 <style>
+  .fixed-top {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    background-color: white;
+  }
+
+  .container {
+    padding-top: 60px; /* Adjust this value based on the height of your fixed-top element */
+  }
+
+  .cta-get-quotes-btn {
+    margin-top: 10px;
+    display: none; /* Hide the green button initially */
+  }
+
   .jumbotron {
     background-image: url('/static/accounts/images/15ea2fc3-0bd6-472a-8218-fbaca53cbae8.mp');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+    padding-top: 100px; /* Adjust this value to ensure the jumbotron content is visible */
   }
-  @media (max-width: 600px) {
-  .jumbotron {
-    height: 400px; /* or any other desired height */
+
+  /* New class for the green button container */
+  .green-button-container {
+    position: relative;
   }
-}
-@media (max-width: 600px) {
-h1 {
-  font-size: 1.5em; /* 1.5 times the current font size */
-}
-
-p {
-  font-size: 2.0em; /* 20% of the current font size */
-}
-}
-#title {
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-}
-.text-center {
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-}
-
-
-
-
 </style>
 
 <header>
@@ -39,7 +38,7 @@ p {
     <div class="container1">
       <div class="row">
         <div class="col-12">
-          <h1 class="text-center" id="title" style="font-family: 'Trebuchet MS', sans-serif; font-size: 50px; font-weight: 400; color: ">
+          <h1 class="text-center" id="title" style="font-family: 'Trebuchet MS', sans-serif; font-size: 50px; font-weight: 400;">
             <strong>DEDICATED PROFESSIONAL SHIPPERS</strong>
           </h1>
           <p class="text-center"><strong><em>A logistics Company</em></strong></p>
@@ -52,31 +51,38 @@ p {
   </div>
 </header>
 
+<!-- Green button container -->
+<div class="green-button-container">
+  <form action="/quote/" method="get">
+    <input id="getQuotesCta" type="submit" class="btn btn-success cta-get-quotes-btn btn-block" value="GET A FREE QUOTE">
+  </form>
+</div>
+
 <script>
-  function animateTitle() {
-    let title = document.getElementById('title');
-    let textList = ['BULLETS TRANSPORT LLC', 'DEDICATED PROFESSIONAL SHIPPERS'];
-    let j = 0;
-    let i = 0;
-    let cursor = '<span class="cursor">|</span>';
+  window.onscroll = function() {
+    var blueButton = document.querySelector('.jumbotron .btn-primary');
+    var greenButton = document.getElementById('getQuotesCta');
+    var greenButtonContainer = document.querySelector('.green-button-container');
 
-    setInterval(function() {
-      title.innerHTML = textList[j].substring(0, i+1) + cursor;
-      i++;
-      if (i >= textList[j].length) {
-        i = 0;
-        j++;
-        if (j >= textList.length) {
-          j = 0;
-        }
-      }
-    }, 150);
-  }
+    // Get the bottom position of the blue button and add an extra offset
+    var extraOffset = 200; // Adjust this value as needed
+    var blueButtonBottom = blueButton.offsetTop + blueButton.offsetHeight + extraOffset;
 
-  window.onload = functxion() {
-    animateTitle();
-  }
+    if (window.scrollY > blueButtonBottom) {
+      greenButton.style.display = 'block';
+      greenButtonContainer.style.position = 'fixed';
+      greenButtonContainer.style.top = '0';
+      greenButtonContainer.style.width = '100%';
+      greenButtonContainer.style.zIndex = '1';
+      greenButtonContainer.style.backgroundColor = 'white';
+    } else {
+      greenButton.style.display = 'none';
+      greenButtonContainer.style.position = 'relative'; // Reset to default position
+    }
+  };
 </script>
+
+
 
 
 {% endblock %}
