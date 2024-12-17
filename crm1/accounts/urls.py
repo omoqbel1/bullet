@@ -11,4 +11,5 @@ urlpatterns = [
     path('services/', views.services),
     path('about/', views.about),
     path('privacy/', views.privacy),
+    path('tos/', views.tos),
 ]
