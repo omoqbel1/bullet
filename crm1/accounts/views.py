@@ -7,6 +7,8 @@ from django.template.loader import render_to_string
 
 # Create your views here.
 
+def privacy(request):
+    return render(request, 'accounts/privacy.html')
 
 def home(request):
     return render(request, 'accounts/dashboard.html')
