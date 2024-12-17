@@ -10,6 +10,9 @@ from django.template.loader import render_to_string
 def privacy(request):
     return render(request, 'accounts/privacy.html')
 
+def tos(request):
+    return render(request, 'accounts/tos.html')
+
 def home(request):
     return render(request, 'accounts/dashboard.html')
 
