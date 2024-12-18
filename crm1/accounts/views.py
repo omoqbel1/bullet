@@ -16,6 +16,9 @@ def tos(request):
 def home(request):
     return render(request, 'accounts/dashboard.html')
 
+def forms(request):
+    return render(request, 'accounts/forms.html')
+
 def products(request):
     return render(request, 'accounts/products.html')
 
