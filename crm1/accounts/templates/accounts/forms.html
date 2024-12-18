@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Quick Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .form-container {
+            background: #fff;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .form-container h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: normal;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-checkbox-label {
+            font-size: 14px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .form-checkbox-label input {
+            margin-right: 8px;
+            margin-top: 4px;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 10px;
+            background: #007BFF;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .form-submit:hover {
+            background: #0056b3;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Fill out the Form to get the top dollar</h2>
+        <form method="post" action="/thankyou/">
+            {% csrf_token %}
+            <label class="form-label" for="fullname">Full Name</label>
+            <input class="form-input" type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+
+            <label class="form-label" for="phone">Phone Number</label>
+            <input class="form-input" type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+            <label class="form-label" for="email">Email</label>
+            <input class="form-input" type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label class="form-label" for="address">Address</label>
+            <input class="form-input" type="text" id="address" name="address" placeholder="Enter your address" required>
+
+            <label class="form-checkbox-label">
+                <input type="checkbox" name="privacy" required>
+                I agree to the&nbsp;
+                <a href="/privacy/" target="_blank">Privacy Policy</a>
+                &nbsp;and&nbsp;
+                <a href="/tos/" target="_blank">Terms of Service</a>.
+            </label>
+
+            <label class="form-checkbox-label">
+                <input type="checkbox" name="marketing" required>
+                I agree to receive marketing and notification messages from Bullets Transport LLC. I am aware that messaging and data rates may apply, that I could receive 3-4 messages per month. I can opt-out by replying STOP at any time, and if I need more help or have questions I can reply HELP for assistance.
+            </label>
+
+            <button class="form-submit" type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
