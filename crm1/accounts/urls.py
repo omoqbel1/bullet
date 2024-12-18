@@ -12,4 +12,5 @@ urlpatterns = [
     path('about/', views.about),
     path('privacy/', views.privacy),
     path('tos/', views.tos),
+    path('forms/', views.forms),
 ]
