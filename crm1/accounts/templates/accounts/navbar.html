@@ -1,199 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" href="/static/accounts/images/logo.png">
-  <title>Navbar </title>
   <meta charset="utf-8">
-  <meta name="description" content="Bullets Transport LLC provides shipping for Heavy Equipment, Containers, Vehicle, Full Cargo, Boats, Motorcycles and many more ">
+  <meta name="description" content="Bullets Transport LLC provides shipping for Heavy Equipment, Containers, Vehicles, Full Cargo, Boats, Motorcycles, and more.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navbar</title>
+  <link rel="icon" href="/static/accounts/images/logo.png">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
- <header class="header">
-    <div class="container19">
-        <div class="row align-items-center justify-content-between">
-            <div class="logo">
-               <a href="#">BULLETS TRANSPORT LLC</a>
-            </div>
-            <button type="button" class="nav-toggler">
-               <span></span>
-            </button>
-            <nav class="nav">
-               <ul>
-                  <li><a href="/home/" class="active">home</a></li>
-                  <li><a href="/about/">about</a></li>
-                  <li><a href="/services/">services</a></li>
-                  <li><a href="#">contact us</a></li>
-                  <li><a href="tel:888-713-0369">888-713-0369</a></li>
-
-               </ul>
-            </nav>
-        </div>
+<header class="header">
+  <div class="container19">
+    <div class="row align-items-center">
+      <div class="logo">
+        <a href="/home/">
+          <img src="/static/accounts/images/logoo.jpg" alt="Bullets Transport LLC Logo">
+        </a>
+      </div>
+      <button type="button" class="nav-toggler">
+        <span></span>
+      </button>
+      <nav class="nav">
+        <ul>
+          <li><a href="/home/" class="active">Home</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/services/">Services</a></li>
+          <li><a href="/contact/">Contact Us</a></li>
+          <li><a href="tel:888-713-0369">888-713-0369</a></li>
+        </ul>
+      </nav>
     </div>
- </header>
+  </div>
+</header>
 
+<script>
+const navToggler = document.querySelector(".nav-toggler");
+navToggler.addEventListener("click", navToggle);
 
-<script src="js/script.js"></script>
+function navToggle() {
+  navToggler.classList.toggle("active");
+  const nav = document.querySelector(".nav");
+  nav.classList.toggle("open");
+  if (nav.classList.contains("open")) {
+    nav.style.maxHeight = nav.scrollHeight + "px";
+  } else {
+    nav.removeAttribute("style");
+  }
+}
+</script>
 </body>
 </html>
 
 <style>
-  :root{
-      --color-1: #2f3240;
-  }
-  body{
-  	font-family: sans-serif;
-  	background-color: #e8eef3;
-  }
-  *{
-  	box-sizing: border-box;
-  	margin:0;
-  	padding:0;
-  }
-  ul{
-  	list-style: none;
-  }
-  a{
-  	text-decoration: none;
-  }
-  .container19{
-  	max-width: 1170px;
-  	margin:auto;
-  }
-  .row{
-  	display: flex;
-  	flex-wrap: wrap;
-  }
-  .align-items-center{
-  	align-items: center;
-  }
-  .justify-content-between{
-  	justify-content: space-between;
-  }
-  /*header*/
-  .header{
-  	background-color: var(--color-1);
-  	padding: 12px 0;
-  	line-height: 1.5;
+:root {
+  --color-background: #000000;
+  --color-text: #ffffff;
+  --color-accent: #f3a93d;
+  --transition-speed: 0.5s;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #e8eef3;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Container */
+.container19 {
+  width: 100%;
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Row and alignments */
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Ensures space between logo and nav */
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+/* Header */
+.header {
+  background-color: var(--color-background);
+  padding: 10px 0;
+  position: relative;
+}
+
+.header .logo img {
+  height: 60px;
+  width: auto;
+  display: block;
+}
+
+/* Nav */
+.nav {
+  margin-left: auto;
+}
+
+.nav ul li {
+  display: inline-block;
+  margin-left: 30px; /* Spacing between menu items */
+}
+
+.nav ul li:first-child {
+  margin-left: 0;
+}
+
+.nav ul li a {
+  display: block;
+  font-size: 16px;
+  color: var(--color-text);
+  padding: 5px 0;
+  transition: all var(--transition-speed) ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.nav ul li a.active,
+.nav ul li a:hover {
+  color: var(--color-accent);
+}
+
+/* Mobile Toggle */
+.nav-toggler {
+  height: 34px;
+  width: 44px;
+  background-color: var(--color-text);
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  display: none;
+  margin-left: 20px;
+}
+
+.nav-toggler:focus {
+  outline: none;
+  box-shadow: 0 0 15px rgba(255,255,255,0.5);
+}
+
+.nav-toggler span {
+  height: 2px;
+  width: 20px;
+  background-color: var(--color-background);
+  display: block;
+  margin: auto;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-toggler.active span {
+  background-color: transparent;
+}
+
+.nav-toggler span::before,
+.nav-toggler span::after {
+  content: '';
+  position: absolute;
+  left:0;
+  top:0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-background);
+  transition: all 0.3s ease;
+}
+
+.nav-toggler span::before {
+  transform: translateY(-6px);
+}
+
+.nav-toggler.active span::before {
+  transform: rotate(45deg);
+}
+
+.nav-toggler span::after {
+  transform: translateY(6px);
+}
+
+.nav-toggler.active span::after {
+  transform: rotate(135deg);
+}
+
+@media (max-width: 991px) {
+  .nav-toggler {
+    display: block;
   }
 
-  .header .logo,
-  .header .nav{
-  	padding:0 15px;
-  }
-  .header .logo a{
-  	font-size: 30px;
-  	color: #ffffff;
-  	text-transform: capitalize;
-  }
-  .header .nav ul li{
-  	display: inline-block;
-  	margin-left: 40px;
-  }
-  .header .nav ul li a{
-  	display: block;
-  	font-size: 20px;
-  	text-transform: capitalize;
-  	color: #ffffff;
-  	padding: 10px 0;
-  	transition: all 0.5s ease;
-  }
-  .header .nav ul li a.active,
-  .header .nav ul li a:hover{
-  	color: #f3a93d;
-  }
-  .nav-toggler{
-  	height: 34px;
-  	width: 44px;
-  	background-color: #ffffff;
-  	border-radius: 4px;
-  	cursor: pointer;
-  	border:none;
-  	display: none;
-  	margin-right: 15px;
-  }
-  .nav-toggler:focus{
-  	outline: none;
-  	box-shadow: 0 0 15px rgba(255,255,255,0.5);
-  }
-  .nav-toggler span{
-      height: 2px;
-      width: 20px;
-      background-color: var(--color-1);
-      display: block;
-      margin:auto;
-      position: relative;
-      transition: all 0.3s ease;
-  }
-  .nav-toggler.active span{
-  	background-color: transparent;
-  }
-  .nav-toggler span::before,
-  .nav-toggler span::after{
-  	content: '';
-  	position: absolute;
-  	left:0;
-  	top:0;
-  	width: 100%;
-  	height: 100%;
-  	background-color: var(--color-1);
-  	transition: all 0.3s ease;
-  }
-  .nav-toggler span::before{
-  	transform: translateY(-6px);
-  }
-  .nav-toggler.active span::before{
-  	transform: rotate(45deg);
-  }
-  .nav-toggler span::after{
-  	transform: translateY(6px);
-  }
-  .nav-toggler.active span::after{
-  	transform: rotate(135deg);
-  }
-  @media(max-width:991px){
-     .nav-toggler{
-     	display: block;
-     }
-     .header .nav{
-     	width: 100%;
-     	padding:0;
-     	max-height: 0px;
-     	overflow: hidden;
-     	visibility: hidden;
-     	transition: all 0.5s ease;
-     }
-     .header .nav.open{
-     	visibility: visible;
-     }
-     .header .nav ul{
-     	padding:12px 15px 0;
-     	margin-top: 12px;
-     	border-top:1px solid rgba(255,255,255,0.2);
-     }
-     .header .nav ul li{
-     	display: block;
-     	margin:0;
-     }
+  .nav {
+    width: 100%;
+    padding: 0;
+    max-height: 0px;
+    overflow: hidden;
+    visibility: hidden;
+    transition: all var(--transition-speed) ease;
+    text-align: right; /* Aligns nav items to the right */
   }
 
+  .nav.open {
+    visibility: visible;
+  }
 
+  .nav ul {
+    padding: 12px 15px 0;
+    margin-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .nav ul li {
+    display: block;
+    margin: 10px 0;
+  }
+}
 </style>
-
-<script>
-
-   const navToggler = document.querySelector(".nav-toggler");
-   navToggler.addEventListener("click", navToggle);
-
-   function navToggle() {
-      navToggler.classList.toggle("active");
-      const nav = document.querySelector(".nav");
-      nav.classList.toggle("open");
-      if(nav.classList.contains("open")){
-      	nav.style.maxHeight = nav.scrollHeight + "px";
-      }
-      else{
-      	nav.removeAttribute("style");
-      }
-   }
-  </script>
