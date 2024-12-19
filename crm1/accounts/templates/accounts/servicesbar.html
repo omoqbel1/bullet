@@ -3,202 +3,177 @@
 <head>
   <title>Bullets Transport LLC | Services Offered</title>
   <link rel="icon" href="/static/accounts/images/logo.png">
-
-
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Roboto', Arial, sans-serif;
       margin: 0;
       padding: 0;
+      background-color: #f5f5f5;
+      color: #333;
     }
-    body {
-    background-color: #ffffff;
-    }
-    .page-container {
-      position: relative;
+
+    .main-container {
       width: 100vw;
-      display: flex;
-      justify-content: center;
-      padding: 65px 0 25px;
-    }
-    .service {
-      overflow: hidden;
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin: 20px;
-      width: 201px;
-      height: 200px;
-      border: 3px solid gray;
-      border-radius: 5px;
-      box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+      padding: 60px 20px;
+      box-sizing: border-box;
     }
-    .service img {
-      width: 150px;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 5px 5px 0 0;
-    }
-    .service-description {
-      padding: 10px;
+
+    .servicebars-title-container {
       text-align: center;
-    }
-    .process-steps {
-      width: 500px;
+      margin-bottom: 40px;
+      width: 100%;
     }
 
-    .services-container {
-      margin: auto;
-      padding: 15px;
-      overflow: auto;
+    .servicebars-title {
+      font-size: 2.5em;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin: 0;
+      color: #444;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .servicebars-container {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: repeat(3, 1fr) repeat(1, auto);
-      justify-content: center;
-      justify-items: center;
-      align-items: center;
-      height: auto;
-      width: 1000px
+      grid-template-columns: repeat(4, minmax(200px, 1fr));
+      grid-gap: 40px;
+      max-width: 1200px;
+      width: 100%;
+      box-sizing: border-box;
     }
-    @media (max-width: 975px) {
-    .services-container {
-      width: auto;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(2, 1fr) repeat(1, auto);
-    }
-  .service {
-    width: 75%;
-  }
-}
-.services-container {
-  position: relative;
-}
 
-.services-title {
-  position: absolute;
-  top: 20px;
-  left: 0;
-  width: 100%;
-  padding-bottom: 40px;
-  text-align: center;
-  font-size: 2em;
-  font-weight: bold;
-  text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-}
-.services-title-container {
-  position: absolute;
-    top: 20px;
-    left: 0;
-    width: 100%;
-    padding-bottom: 40px;
-    text-align: center;
-    font-size: 2em;
-    font-weight: bold;
-    margin-top: 20px;
-  }
+    @media (max-width: 1100px) {
+      .servicebars-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .servicebars-title {
+        font-size: 2em;
+      }
+    }
+
+    .servicebar {
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      height: 350px; /* Fixed height for consistent layout */
+    }
+
+    .servicebar:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .servicebar img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      flex-grow: 1;
+      background: #fdfdfd;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    .servicebar-description {
+      text-align: center;
+      font-size: 1.1em;
+      font-weight: bold;
+      text-transform: uppercase;
+      background: linear-gradient(to right, #b71c1c, #880e4f);
+      color: #ffffff;
+      padding: 15px 0;
+      letter-spacing: 1px;
+    }
   </style>
 </head>
+<body>
+  <div class="main-container">
 
-<div class="page-container">
-  <div class="service-title-container">
-    <h2 class="services-title">Services that we can provide or transport</h2>
-  </div>
-<div class="services-container">
-
-  <div class="service">
-    <img src="/static/accounts/images/services1.png" alt="Service 1">
-    <div class="service-description">
-      <h3>Flatbed</h3>
+    <div class="servicebars-title-container">
+      <h2 class="servicebars-title">Services We Provide or Transport</h2>
     </div>
-  </div>
 
-  <div class="service">
-    <img src="/static/accounts/images/services2.png" alt="Service 2">
-    <div class="service-description">
-      <h3>Dryvan</h3>
-    </div>
-  </div>
+    <div class="servicebars-container">
 
-  <div class="service">
-    <img src="/static/accounts/images/services3.png" alt="Service 3">
-    <div class="service-description">
-      <h3>Vehicles</h3>
-    </div>
-  </div>
-
-  <div class="service">
-    <img src="/static/accounts/images/services4.png" alt="Service 4">
-    <div class="service-description">
-      <h3>Tiltbed</h3>
-    </div>
-  </div>
-
-  <div class="service">
-    <img src="/static/accounts/images/services5.png" alt="Service 5">
-    <div class="service-description">
-      <h3>Forklift</h3>
-    </div>
-  </div>
-
-  <div class="service">
-    <img src="/static/accounts/images/services6.png" alt="Service 6">
-    <div class="service-description">
-      <h3>Power Only</h3>
-    </div>
-  </div>
-
-  <div class="service">
-    <img src="/static/accounts/images/services7.png" alt="Service 7">
-    <div class="service-description">
-      <h3>Crane</h3>
-    </div>
-  </div>
-
-  <div class="service">
-    <img src="/static/accounts/images/services8.png" alt="Service 8">
-    <div class="service-description">
-      <h3>Expedited</h3>
-    </div>
-  </div>
-
-      <div class="service">
-      <img src="/static/accounts/images/services9.png" alt="Service 9">
-      <div class="service-description">
-        <h3>Boxtruck</h3>
+      <div class="servicebar">
+        <img src="/static/accounts/images/services1.png" alt="Flatbed">
+        <div class="servicebar-description">Flatbed</div>
       </div>
-    </div>
 
-      <div class="service">
-        <img src="/static/accounts/images/services10.png" alt="Service 10">
-        <div class="service-description">
-          <h3>LiftGate</h3>
+      <div class="servicebar">
+        <img src="/static/accounts/images/services2.png" alt="Dryvan">
+        <div class="servicebar-description">Dryvan</div>
       </div>
-    </div>
 
-      <div class="service">
-      <img src="/static/accounts/images/services11.png" alt="Service 11">
-      <div class="service-description">
-        <h3>Pallets</h3>
+      <div class="servicebar">
+        <img src="/static/accounts/images/services3.png" alt="Vehicles">
+        <div class="servicebar-description">Vehicles</div>
       </div>
-    </div>
 
-    <div class="service">
-    <img src="/static/accounts/images/services12.png" alt="Service 12">
-    <div class="service-description">
-      <h3>Container</h3>
+      <div class="servicebar">
+        <img src="/static/accounts/images/services4.png" alt="Tiltbed">
+        <div class="servicebar-description">Tiltbed</div>
+      </div>
+
+      <div class="servicebar">
+        <img src="/static/accounts/images/services5.png" alt="Forklift">
+        <div class="servicebar-description">Forklift</div>
+      </div>
+
+      <div class="servicebar">
+        <img src="/static/accounts/images/services6.png" alt="Power Only">
+        <div class="servicebar-description">Power Only</div>
+      </div>
+
+      <div class="servicebar">
+        <img src="/static/accounts/images/services7.png" alt="Crane">
+        <div class="servicebar-description">Crane</div>
+      </div>
+
+      <div class="servicebar">
+        <img src="/static/accounts/images/services8.png" alt="Expedited">
+        <div class="servicebar-description">Expedited</div>
+      </div>
+
+      <div class="servicebar">
+        <img src="/static/accounts/images/services9.png" alt="Boxtruck">
+        <div class="servicebar-description">Boxtruck</div>
+      </div>
+
+      <div class="servicebar">
+        <img src="/static/accounts/images/services10.png" alt="LiftGate">
+        <div class="servicebar-description">LiftGate</div>
+      </div>
+
+      <div class="servicebar">
+        <img src="/static/accounts/images/services11.png" alt="Pallets">
+        <div class="servicebar-description">Pallets</div>
+      </div>
+
+      <div class="servicebar">
+        <img src="/static/accounts/images/services12.png" alt="Container">
+        <div class="servicebar-description">Container</div>
+      </div>
+
     </div>
   </div>
-
 
   <script>
-  document.querySelectorAll('.service').forEach(function(service) {
-    service.addEventListener('click', function() {
-      window.open('/quote/');
+    document.querySelectorAll('.servicebar').forEach(function(servicebar) {
+      servicebar.addEventListener('click', function() {
+        window.open('/quote/');
+      });
     });
-  });
   </script>
-
-
-  </div>
-    </div>
-  </html>
+</body>
+</html>
