@@ -1,124 +1,182 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Our Process - Transportation Logistics Company</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4C+XCUURHjXLaZuFxFlJ5kGZIQ4rco2o9EWq6MnSsR5+GIXFXI1ClfLt2k5rIJoP5iRiw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
-    .process-steps {
-      display: flex;
-      overflow-x: auto;
-      align-items: center;
-      padding: 20px;
-      border-radius: 10px;
-			width: 100vw;
+    /* Scoping all styles inside the .badass-process-wrapper */
+    .badass-process-wrapper {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #111111, #333333);
+      color: #ffffff;
+      padding: 50px 0;
     }
-    .process-step {
-			margin-bottom: 20px; /* Add this line */
-      width: 350px;
-      margin-right: 20px;
-      flex: 0 0 20%;
+
+    .badass-process-wrapper .badass-reviews-title {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 3em;
+      font-weight: 700;
       text-align: center;
-      background-color: white;
-      border: 4px solid #333;
-      border-radius: 10px;
-      box-shadow: 5px 5px 8px rgba(0,0,0,0.3);
-      padding: 20px;
+      margin: 0 0 30px;
+      color: #ffffff;
+      text-shadow: 3px 3px 10px rgba(0,0,0,0.5);
     }
-    .process-steps {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: 20px;
-          border-radius: 10px;
-          width: 100vw;
-          flex-wrap: wrap; /* Added to wrap items instead of scrolling */
-        }
-    .process-step::before {
-      content: '';
-      height: 50px;
-      width: 50px;
-      border-radius: 50%;
-      border: 2px solid #333;
-      display: block;
-      margin: 0 auto 10px;
+
+    .badass-process-wrapper .badass-process-container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto 100px;
       position: relative;
-      background-color: white;
-      font-size: 24px;
-      font-weight: bold;
-      line-height: 50px;
     }
-    .process-step p {
-    color: #000000; /* Dark text for paragraphs */
-  }
 
-  .process-step h2 {
-    color: #000000; /* Dark text for headings */
-  }
-		@media (max-width: 999px) {
-    .process-steps {
+    .badass-process-wrapper .badass-process-line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: #555;
+      z-index: 1;
+      transform: translateY(-50%);
+    }
+
+    .badass-process-wrapper .badass-process-steps {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: nowrap;
+      position: relative;
+      z-index: 2;
+      gap: 20px;
+    }
+
+    .badass-process-wrapper .badass-process-step {
+      width: 250px;
+      background: #222;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.6);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      text-align: center;
+    }
+
+    .badass-process-wrapper .badass-process-step:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(0,0,0,0.8);
+    }
+
+    .badass-process-wrapper .badass-step-circle {
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 60px;
+      background: #E50914;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 1.4em;
+      font-weight: 700;
+      color: #ffffff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    .badass-process-wrapper .badass-step-circle i {
+      margin-right: 6px;
+      font-size: 1em;
+    }
+
+    .badass-process-wrapper .badass-process-step h2 {
+      margin-top: 40px;
+      margin-bottom: 15px;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 1.5em;
+      font-weight: 700;
+      color: #ffffff;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    }
+
+    .badass-process-wrapper .badass-process-step p {
+      font-size: 1em;
+      line-height: 1.5em;
+      color: #cccccc;
+    }
+
+    @media(max-width: 999px) {
+      .badass-process-wrapper .badass-process-container {
+        margin-bottom: 50px;
+      }
+
+      .badass-process-wrapper .badass-process-line {
+        display: none;
+      }
+
+      .badass-process-wrapper .badass-process-steps {
         flex-direction: column;
-    }
-    .process-step {
-        margin-right: 0;
-        width: 100%;
-    }
-}
-.parent-element233{
-    display: flex;
-    justify-content: center;
-}
-.container233 {
-    width: 100%;
-    display: block;
-    text-align: center;
-}
-.reviews-title {
-  font-family: 'Roboto Condensed', sans-serif; /* Updated to match the linked font */
-  padding-bottom: 30px;
-  font-size: 2em;
-  font-family: 'Roboto', sans-serif;
-  font-weight: bold; /* Bold */
-  text-align: center;
-  margin-bottom: 30px;
-  text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-}
-@media only screen and (max-width: 480px) {
-  p {
-    font-size: 15px;
-  }
-}
+        align-items: center;
+        gap: 40px;
+      }
 
+      .badass-process-wrapper .badass-process-step {
+        width: 80%;
+        max-width: 300px;
+      }
+
+      .badass-process-wrapper .badass-step-circle {
+        top: -40px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .badass-process-wrapper .badass-reviews-title {
+        font-size: 2em;
+      }
+
+      .badass-process-wrapper .badass-process-step p {
+        font-size: 0.9em;
+      }
+    }
   </style>
-  <div class="parent-element233">
-    <div class="container233">
-      <span class="reviews-title">HOW DOES IT WORK?</span>
-    </div>
-  </div>
 </head>
 <body>
 
-	<div class="process-steps">
-	  <div class="row1">
-	    <div class="process-step">
-	      <h2>Step 1</h2>
-	      <p>You fill out a form to request a quote with the details of your shipment.</p>
-	    </div>
-	    <div class="process-step">
-	      <h2>Step 2</h2>
-	      <p>We will provide you a quote based on the information provided.</p>
-	    </div>
-	  </div>
-	  <div class="row2">
-	    <div class="process-step">
-	      <h2>Step 3</h2>
-	      <p>We will work hard to ensure the safe and timely delivery of the your equipment.</p>
-	    </div>
-	    <div class="process-step">
-	      <h2>Step 4</h2>
-	      <p>The load is delivered, and you sign a bill of lading (BOL) to confirm receipt.</p>
-	    </div>
-	  </div>
-	</div>
+  <!-- Wrap this section with the .badass-process-wrapper to isolate styles -->
+  <div class="badass-process-wrapper">
+    <div class="badass-reviews-title">HOW DOES IT WORK?</div>
+    <div class="badass-process-container">
+      <div class="badass-process-line"></div>
+      <div class="badass-process-steps">
+        <div class="badass-process-step">
+          <div class="badass-step-circle"><i class="fas fa-file-alt"></i>1</div>
+          <h2>Step 1</h2>
+          <p>You fill out a form to request a quote with the details of your shipment.</p>
+        </div>
+        <div class="badass-process-step">
+          <div class="badass-step-circle"><i class="fas fa-calculator"></i>2</div>
+          <h2>Step 2</h2>
+          <p>We provide you with a customized quote based on the information provided.</p>
+        </div>
+        <div class="badass-process-step">
+          <div class="badass-step-circle"><i class="fas fa-truck"></i>3</div>
+          <h2>Step 3</h2>
+          <p>Our team arranges safe and timely transportation for your equipment.</p>
+        </div>
+        <div class="badass-process-step">
+          <div class="badass-step-circle"><i class="fas fa-clipboard-check"></i>4</div>
+          <h2>Step 4</h2>
+          <p>Your load is delivered, and you sign the BOL to confirm receipt.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
 </html>
