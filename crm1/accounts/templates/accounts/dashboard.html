@@ -2,87 +2,189 @@
 {% block content %}
 
 <style>
-  .fixed-top {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1;
-    background-color: white;
-  }
-
-  .container {
-    padding-top: 60px; /* Adjust this value based on the height of your fixed-top element */
-  }
-
-  .cta-get-quotes-btn {
-    margin-top: 0px;
-    display: none; /* Hide the green button initially */
+  body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
   }
 
   .jumbotron {
-    background-image: url('/static/accounts/images/15ea2fc3-0bd6-472a-8218-fbaca53cbae8.mp');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    position: relative;
+    min-height: 60vh;
+    margin-bottom: 0;
+    background:
+      url('/static/accounts/images/bullet-banner_02.png') no-repeat center center;
     background-size: cover;
-    padding-top: 100px; /* Adjust this value to ensure the jumbotron content is visible */
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  /* New class for the green button container */
+  .jumbotron-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1100px; /* Slightly narrower to bring them closer */
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .jumbotron-content {
+    max-width: 48%; /* Slightly more space for content */
+    color: #000;
+    text-align: left;
+  }
+
+  .jumbotron-content h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    color: #000;
+    text-shadow: none;
+  }
+
+  .jumbotron-content p {
+    color: #000;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    text-shadow: none;
+  }
+
+  .jumbotron-content a.btn-primary {
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    padding: 0.8rem 1.5rem;
+    background: #007BFF;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: background 0.3s ease;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .jumbotron-content a.btn-primary:hover {
+    background: #0056b3;
+  }
+
+  .jumbotron-image {
+    max-width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0.5rem; /* Bring image closer to the text */
+  }
+
+  .jumbotron-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Green CTA (appears on scroll) */
   .green-button-container {
     position: relative;
+    width: 100%;
+    transition: all 0.3s ease;
+  }
+
+  .cta-get-quotes-btn {
+    display: none;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border: none;
+    background: #28a745;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .cta-get-quotes-btn:hover {
+    background: #218838;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+  }
+
+  /* Responsive layout */
+  @media (max-width: 767px) {
+    .jumbotron-inner {
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .jumbotron-content {
+      max-width: 100%;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .jumbotron-image {
+      max-width: 100%;
+      width: 100%;
+      margin-top: 1rem;
+      justify-content: center;
+      margin-left: 0; /* No extra margin on mobile */
+    }
   }
 </style>
 
 <header>
   <div class="jumbotron">
-    <div class="container1">
-      <div class="row">
-        <div class="col-12">
-          <h1 class="text-center" id="title" style="font-family: 'Trebuchet MS', sans-serif; font-size: 50px; font-weight: 400;">
-            <strong>DEDICATED PROFESSIONAL SHIPPERS</strong>
-          </h1>
-          <p class="text-center"><strong><em>A logistics Company</em></strong></p>
-          <p class="text-center">
-            <a class="btn btn-primary btn-lg" href="/quote/" role="button">GET A FREE QUOTE</a>
-          </p>
-        </div>
+    <div class="jumbotron-inner">
+      <div class="jumbotron-content">
+        <h1><strong>Dedicated Professional Shippers</strong></h1>
+        <p><em>A Premier Logistics Company</em></p>
+        <p>
+          <a class="btn btn-primary btn-lg" href="/quote/" role="button">Get a Free Quote</a>
+        </p>
+      </div>
+      <div class="jumbotron-image">
+        <img src="/static/accounts/images/ban-img.png" alt="Banner Image">
       </div>
     </div>
   </div>
 </header>
 
-<!-- Green button container -->
+<!-- Fixed Green CTA Button Container -->
 <div class="green-button-container">
   <form action="/quote/" method="get">
-    <input id="getQuotesCta" type="submit" class="btn btn-success cta-get-quotes-btn btn-block" value="GET A FREE QUOTE">
+    <input id="getQuotesCta" type="submit" class="btn btn-success cta-get-quotes-btn" value="Get a Free Quote">
   </form>
 </div>
 
 <script>
   window.onscroll = function() {
-    var blueButton = document.querySelector('.jumbotron .btn-primary');
+    var blueButton = document.querySelector('.jumbotron-content .btn-primary');
     var greenButton = document.getElementById('getQuotesCta');
     var greenButtonContainer = document.querySelector('.green-button-container');
 
-    // Get the bottom position of the blue button and add an extra offset
-    var extraOffset = 200; // Adjust this value as needed
+    var extraOffset = 200;
     var blueButtonBottom = blueButton.offsetTop + blueButton.offsetHeight + extraOffset;
 
     if (window.scrollY > blueButtonBottom) {
       greenButton.style.display = 'block';
       greenButtonContainer.style.position = 'fixed';
       greenButtonContainer.style.top = '0';
-      greenButtonContainer.style.width = '100%';
-      greenButtonContainer.style.zIndex = '1';
-      greenButtonContainer.style.backgroundColor = 'white';
+      greenButtonContainer.style.left = '0';
+      greenButtonContainer.style.right = '0';
+      greenButtonContainer.style.zIndex = '9999';
+      greenButtonContainer.style.backgroundColor = '#fff';
     } else {
       greenButton.style.display = 'none';
-      greenButtonContainer.style.position = 'relative'; // Reset to default position
+      greenButtonContainer.style.position = 'relative';
+      greenButtonContainer.style.backgroundColor = 'transparent';
     }
   };
 </script>
-
-
-
 
 {% endblock %}
