@@ -1,129 +1,266 @@
-<doctype html>
-<html>
-<title>About us</title>
-<link rel="icon" href="/static/accounts/images/logo.png">
-{% include 'accounts/navbar.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About Us - Bullets Transport LLC</title>
+  <link rel="icon" href="/static/accounts/images/logo.png">
 
-{% block content %}
-{% endblock %}
+  <!-- Example Google Font (Optional) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap">
 
-<style>
-  .container {
-  padding: 15px;
-  height: 1000px;
-  width: 100vw; /* Set a fixed width for the container */
-  margin: 0 auto; /* Center the container horizontally */
-  }
-  .card {
-    background-color: orange;
-    display: flex;
-    padding: 15px; /* Add a padding on the bottom of the cards */
-    border: 5px solid black; /* Add a border between the cards */
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  .card-content {
-    width: 100%;
-  }
-  .square-image {
-  display: block;
-  width: auto; /* Adjust the width automatically */
-  height: calc(150px + 30px); /* Add the top and bottom padding values */
-  border: 5px solid black; /* Match the border size of the card */
-  margin: 0 auto;
-  }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(8, 1fr);
-    width:850px;
-    justify-content: center;
-    justify-items: center;
-    align-items: center;
-    margin: auto;
-  }
-  .grid .card {
-    grid-column: span 1;
-  }
-  .grid .square-image {
-    grid-column: span 1;
-    justify-self: start;
-  }
-
-
-  @media (max-width: 600px) {
-    .grid {
-      width: auto;
-      grid-template-columns: 1fr;
-      grid-template-rows: repeat(8, 1fr);
+  <style>
+    /* Base Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Open Sans', sans-serif;
     }
-    .grid .card {
-      grid-row: span 1;
+
+    body {
+      background-color: #fafafa;
+      color: #333;
+      line-height: 1.6;
     }
-    .grid .square-image {
-      grid-row: span 1;
-      justify-self: start;
+
+    /* 1) HERO SECTION */
+    .hero-section {
+      position: relative;
+      width: 100%;
+      height: 60vh;
+      background: url('/static/accounts/images/hero-placeholder.png') no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
     }
-  }
-  @media only screen and (max-width: 600px) {
-  h1 {
-    font-size: 32px;
-  }
-  p {
-    font-size: 16px;
-  }
-}
-  @media only screen and (max-width: 600px) {
-  .container {
-    height: auto;
-    width: auto;
-  }
-}
 
-</style>
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60vh;
+      background: rgba(0, 0, 0, 0.5); /* Overlay for better text readability */
+    }
 
-<div style="width: 100%; height: auto; background-color: #F0F0F0;">
-  <div style="max-width: 800px; margin: 0 auto; padding: 50px; text-align: center;">
-    <h1 style="font-size: 48px;">About Us</h1>
-    <p style="font-size: 24px;">At Bullets Transport LLC, we are committed to delivering the highest-quality logistics solutions to our customers, through exceptional service and a comprehensive range of transportation options.</p>
-  </div>
-</div>
+    .hero-content {
+      position: relative;
+      max-width: 800px;
+      padding: 0 20px;
+    }
 
-<div class="container">
-<div class="grid">
+    .hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
 
-  <div class="card">
-    <div class="card-content">
-      <p>Bullets Transport LLC is a transportation company that is dedicated to providing top-quality service to our customers. We understand the importance of delivering goods on time and on budget, which is why we work hard to ensure that our clients are satisfied with our services.</p>
+    .hero-content p {
+      font-size: 1.2rem;
+      line-height: 1.4;
+    }
+
+    /* 2) MAIN ABOUT SECTION */
+    .about-section {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: space-between;
+      align-items: stretch;
+    }
+
+    .about-text {
+      flex: 1 1 50%;
+      min-width: 300px;
+    }
+
+    .about-text h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .about-text p {
+      font-size: 1rem;
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+
+    .about-images {
+      flex: 1 1 40%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 10px;
+    }
+
+    .about-images img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* 3) BENEFITS SECTION */
+    .benefits-section {
+      background-color: #ffffff;
+      padding: 40px 20px;
+      border-top: 1px solid #eaeaea;
+      border-bottom: 1px solid #eaeaea;
+    }
+
+    .benefits-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      align-items: start;
+    }
+
+    .benefit-card {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .benefit-card img {
+      max-width: 80px;
+      margin-bottom: 15px;
+    }
+
+    .benefit-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .benefit-card p {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    /* MEDIA QUERIES */
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+      .hero-content p {
+        font-size: 1rem;
+      }
+      .about-section {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .about-images {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: 1.8rem;
+      }
+      .hero-content p {
+        font-size: 0.95rem;
+      }
+      .about-images {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Keep your existing navbar exactly as it is -->
+  {% include 'accounts/navbar.html' %}
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>About Bullets Transport LLC</h1>
+      <p>Empowering businesses with reliable, on-time, and cost-effective freight solutions—anywhere, anytime.</p>
     </div>
-  </div>
-  <img class="square-image" src="/static/accounts/images/logo.png" alt="Logo for about">
+  </section>
 
-
-  <div class="card">
-    <div class="card-content">
-      <p>One way that we save our customers money is by carefully selecting carriers that offer competitive rates and reliable service. We also have a strong network of industry partnerships, which allows us to negotiate favorable rates for our clients.</p>
+  <!-- Main About Content -->
+  <section class="about-section">
+    <div class="about-text">
+      <h2>Who We Are</h2>
+      <p>
+        Bullets Transport LLC is a leading logistics and freight brokerage company, dedicated to simplifying the shipping process for businesses of all sizes.
+        From small packages to full truckloads, we offer tailor-made solutions to meet your unique needs.
+      </p>
+      <p>
+        Our team of logistics experts and customer service professionals work around the clock to ensure your goods are delivered safely, on time,
+        and within budget. We are fully bonded and DOT-approved, reflecting our commitment to high-quality standards and safety practices.
+      </p>
+      <p>
+        At Bullets Transport LLC, our mission is to exceed your expectations and help drive your business forward.
+      </p>
     </div>
-  </div>
-  <img class="square-image" src="/static/accounts/images/savemoney.png" alt="Save Money">
 
-
-  <div class="card">
-    <div class="card-content">
-      <p>In addition to saving money for our customers, we also prioritize the safety of our drivers and the general public. We have a $75,000 bond and are fully approved to broker freight with the Department of Transportation (DOT), which means that we adhere to the highest safety standards in the industry.</p>
+    <!-- Example Image Grid: Replace with your own images -->
+    <div class="about-images">
+      <img src="/static/accounts/images/warehouse-placeholder.png" alt="Warehouse Image">
+      <img src="/static/accounts/images/truck-placeholder.png" alt="Truck Image">
+      <img src="/static/accounts/images/team-placeholder.png" alt="Team Image">
+      <img src="/static/accounts/images/loading-placeholder.png" alt="Loading Cargo">
     </div>
-  </div>
-  <img class="square-image" src="/static/accounts/images/saftey.png" alt="Saftey">
+  </section>
 
-  <div class="card">
-    <div class="card-content">
-      <p>At Bullets Transport LLC, we take pride in the level of service that we provide to our clients. Whether you are shipping small packages or full truckloads, we are committed to delivering your goods on time and at a competitive price. We are always looking for ways to improve our services and exceed our customers' expectations.</p>
+  <!-- Benefits / Features Section -->
+  <section class="benefits-section">
+    <div class="benefits-container">
+      <!-- Benefit 1 -->
+      <div class="benefit-card">
+        <img src="/static/accounts/images/icon-competitive-rates.png" alt="Competitive Rates Icon">
+        <h3>Competitive Rates</h3>
+        <p>
+          We negotiate the best possible carrier fees through our extensive partner network, helping you reduce overall shipping costs.
+        </p>
+      </div>
+
+      <!-- Benefit 2 -->
+      <div class="benefit-card">
+        <img src="/static/accounts/images/icon-safety.png" alt="Safety Icon">
+        <h3>Safety & Compliance</h3>
+        <p>
+          With a $75,000 bond and full DOT approval, you can trust us to prioritize safety for drivers and cargo alike.
+        </p>
+      </div>
+
+      <!-- Benefit 3 -->
+      <div class="benefit-card">
+        <img src="/static/accounts/images/icon-fast-delivery.png" alt="Fast Delivery Icon">
+        <h3>Timely Delivery</h3>
+        <p>
+          Our dedicated dispatch team and well-established logistics protocols ensure that your shipments arrive right on schedule.
+        </p>
+      </div>
+
+      <!-- Benefit 4 -->
+      <div class="benefit-card">
+        <img src="/static/accounts/images/icon-customer-support.png" alt="Support Icon">
+        <h3>Exceptional Support</h3>
+        <p>
+          Our friendly and knowledgeable customer service representatives are here to guide you every step of the way.
+        </p>
+      </div>
     </div>
-  </div>
-  <img class="square-image" src="/static/accounts/images/bestservice.png" alt="Best Service">
-  </div>
-</div>
+  </section>
 
+  <!-- Keep your existing footer exactly as it is -->
+  {% include 'accounts/footer.html' %}
 
-{% include 'accounts/footer.html' %}
+</body>
 </html>
