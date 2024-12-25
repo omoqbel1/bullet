@@ -17,17 +17,22 @@
 
   <!-- Custom CSS -->
   <style>
+    /* Base Styles */
     body {
       background-color: #121212; /* Dark background for consistency */
       color: #ffffff; /* Default text color */
+      font-family: Arial, Helvetica, sans-serif; /* More readable font */
+      font-size: 18px; /* Increased base font size */
+      line-height: 1.6; /* Improved line spacing */
     }
 
+    /* Quote Form Container */
     .quote-container {
       background: #222;
       border: 1px solid #333;
       border-radius: 10px;
       padding: 2rem;
-      max-width: 600px;
+      max-width: 700px; /* Increased width for better layout */
       margin: 2rem auto;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
     }
@@ -36,13 +41,15 @@
       color: #fff;
       font-weight: bold;
       text-align: center;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
+      font-size: 2.5rem; /* Larger heading */
     }
 
-    .quote-container .quote-form-label {
+    .quote-form-label {
       color: #ccc;
       font-weight: bold;
       margin-bottom: 0.5rem;
+      font-size: 1.2rem; /* Increased label font size */
     }
 
     .quote-container input,
@@ -52,25 +59,33 @@
       color: #fff;
       border: 1px solid #555;
       border-radius: 5px;
-      padding: 0.5rem;
+      padding: 0.75rem; /* Increased padding for better touch targets */
       width: 100%;
+      font-size: 1.1rem; /* Increased input font size */
+      margin-bottom: 1rem; /* More spacing between fields */
+    }
+
+    .quote-container textarea {
+      resize: vertical; /* Allow vertical resizing */
+      min-height: 150px; /* Ensure adequate space for text */
     }
 
     .quote-container button {
       background: linear-gradient(90deg, #333, #666);
       color: #fff;
       border: none;
-      padding: 0.7rem 1.5rem;
-      font-size: 1rem;
+      padding: 0.9rem 2rem; /* Larger button size */
+      font-size: 1.2rem; /* Increased button font size */
       font-weight: bold;
       border-radius: 5px;
-      margin-top: 1rem;
+      margin-top: 1.5rem;
       width: 100%;
-      max-width: 200px;
+      max-width: 250px; /* Larger max width */
       display: block;
       margin-left: auto;
       margin-right: auto;
       transition: background 0.3s, box-shadow 0.3s;
+      cursor: pointer; /* Pointer cursor for better UX */
     }
 
     .quote-container button:hover {
@@ -78,13 +93,49 @@
       box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
     }
 
-    /* Optional: Adjustments for the footer */
+    /* Footer Styles */
     footer {
       background-color: #1a1a1a;
       color: #ccc;
-      padding: 1rem 0;
+      padding: 1.5rem 0; /* Increased padding */
       text-align: center;
-      margin-top: 2rem;
+      margin-top: 3rem;
+      font-size: 1.1rem; /* Increased footer font size */
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      body {
+        font-size: 16px; /* Slightly smaller font on smaller screens */
+      }
+
+      .quote-container {
+        padding: 1.5rem;
+      }
+
+      .quote-container h1 {
+        font-size: 2rem;
+      }
+
+      .quote-form-label {
+        font-size: 1.1rem;
+      }
+
+      .quote-container input,
+      .quote-container select,
+      .quote-container textarea {
+        font-size: 1rem;
+      }
+
+      .quote-container button {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+        max-width: 100%;
+      }
+
+      footer {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
