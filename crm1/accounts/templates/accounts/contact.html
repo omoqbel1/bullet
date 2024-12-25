@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Bullets Transport LLC</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Add your stylesheet link here -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #000;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            color: #000;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 1.75rem;
+            color: #000;
+            border-bottom: 3px solid #000;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #000;
+        }
+        a {
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a[href^="tel"] {
+            color: #007BFF;
+        }
+        a[href^="mailto"] {
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .contact-section {
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+        .contact-section:hover {
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Include Navbar -->
+    {% include 'accounts/Navbar.html' %}
+
+    <main>
+        <section class="contact-us">
+            <div class="container">
+                <h1>Contact Us</h1>
+                <p>If you need assistance, we're here to help. Please use the information below to reach the appropriate team:</p>
+
+                <div class="contact-section">
+                    <h2>Customer Inquiries</h2>
+                    <p>For general questions, feel free to call us at:</p>
+                    <p><strong>Phone:</strong> <a href="tel:8887130369">888-713-0369 (#1)</a></p>
+                </div>
+
+                <div class="contact-section">
+                    <h2>Billing and Accounting</h2>
+                    <p>For billing inquiries, please email:</p>
+                    <p><strong>Email:</strong> <a href="mailto:billing@bulletstransport.com">billing@bulletstransport.com</a></p>
+                </div>
+
+                <div class="contact-section">
+                    <h2>Carriers</h2>
+                    <p>For carrier-related support, contact us via:</p>
+                    <p><strong>Phone:</strong> <a href="tel:8887130369">888-713-0369</a></p>
+                    <p><strong>Email:</strong> <a href="mailto:dispatch@bulletstransport.com">dispatch@bulletstransport.com</a></p>
+                </div>
+
+                <div class="contact-section">
+                    <h2>Complaints or Urgent Assistance</h2>
+                    <p>If you have a complaint or require immediate help, email:</p>
+                    <p><strong>Email:</strong> <a href="mailto:omar@bulletstransport.com">omar@bulletstransport.com</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Include Footer -->
+    {% include 'accounts/footer.html' %}
+
+</body>
+</html>
