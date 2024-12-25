@@ -19,6 +19,9 @@ def home(request):
 def forms(request):
     return render(request, 'accounts/forms.html')
 
+def contact(request):
+    return render(request, 'accounts/contact.html')
+
 def products(request):
     return render(request, 'accounts/products.html')
 
