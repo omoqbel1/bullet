@@ -4,230 +4,272 @@
   <meta charset="utf-8">
   <meta name="description" content="Bullets Transport LLC provides shipping for Heavy Equipment, Containers, Vehicles, Full Cargo, Boats, Motorcycles, and more.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Navbar</title>
+  <title>Bullets Transport LLC</title>
   <link rel="icon" href="/static/accounts/images/logo.png">
-  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Embedded CSS -->
+  <style>
+    :root {
+      --color-background: #000000;
+      --color-text: #ffffff;
+      --color-accent: #f3a93d;
+      --transition-speed: 0.5s;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e8eef3;
+      margin: 0;
+      padding: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* Container */
+    .container19 {
+      width: 100%;
+      max-width: 1170px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Row and alignments */
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between; /* Space between logo and nav */
+      position: relative; /* For positioning toggler */
+    }
+
+    /* Header */
+    .header {
+      background-color: var(--color-background);
+      padding: 10px 0;
+      position: relative;
+      z-index: 1000; /* Ensure header stays above other elements */
+    }
+
+    .header .logo img {
+      height: 85px;
+      width: auto;
+      display: block;
+    }
+
+    /* Nav */
+    .nav {
+      margin-left: auto;
+    }
+
+    .nav ul {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav ul li {
+      margin-left: 30px; /* Spacing between menu items */
+    }
+
+    .nav ul li:first-child {
+      margin-left: 0;
+    }
+
+    .nav ul li a {
+      display: block;
+      font-size: 16px;
+      color: var(--color-text);
+      padding: 5px 0;
+      transition: color var(--transition-speed) ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .nav ul li a.active,
+    .nav ul li a:hover {
+      color: var(--color-accent);
+    }
+
+    /* Mobile Toggle */
+    .nav-toggler {
+      height: 34px;
+      width: 44px;
+      background-color: var(--color-text);
+      border-radius: 4px;
+      cursor: pointer;
+      border: none;
+      display: none; /* Hidden on desktop */
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1100; /* Above nav */
+    }
+
+    .nav-toggler:focus {
+      outline: none;
+      box-shadow: 0 0 15px rgba(255,255,255,0.5);
+    }
+
+    .nav-toggler span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background-color: var(--color-background);
+      position: relative;
+      transition: background-color 0.3s ease;
+    }
+
+    .nav-toggler span::before,
+    .nav-toggler span::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--color-background);
+      transition: transform 0.3s ease;
+    }
+
+    .nav-toggler span::before {
+      top: -6px;
+    }
+
+    .nav-toggler span::after {
+      top: 6px;
+    }
+
+    .nav-toggler.active span {
+      background-color: transparent;
+    }
+
+    .nav-toggler.active span::before {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .nav-toggler.active span::after {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 991px) {
+      /* Show the toggle button */
+      .nav-toggler {
+        display: block;
+      }
+
+      /* Hide the nav menu by default */
+      .nav {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        background-color: var(--color-background);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height var(--transition-speed) ease;
+        border-top: 1px solid rgba(255,255,255,0.2);
+      }
+
+      .nav.open {
+        max-height: 500px; /* Adjust based on content */
+      }
+
+      .nav ul {
+        flex-direction: column;
+        align-items: flex-end; /* Align menu items to the right */
+        padding: 10px 20px;
+      }
+
+      .nav ul li {
+        margin: 10px 0;
+        width: 100%;
+      }
+
+      .nav ul li a {
+        width: 100%;
+        text-align: right;
+        padding: 10px 0;
+      }
+    }
+  </style>
 </head>
 <body>
-<header class="header">
-  <div class="container19">
-    <div class="row align-items-center">
-      <div class="logo">
-        <a href="/home/">
-          <img src="/static/accounts/images/logoo.png" alt="Bullets Transport LLC Logo">
-        </a>
+  <header class="header">
+    <div class="container19">
+      <div class="row align-items-center">
+        <!-- Logo on the Left -->
+        <div class="logo">
+          <a href="/home/">
+            <img src="/static/accounts/images/logoo.png" alt="Bullets Transport LLC Logo">
+          </a>
+        </div>
+
+        <!-- Dropdown Toggler on the Right (Visible on Mobile) -->
+        <button type="button" class="nav-toggler" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbar-menu">
+          <span></span>
+        </button>
+
+        <!-- Navigation Menu -->
+        <nav class="nav" id="navbar-menu">
+          <ul>
+            <li><a href="/home/" class="active">Home</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/services/">Services</a></li>
+            <li><a href="/contact/">Contact Us</a></li>
+            <li><a href="tel:888-713-0369">888-713-0369</a></li>
+          </ul>
+        </nav>
       </div>
-      <button type="button" class="nav-toggler">
-        <span></span>
-      </button>
-      <nav class="nav">
-        <ul>
-          <li><a href="/home/" class="active">Home</a></li>
-          <li><a href="/about/">About</a></li>
-          <li><a href="/services/">Services</a></li>
-          <li><a href="/contact/">Contact Us</a></li>
-          <li><a href="tel:888-713-0369">888-713-0369</a></li>
-        </ul>
-      </nav>
     </div>
-  </div>
-</header>
+  </header>
 
-<script>
-const navToggler = document.querySelector(".nav-toggler");
-navToggler.addEventListener("click", navToggle);
+  <!-- Optional: Main Content -->
+  <main>
+    <!-- Your page content goes here -->
+  </main>
 
-function navToggle() {
-  navToggler.classList.toggle("active");
-  const nav = document.querySelector(".nav");
-  nav.classList.toggle("open");
-  if (nav.classList.contains("open")) {
-    nav.style.maxHeight = nav.scrollHeight + "px";
-  } else {
-    nav.removeAttribute("style");
-  }
-}
-</script>
+  <!-- Embedded JavaScript -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const navToggler = document.querySelector(".nav-toggler");
+      const nav = document.querySelector(".nav");
+
+      navToggler.addEventListener("click", function() {
+        const isOpen = nav.classList.toggle("open");
+        navToggler.classList.toggle("active");
+        navToggler.setAttribute("aria-expanded", isOpen);
+
+        if (isOpen) {
+          // Set max-height dynamically based on content
+          nav.style.maxHeight = nav.scrollHeight + "px";
+        } else {
+          nav.style.maxHeight = null;
+        }
+      });
+
+      // Optional: Close the nav when clicking outside
+      document.addEventListener("click", function(event) {
+        if (!nav.contains(event.target) && !navToggler.contains(event.target)) {
+          if (nav.classList.contains("open")) {
+            nav.classList.remove("open");
+            navToggler.classList.remove("active");
+            navToggler.setAttribute("aria-expanded", "false");
+            nav.style.maxHeight = null;
+          }
+        }
+      });
+    });
+  </script>
 </body>
 </html>
-
-<style>
-:root {
-  --color-background: #000000;
-  --color-text: #ffffff;
-  --color-accent: #f3a93d;
-  --transition-speed: 0.5s;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #e8eef3;
-  margin: 0;
-  padding: 0;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-a {
-  text-decoration: none;
-}
-
-/* Container */
-.container19 {
-  width: 100%;
-  max-width: 1170px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* Row and alignments */
-.row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* Ensures space between logo and nav */
-}
-
-.align-items-center {
-  align-items: center;
-}
-
-/* Header */
-.header {
-  background-color: var(--color-background);
-  padding: 10px 0;
-  position: relative;
-}
-
-.header .logo img {
-  height: 85px;
-  width: auto;
-  display: block;
-}
-
-/* Nav */
-.nav {
-  margin-left: auto;
-}
-
-.nav ul li {
-  display: inline-block;
-  margin-left: 30px; /* Spacing between menu items */
-}
-
-.nav ul li:first-child {
-  margin-left: 0;
-}
-
-.nav ul li a {
-  display: block;
-  font-size: 16px;
-  color: var(--color-text);
-  padding: 5px 0;
-  transition: all var(--transition-speed) ease;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.nav ul li a.active,
-.nav ul li a:hover {
-  color: var(--color-accent);
-}
-
-/* Mobile Toggle */
-.nav-toggler {
-  height: 34px;
-  width: 44px;
-  background-color: var(--color-text);
-  border-radius: 4px;
-  cursor: pointer;
-  border: none;
-  display: none;
-  margin-left: 20px;
-}
-
-.nav-toggler:focus {
-  outline: none;
-  box-shadow: 0 0 15px rgba(255,255,255,0.5);
-}
-
-.nav-toggler span {
-  height: 2px;
-  width: 20px;
-  background-color: var(--color-background);
-  display: block;
-  margin: auto;
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-.nav-toggler.active span {
-  background-color: transparent;
-}
-
-.nav-toggler span::before,
-.nav-toggler span::after {
-  content: '';
-  position: absolute;
-  left:0;
-  top:0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--color-background);
-  transition: all 0.3s ease;
-}
-
-.nav-toggler span::before {
-  transform: translateY(-6px);
-}
-
-.nav-toggler.active span::before {
-  transform: rotate(45deg);
-}
-
-.nav-toggler span::after {
-  transform: translateY(6px);
-}
-
-.nav-toggler.active span::after {
-  transform: rotate(135deg);
-}
-
-@media (max-width: 991px) {
-  .nav-toggler {
-    display: block;
-  }
-
-  .nav {
-    width: 100%;
-    padding: 0;
-    max-height: 0px;
-    overflow: hidden;
-    visibility: hidden;
-    transition: all var(--transition-speed) ease;
-    text-align: right; /* Aligns nav items to the right */
-  }
-
-  .nav.open {
-    visibility: visible;
-  }
-
-  .nav ul {
-    padding: 12px 15px 0;
-    margin-top: 12px;
-    border-top: 1px solid rgba(255,255,255,0.2);
-  }
-
-  .nav ul li {
-    display: block;
-    margin: 10px 0;
-  }
-}
-</style>
