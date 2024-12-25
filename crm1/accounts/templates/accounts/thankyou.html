@@ -1,40 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <link rel="icon" href="/static/accounts/images/logo.png">
-    <title>Bullets Transport LLC | Quote Confirmation</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/static/accounts/images/logo.png" type="image/png">
+  <title>Bullets Transport LLC | Quote Confirmation</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- CSS Styles -->
   <style>
-    .center {
-      width: 300px;
-      height: auto; /* specify a fixed width for the element */
-      margin: auto; /* center the element horizontally */
-      padding-bottom: 20px;
+    /* CSS Reset */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    .inner-container {
-  max width: auto;
-  height: auto;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  padding-bottom: 20px;
-}
+    body {
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.6;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Header */
+    header {
+      background-color: #fff;
+      padding: 20px 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+    }
+
+    /* Navbar */
+    /* Assuming your navbar is handled in 'accounts/navbar.html' */
+
+    /* Main Content */
+    main {
+      text-align: center;
+      padding: 40px 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    main h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+
+    main p {
+      font-size: 1.25rem;
+      color: #555;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      main h1 {
+        font-size: 2rem;
+      }
+
+      main p {
+        font-size: 1rem;
+        padding: 0 10px;
+      }
+    }
   </style>
 </head>
 
 <body>
+  <!-- Navbar -->
   {% include 'accounts/navbar.html' %}
 
-  {% block content %}
-    <h1 class="center text-center" id="title" style="font-family: 'Trebuchet MS', sans-serif; font-size: 50px; font-weight: 400; margin-top: 50px;">
-      <strong>Thank You</strong>
-    </h1>
-    <div class="outer-container">
-      <div class="inner-container" style="display: flex; justify-content: center;">
-        <p style="font-family: 'Trebuchet MS', sans-serif; font-size: 24px;">We appreciate you submitting your inquiry. Your load information has been received, and a representative will get in touch with you shortly with a rate. Call Client Services at 888-713-0369 if you require immediate assistance. </p>
-      </div>
-    </div>
-  {% endblock %}
+  <!-- Main Content -->
+  <main class="container">
+    {% block content %}
+      <h1>Thank You</h1>
+      <p>
+        We appreciate you submitting your inquiry. Your load information has been received, and a representative will get in touch with you shortly with a rate. If you require immediate assistance, please call Client Services at <a href="tel:8887130369">888-713-0369</a>.
+      </p>
+    {% endblock %}
+  </main>
 
-
+  <!-- Footer -->
   {% include 'accounts/footer.html' %}
 </body>
+</html>
