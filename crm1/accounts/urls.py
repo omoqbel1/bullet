@@ -13,4 +13,5 @@ urlpatterns = [
     path('privacy/', views.privacy),
     path('tos/', views.tos),
     path('forms/', views.forms),
+    path('contact/', views.contact),
 ]
