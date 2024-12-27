@@ -1,15 +1,114 @@
-<style>
-  .form-label {
-    font-family: 'Trebuchet MS', sans-serif;
-    font-size: 24px;
-  }
-</style>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>New Quote Request</title>
+  <style>
+    .email-container {
+      background-color: #f9f9f9;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .email-title {
+      font-size: 24px;
+      color: #333;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .email-details {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 15px 20px;
+    }
+    .email-details p {
+      margin: 10px 0;
+      line-height: 1.5;
+      color: #555;
+    }
+    .bold-label {
+      font-weight: bold;
+      color: #333;
+    }
+    .separator {
+      border-top: 1px solid #ddd;
+      margin: 15px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+    <div class="email-title">New Quote Request</div>
 
-<p class="form-label"><strong>First name:</strong> {{ form.first_name }}</p>
-<p class="form-label"><strong>Last name:</strong> {{ form.last_name }}</p>
-<p class="form-label"><strong>Phone:</strong> {{ form.phone }}</p>
-<p class="form-label"><strong>Email:</strong> {{ form.email }}</p>
-<p class="form-label"><strong>Origin:</strong> {{ form.origin }}</p>
-<p class="form-label"><strong>Destination:</strong> {{ form.destination }}</p>
-<p class="form-label"><strong>Date:</strong> {{ form.date }}</p>
-<p class="form-label"><strong>Commodity:</strong> {{ form.commodity }}</p>
+    <div class="email-details">
+      <p><span class="bold-label">Category:</span> {{ category }}</p>
+
+      {% if category == "Cars" %}
+        <p><span class="bold-label">Year:</span> {{ car_year }}</p>
+        <p><span class="bold-label">Make:</span> {{ car_make }}</p>
+        <p><span class="bold-label">Model:</span> {{ car_model }}</p>
+        <p><span class="bold-label">Type:</span> {{ car_type }}</p>
+        <p><span class="bold-label">Operable?:</span> {{ car_operable }}</p>
+
+      {% elif category == "Motorcycles" %}
+        <p><span class="bold-label">Year:</span> {{ moto_year }}</p>
+        <p><span class="bold-label">Make:</span> {{ moto_make }}</p>
+        <p><span class="bold-label">Model:</span> {{ moto_model }}</p>
+        <p><span class="bold-label">Operable?:</span> {{ moto_operable }}</p>
+
+      {% elif category == "Boats" %}
+        <p><span class="bold-label">Year:</span> {{ boat_year }}</p>
+        <p><span class="bold-label">Make:</span> {{ boat_make }}</p>
+        <p><span class="bold-label">Model:</span> {{ boat_model }}</p>
+        <p><span class="bold-label">On Trailer?:</span> {{ boat_on_trailer }}</p>
+        <p><span class="bold-label">Trailer Roadworthy?:</span> {{ boat_trailer_roadworthy }}</p>
+
+      {% elif category == "Containers" %}
+        <p><span class="bold-label">Container Size:</span> {{ container_size }}</p>
+        <p><span class="bold-label">Assist Loading/Unloading?:</span> {{ container_assist }}</p>
+        <p><span class="bold-label">Container Weight:</span> {{ container_weight }}</p>
+
+      {% elif category == "Freight" %}
+        <p><span class="bold-label">Freight Type:</span> {{ freight_type }}</p>
+        {% if freight_type == "LTL" %}
+          <p><span class="bold-label">Unit Type:</span> {{ ltl_unit_type }}</p>
+          <p><span class="bold-label">Total Weight:</span> {{ ltl_weight }}</p>
+        {% elif freight_type == "FTL" %}
+          <p><span class="bold-label">Trailer Length:</span> {{ ftl_length }}</p>
+          <p><span class="bold-label">Total Weight:</span> {{ ftl_weight }}</p>
+        {% endif %}
+
+      {% elif category == "Heavy Equipment" %}
+        <p><span class="bold-label">Make:</span> {{ heavy_make }}</p>
+        <p><span class="bold-label">Model:</span> {{ heavy_model }}</p>
+        <p><span class="bold-label">Year:</span> {{ heavy_year }}</p>
+        <p><span class="bold-label">Weight:</span> {{ heavy_weight }}</p>
+        <p><span class="bold-label">Operable?:</span> {{ heavy_operable }}</p>
+
+      {% else %}
+        <!-- Generic for Furniture, Boxes, or Other -->
+        <p><span class="bold-label">Item Description:</span> {{ subcategory }}</p>
+        <p><span class="bold-label">Item Details:</span> {{ item_details }}</p>
+      {% endif %}
+
+      <div class="separator"></div>
+      <p><span class="bold-label">Pickup Address:</span> {{ pickup_address }}</p>
+      <p><span class="bold-label">Dropoff Address:</span> {{ dropoff_address }}</p>
+
+      <div class="separator"></div>
+      {% if timeframe == "Custom" %}
+        <p><span class="bold-label">Custom Date:</span> {{ custom_date }}</p>
+      {% else %}
+        <p><span class="bold-label">Timeframe:</span> {{ timeframe }}</p>
+      {% endif %}
+
+      <div class="separator"></div>
+      <p><span class="bold-label">Full Name:</span> {{ full_name }}</p>
+      <p><span class="bold-label">Phone:</span> {{ phone_number }}</p>
+      <p><span class="bold-label">Email:</span> {{ email_address }}</p>
+    </div>
+  </div>
+</body>
+</html>
