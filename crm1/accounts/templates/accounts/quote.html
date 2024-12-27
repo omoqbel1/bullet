@@ -1,57 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Ensures compatibility with IE -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="/static/accounts/images/logo.png">
-  <title>Bullets Transport LLC | Request a Quote</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Request a Quote</title>
 
   <!-- Bootstrap CSS -->
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
     rel="stylesheet"
-    integrity="sha384-ENjdO4Dr2bkBIFxQpeo72BOvY1X1y5A0eLehnI6kV0kB5Kj0Cq1aCxN3wG9QFq6i"
-    crossorigin="anonymous"
-  >
+  />
 
-  <!-- Custom CSS -->
   <style>
-    /* Base Styles */
     body {
-      background-color: #121212; /* Dark background for consistency */
-      color: #ffffff; /* Default text color */
-      font-family: Arial, Helvetica, sans-serif; /* More readable font */
-      font-size: 18px; /* Increased base font size */
-      line-height: 1.6; /* Improved line spacing */
+      background: url('/static/accounts/images/bullet-banner_02.png') no-repeat center center;
+      background-size: cover;
+      color: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
     }
-
-    /* Quote Form Container */
     .quote-container {
-      background: #222;
+      background: rgba(34, 34, 34, 0.9);
       border: 1px solid #333;
       border-radius: 10px;
       padding: 2rem;
-      max-width: 700px; /* Increased width for better layout */
+      max-width: 700px;
       margin: 2rem auto;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
     }
-
     .quote-container h1 {
       color: #fff;
       font-weight: bold;
       text-align: center;
       margin-bottom: 2rem;
-      font-size: 2.5rem; /* Larger heading */
     }
-
     .quote-form-label {
       color: #ccc;
       font-weight: bold;
       margin-bottom: 0.5rem;
-      font-size: 1.2rem; /* Increased label font size */
     }
-
     .quote-container input,
     .quote-container select,
     .quote-container textarea {
@@ -59,168 +46,569 @@
       color: #fff;
       border: 1px solid #555;
       border-radius: 5px;
-      padding: 0.75rem; /* Increased padding for better touch targets */
+      padding: 0.75rem;
       width: 100%;
-      font-size: 1.1rem; /* Increased input font size */
-      margin-bottom: 1rem; /* More spacing between fields */
+      margin-bottom: 1rem;
     }
-
-    .quote-container textarea {
-      resize: vertical; /* Allow vertical resizing */
-      min-height: 150px; /* Ensure adequate space for text */
-    }
-
-    .quote-container button {
+    .quote-container .btn {
       background: linear-gradient(90deg, #333, #666);
       color: #fff;
       border: none;
-      padding: 0.9rem 2rem; /* Larger button size */
-      font-size: 1.2rem; /* Increased button font size */
+      padding: 0.9rem 2rem;
       font-weight: bold;
       border-radius: 5px;
       margin-top: 1.5rem;
-      width: 100%;
-      max-width: 250px; /* Larger max width */
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
       transition: background 0.3s, box-shadow 0.3s;
-      cursor: pointer; /* Pointer cursor for better UX */
     }
-
-    .quote-container button:hover {
+    .quote-container .btn:hover {
       background: linear-gradient(90deg, #555, #888);
       box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
     }
-
-    /* Footer Styles */
-    footer {
-      background-color: #1a1a1a;
-      color: #ccc;
-      padding: 1.5rem 0; /* Increased padding */
-      text-align: center;
-      margin-top: 3rem;
-      font-size: 1.1rem; /* Increased footer font size */
+    /* Hide steps by default */
+    .form-step {
+      display: none;
     }
-
-    /* Responsive Adjustments */
-    @media (max-width: 768px) {
-      body {
-        font-size: 16px; /* Slightly smaller font on smaller screens */
-      }
-
-      .quote-container {
-        padding: 1.5rem;
-      }
-
-      .quote-container h1 {
-        font-size: 2rem;
-      }
-
-      .quote-form-label {
-        font-size: 1.1rem;
-      }
-
-      .quote-container input,
-      .quote-container select,
-      .quote-container textarea {
-        font-size: 1rem;
-      }
-
-      .quote-container button {
-        font-size: 1rem;
-        padding: 0.8rem 1.5rem;
-        max-width: 100%;
-      }
-
-      footer {
-        font-size: 1rem;
-      }
+    .form-step.active {
+      display: block;
+    }
+    /* Simple progress bar */
+    .progress {
+      height: 20px;
+      background-color: #aaa;
+      margin-bottom: 2rem;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      background-color: #28a745; /* green */
+      height: 100%;
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+    .text-danger {
+      color: #ff6666;
     }
   </style>
 </head>
 <body>
 
-  <!-- Navbar Include -->
+  <!-- Optional Navbar include -->
   {% include 'accounts/navbar.html' %}
 
-  <!-- Quote Form Container -->
   <div class="quote-container">
-    <div class="quote-form-container">
-      <form method="post" action="">
-        {% csrf_token %}
-        <h1>Request a Quote</h1>
-        {% for field in form %}
-          <div class="mb-3">
-            <label class="quote-form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
-            {{ field }}
-            {% if field.help_text %}
-              <small class="form-text text-muted">{{ field.help_text }}</small>
-            {% endif %}
-            {% for error in field.errors %}
-              <div class="text-danger">{{ error }}</div>
-            {% endfor %}
-          </div>
-        {% endfor %}
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+    <h1>Request a Quote</h1>
+
+    <!-- 6-step progress bar -->
+    <div class="progress">
+      <div
+        class="progress-bar"
+        id="progress-bar"
+        role="progressbar"
+        style="width: 0%"
+        aria-valuenow="0"
+        aria-valuemin="0"
+        aria-valuemax="100"
+      ></div>
     </div>
+
+    {% if error %}
+      <div class="alert alert-danger" role="alert">
+        {{ error }}
+      </div>
+    {% endif %}
+
+    <!-- Multi-step form -->
+    <form method="post" enctype="multipart/form-data" id="quoteForm">
+      {% csrf_token %}
+
+      <!-- STEP 1: Category -->
+      <div class="form-step active" id="step-1">
+        <label class="quote-form-label">What do you want to move?</label>
+        <select name="category" class="form-select" id="categorySelect">
+          <option value="">-- Choose a Category --</option>
+          <option>Cars</option>
+          <option>Motorcycles</option>
+          <option>Boats</option>
+          <option>Containers</option>
+          <option>Freight</option>
+          <option>Heavy Equipment</option>
+          <option>Furniture & General Items</option>
+          <option>Boxes</option>
+          <option>Other</option>
+        </select>
+        <button type="button" class="btn" onclick="nextStepFromCategory()">Next</button>
+      </div>
+
+      <!-- STEP 2: Cars -->
+      <div class="form-step" id="step-2-cars">
+        <label class="quote-form-label">Car Year</label>
+        <input type="text" name="car_year" placeholder="e.g. 2018" />
+
+        <label class="quote-form-label">Car Make</label>
+        <input type="text" name="car_make" placeholder="e.g. Toyota, Ford" />
+
+        <label class="quote-form-label">Car Model</label>
+        <input type="text" name="car_model" placeholder="e.g. Camry, F-150" />
+
+        <label class="quote-form-label">Type of Car</label>
+        <select name="car_type" class="form-select">
+          <option value="">-- Choose --</option>
+          <option>SUV</option>
+          <option>Pickup 2 Door</option>
+          <option>Pickup 4 Door</option>
+          <option>Coupe</option>
+          <option>Van</option>
+          <option>Truck (Daycab)</option>
+          <option>Truck (With Sleeper)</option>
+        </select>
+
+        <label class="quote-form-label">Operable or Inoperable?</label>
+        <select name="car_operable" class="form-select">
+          <option value="">-- Choose --</option>
+          <option>Operable</option>
+          <option>Inoperable</option>
+        </select>
+
+        <button type="button" class="btn" onclick="prevStep()">Back</button>
+        <button type="button" class="btn" onclick="goToStep3()">Next</button>
+      </div>
+
+      <!-- STEP 2: Motorcycles -->
+      <div class="form-step" id="step-2-moto">
+        <label class="quote-form-label">Year</label>
+        <input type="text" name="moto_year" placeholder="e.g. 2019" />
+
+        <label class="quote-form-label">Make</label>
+        <input type="text" name="moto_make" placeholder="e.g. Honda, Yamaha" />
+
+        <label class="quote-form-label">Model</label>
+        <input type="text" name="moto_model" placeholder="e.g. CBR600RR" />
+
+        <label class="quote-form-label">Operable or Inoperable?</label>
+        <select name="moto_operable" class="form-select">
+          <option value="">-- Choose --</option>
+          <option>Operable</option>
+          <option>Inoperable</option>
+        </select>
+
+        <button type="button" class="btn" onclick="prevStep()">Back</button>
+        <button type="button" class="btn" onclick="goToStep3()">Next</button>
+      </div>
+
+      <!-- STEP 2: Boats -->
+      <div class="form-step" id="step-2-boats">
+        <label class="quote-form-label">Boat Year</label>
+        <input type="text" name="boat_year" placeholder="e.g. 2010" />
+
+        <label class="quote-form-label">Boat Make</label>
+        <input type="text" name="boat_make" placeholder="e.g. Bayliner, Yamaha" />
+
+        <label class="quote-form-label">Boat Model</label>
+        <input type="text" name="boat_model" placeholder="e.g. VR5" />
+
+        <label class="quote-form-label">Is it on a trailer?</label>
+        <select name="boat_on_trailer" class="form-select">
+          <option value="">-- Choose --</option>
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+
+        <label class="quote-form-label">Is the trailer roadworthy?</label>
+        <select name="boat_trailer_roadworthy" class="form-select">
+          <option value="">-- Choose --</option>
+          <option>Yes</option>
+          <option>No</option>
+          <option>Not Applicable</option>
+        </select>
+
+        <button type="button" class="btn" onclick="prevStep()">Back</button>
+        <button type="button" class="btn" onclick="goToStep3()">Next</button>
+      </div>
+
+      <!-- STEP 2: Containers -->
+      <div class="form-step" id="step-2-containers">
+        <label class="quote-form-label">Container Size</label>
+        <select name="container_size" class="form-select">
+          <option value="">-- Choose --</option>
+          <option>20 foot</option>
+          <option>30 foot</option>
+          <option>40 foot</option>
+          <option>Other</option>
+        </select>
+
+        <label class="quote-form-label">Need assistance loading/unloading?</label>
+        <select name="container_assist" class="form-select">
+          <option value="">-- Choose --</option>
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+
+        <label class="quote-form-label">Container Weight</label>
+        <input type="text" name="container_weight" placeholder="e.g. 8,000 lbs" />
+
+        <button type="button" class="btn" onclick="prevStep()">Back</button>
+        <button type="button" class="btn" onclick="goToStep3()">Next</button>
+      </div>
+
+      <!-- STEP 2: Freight -->
+      <div class="form-step" id="step-2-freight">
+        <label class="quote-form-label">Shipping Type</label>
+        <select name="freight_type" class="form-select" id="freightTypeSelect" onchange="toggleFreightFields()">
+          <option value="">-- Choose LTL or FTL --</option>
+          <option>LTL</option>
+          <option>FTL</option>
+        </select>
+
+        <!-- LTL fields -->
+        <div id="ltlFields" style="display: none; margin-top: 1rem;">
+          <label class="quote-form-label">Unit Type</label>
+          <select name="ltl_unit_type" class="form-select">
+            <option value="">-- Choose --</option>
+            <option>Pallets</option>
+            <option>Boxes</option>
+            <option>Bundles</option>
+            <option>Crates</option>
+          </select>
+          <label class="quote-form-label">Total Weight</label>
+          <input type="text" name="ltl_weight" placeholder="e.g. 1000 lbs" />
+        </div>
+
+        <!-- FTL fields -->
+        <div id="ftlFields" style="display: none; margin-top: 1rem;">
+          <label class="quote-form-label">Trailer Length</label>
+          <select name="ftl_length" class="form-select">
+            <option value="">-- Choose --</option>
+            <option>40 Feet</option>
+            <option>48 Feet</option>
+            <option>53 Feet</option>
+            <option>Other</option>
+          </select>
+          <label class="quote-form-label">Total Weight</label>
+          <input type="text" name="ftl_weight" placeholder="e.g. 30,000 lbs" />
+        </div>
+
+        <button type="button" class="btn" onclick="prevStep()">Back</button>
+        <button type="button" class="btn" onclick="goToStep3()">Next</button>
+      </div>
+
+      <!-- STEP 2: Heavy Equipment -->
+      <div class="form-step" id="step-2-heavy">
+        <label class="quote-form-label">Make</label>
+        <input type="text" name="heavy_make" placeholder="e.g. Caterpillar, John Deere" />
+
+        <label class="quote-form-label">Model</label>
+        <input type="text" name="heavy_model" placeholder="e.g. 320D, 9700" />
+
+        <label class="quote-form-label">Year</label>
+        <input type="text" name="heavy_year" placeholder="e.g. 2015" />
+
+        <label class="quote-form-label">Weight</label>
+        <input type="text" name="heavy_weight" placeholder="e.g. 10,000 lbs" />
+
+        <label class="quote-form-label">Operable or Inoperable?</label>
+        <select name="heavy_operable" class="form-select">
+          <option value="">-- Choose --</option>
+          <option>Operable</option>
+          <option>Inoperable</option>
+        </select>
+
+        <button type="button" class="btn" onclick="prevStep()">Back</button>
+        <button type="button" class="btn" onclick="goToStep3()">Next</button>
+      </div>
+
+      <!-- STEP 2: Generic (Furniture, Boxes, Other) -->
+      <div class="form-step" id="step-2-generic">
+        <label class="quote-form-label">Tell us more about the item(s)</label>
+        <input
+          type="text"
+          name="subcategory"
+          placeholder="e.g. Antique couch, multiple boxes, etc."
+        />
+        <label class="quote-form-label">Item Details</label>
+        <textarea
+          name="item_details"
+          placeholder="Dimensions, weight, fragile, special handling, etc."
+        ></textarea>
+
+        <button type="button" class="btn" onclick="prevStep()">Back</button>
+        <button type="button" class="btn" onclick="goToStep3()">Next</button>
+      </div>
+
+      <!-- STEP 3: Optional pictures -->
+      <div class="form-step" id="step-3">
+        <label class="quote-form-label">Upload Pictures (Optional)</label>
+        <input type="file" name="images" multiple />
+        <p>You may skip if you don't have images now.</p>
+
+        <button type="button" class="btn" onclick="prevStep()">Back</button>
+        <button type="button" class="btn" onclick="goToStep4()">Skip/Next</button>
+      </div>
+
+      <!-- STEP 4: Pickup address (Mandatory) -->
+      <div class="form-step" id="step-4">
+        <label class="quote-form-label">Pickup Address <span class="text-danger">*</span></label>
+        <input
+          type="text"
+          name="pickup_address"
+          id="pickupField"
+          placeholder="Enter pickup address"
+        />
+
+        <button type="button" class="btn" onclick="prevStep()">Back</button>
+        <button type="button" class="btn" onclick="goToStep5()">Next</button>
+      </div>
+
+      <!-- STEP 5: Dropoff address (Mandatory) -->
+      <div class="form-step" id="step-5">
+        <label class="quote-form-label">Dropoff Address <span class="text-danger">*</span></label>
+        <input
+          type="text"
+          name="dropoff_address"
+          id="dropoffField"
+          placeholder="Enter dropoff address"
+        />
+
+        <button type="button" class="btn" onclick="prevStep()">Back</button>
+        <button type="button" class="btn" onclick="goToStep6()">Next</button>
+      </div>
+
+      <!-- STEP 6: timeframe + full name + phone/email -->
+      <div class="form-step" id="step-6">
+        <label class="quote-form-label">When do you want to do this?</label>
+        <select name="timeframe" class="form-select" id="timeframeSelect" onchange="toggleCustomDate()">
+          <option value="">-- Choose Option --</option>
+          <option>Same day</option>
+          <option>Within a week</option>
+          <option>Within a month</option>
+          <option>Custom</option>
+        </select>
+        <div id="customDateFields" style="display: none; margin-top: 1rem;">
+          <label class="quote-form-label">Select a Date (No time needed)</label>
+          <input type="date" name="custom_date" />
+        </div>
+
+        <label class="quote-form-label">Your Name <span class="text-danger">*</span></label>
+        <input
+          type="text"
+          name="full_name"
+          id="nameField"
+          placeholder="e.g. John Doe"
+        />
+
+        <label class="quote-form-label">Phone Number <span class="text-danger">*</span></label>
+        <input
+          type="tel"
+          name="phone_number"
+          id="phoneField"
+          placeholder="(xxx) xxx-xxxx"
+        />
+
+        <label class="quote-form-label">Email Address <span class="text-danger">*</span></label>
+        <input
+          type="email"
+          name="email_address"
+          id="emailField"
+          placeholder="you@example.com"
+        />
+
+        <button type="button" class="btn" onclick="prevStep()">Back</button>
+        <button type="button" class="btn" onclick="finalCheckAndSubmit()">Submit</button>
+      </div>
+    </form>
   </div>
 
-  <!-- Footer Include -->
+  <!-- Optional Footer -->
   {% include 'accounts/footer.html' %}
 
-  <!-- Scripts -->
-
-  <!-- Google Maps API -->
+  <!-- Google Maps API (optional, for address autocomplete) -->
   <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvhTA3qIz4wBBu8O5L6Rvll07mw2AC61E&libraries=places&callback=initAutocomplete"
     async
     defer
   ></script>
+  <!-- Bootstrap JS -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+  ></script>
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-04NCSJDFN5"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    let currentStep = 1;
+    const totalSteps = 6;
 
-    gtag('config', 'G-04NCSJDFN5');
-  </script>
+    // Basic patterns for phone/email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^\+?\d{7,15}$/;
 
-  <!-- Custom Scripts -->
-  <script>
-    let autocompleteOrigin, autocompleteDestination;
-
-    function initAutocomplete() {
-      const originInput = document.getElementById('id_origin');
-      if (originInput) {
-        autocompleteOrigin = new google.maps.places.Autocomplete(originInput, { types: ['geocode'] });
-        autocompleteOrigin.addListener('place_changed', function () {
-          const place = autocompleteOrigin.getPlace();
-          console.log('Origin place selected:', place);
-        });
+    function nextStepFromCategory() {
+      const cat = document.getElementById('categorySelect').value;
+      if (!cat) {
+        alert("Please select a category.");
+        return;
       }
+      currentStep = 2;
 
-      const destinationInput = document.getElementById('id_destination');
-      if (destinationInput) {
-        autocompleteDestination = new google.maps.places.Autocomplete(destinationInput, { types: ['geocode'] });
-        autocompleteDestination.addListener('place_changed', function () {
-          const place = autocompleteDestination.getPlace();
-          console.log('Destination place selected:', place);
-        });
+      // Show whichever step-2 panel is relevant
+      if (cat === 'Cars') {
+        showStep('step-2-cars');
+      } else if (cat === 'Motorcycles') {
+        showStep('step-2-moto');
+      } else if (cat === 'Boats') {
+        showStep('step-2-boats');
+      } else if (cat === 'Containers') {
+        showStep('step-2-containers');
+      } else if (cat === 'Freight') {
+        showStep('step-2-freight');
+      } else if (cat === 'Heavy Equipment') {
+        showStep('step-2-heavy');
+      } else {
+        // Generic for Furniture & General Items, Boxes, Other
+        showStep('step-2-generic');
       }
     }
 
-    window.addEventListener('load', initAutocomplete);
-  </script>
+    // Step 2 -> Step 3
+    function goToStep3() {
+      currentStep = 3;
+      showStep('step-3');
+    }
+    // Step 3 -> Step 4
+    function goToStep4() {
+      currentStep = 4;
+      showStep('step-4');
+    }
+    // Step 4 -> Step 5 (pickup mandatory)
+    function goToStep5() {
+      const pickupVal = document.getElementById('pickupField').value.trim();
+      if (!pickupVal) {
+        alert("Pickup address is required.");
+        return;
+      }
+      currentStep = 5;
+      showStep('step-5');
+    }
+    // Step 5 -> Step 6 (dropoff mandatory)
+    function goToStep6() {
+      const dropoffVal = document.getElementById('dropoffField').value.trim();
+      if (!dropoffVal) {
+        alert("Dropoff address is required.");
+        return;
+      }
+      currentStep = 6;
+      showStep('step-6');
+    }
 
-  <!-- Bootstrap JS Bundle (Includes Popper) -->
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+uOXmY3+G7E5I5FfFwJWlS9B2xV6+"
-    crossorigin="anonymous"
-  ></script>
+    function prevStep() {
+      if (currentStep === 2) {
+        currentStep = 1;
+        showStep('step-1');
+      }
+      else if (currentStep === 3) {
+        currentStep = 2;
+        const cat = document.getElementById('categorySelect').value;
+        // Re-display correct Step 2
+        if (cat === 'Cars') {
+          showStep('step-2-cars');
+        } else if (cat === 'Motorcycles') {
+          showStep('step-2-moto');
+        } else if (cat === 'Boats') {
+          showStep('step-2-boats');
+        } else if (cat === 'Containers') {
+          showStep('step-2-containers');
+        } else if (cat === 'Freight') {
+          showStep('step-2-freight');
+        } else if (cat === 'Heavy Equipment') {
+          showStep('step-2-heavy');
+        } else {
+          showStep('step-2-generic');
+        }
+      }
+      else if (currentStep === 4) {
+        currentStep = 3;
+        showStep('step-3');
+      }
+      else if (currentStep === 5) {
+        currentStep = 4;
+        showStep('step-4');
+      }
+      else if (currentStep === 6) {
+        currentStep = 5;
+        showStep('step-5');
+      }
+    }
+
+    // Freight: show LTL or FTL
+    function toggleFreightFields() {
+      const val = document.getElementById('freightTypeSelect').value;
+      document.getElementById('ltlFields').style.display = (val === 'LTL') ? 'block' : 'none';
+      document.getElementById('ftlFields').style.display = (val === 'FTL') ? 'block' : 'none';
+    }
+
+    // Step 6: timeframe = "Custom" => show date field
+    function toggleCustomDate() {
+      const val = document.getElementById('timeframeSelect').value;
+      document.getElementById('customDateFields').style.display = (val === 'Custom') ? 'block' : 'none';
+    }
+
+    function showStep(stepId) {
+      // Hide all .form-step
+      document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+      document.getElementById(stepId).classList.add('active');
+      updateProgressBar();
+    }
+
+    function updateProgressBar() {
+      const progressBar = document.getElementById('progress-bar');
+      const stepPercent = (currentStep / totalSteps) * 100;
+      progressBar.style.width = stepPercent + '%';
+      progressBar.setAttribute('aria-valuenow', stepPercent);
+    }
+
+    // Final check on Step 6
+    function finalCheckAndSubmit() {
+      const fullName = document.getElementById('nameField').value.trim();
+      const phone = document.getElementById('phoneField').value.trim();
+      const email = document.getElementById('emailField').value.trim();
+
+      if (!fullName) {
+        alert("Your name is required.");
+        return;
+      }
+      if (!phone) {
+        alert("Phone number is required.");
+        return;
+      }
+      if (!phoneRegex.test(phone)) {
+        alert("Please enter a valid phone number (7-15 digits, optional +).");
+        return;
+      }
+      if (!email) {
+        alert("Email address is required.");
+        return;
+      }
+      if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        return;
+      }
+      // Submit
+      document.getElementById('quoteForm').submit();
+    }
+
+    // Optional: Google Places
+    function initAutocomplete() {
+      const pickupInput = document.getElementById('pickupField');
+      const dropoffInput = document.getElementById('dropoffField');
+      if (pickupInput) {
+        new google.maps.places.Autocomplete(pickupInput, { types: ['geocode'] });
+      }
+      if (dropoffInput) {
+        new google.maps.places.Autocomplete(dropoffInput, { types: ['geocode'] });
+      }
+    }
+
+    // On load, show step 1
+    document.addEventListener('DOMContentLoaded', () => {
+      showStep('step-1');
+    });
+  </script>
 </body>
 </html>
