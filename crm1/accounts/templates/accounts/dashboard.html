@@ -5,186 +5,351 @@
   body, html {
     margin: 0;
     padding: 0;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto', 'Montserrat', sans-serif;
   }
 
-  .jumbotron {
+  /* Hero Section */
+  .hero-section {
     position: relative;
-    min-height: 60vh;
-    margin-bottom: 0;
-    background:
-      url('/static/accounts/images/bullet-banner_02.png') no-repeat center center;
+    min-height: 70vh;
+    background: url('/static/accounts/images/bullet-banner_02.png') no-repeat center center;
     background-size: cover;
     background-color: #000;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 80px 20px;
   }
 
-  .jumbotron-inner {
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+  }
+
+  .hero-container {
+    position: relative;
+    z-index: 2;
     display: flex;
     align-items: center;
-    justify-content: center;
-    max-width: 1100px; /* Slightly narrower to bring them closer */
+    justify-content: space-between;
+    max-width: 1200px;
     width: 100%;
     margin: 0 auto;
-    padding: 0 2rem;
+    gap: 40px;
   }
 
-  .jumbotron-content {
-    max-width: 48%; /* Slightly more space for content */
-    color: #000;
-    text-align: left;
+  .hero-content {
+    flex: 1;
+    max-width: 600px;
   }
 
-  .jumbotron-content h1 {
-    font-size: 3rem;
+  .hero-title {
+    font-size: 3.5rem;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin-bottom: 1rem;
-    color: #000;
-    text-shadow: none;
+    margin-bottom: 20px;
+    color: #ffffff;
+    line-height: 1.2;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
   }
 
-  .jumbotron-content p {
-    color: #000;
-    font-size: 1.2rem;
-    font-weight: 500;
-    margin-bottom: 2rem;
-    text-shadow: none;
-  }
-
-  .jumbotron-content a.btn-primary {
-    font-weight: 700;
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    padding: 0.8rem 1.5rem;
-    background: #007BFF;
-    border: none;
-    border-radius: 3px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    transition: background 0.3s ease;
-    color: #fff;
-    text-decoration: none;
-  }
-
-  .jumbotron-content a.btn-primary:hover {
-    background: #0056b3;
-  }
-
-  .jumbotron-image {
-    max-width: 40%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 0.5rem; /* Bring image closer to the text */
-  }
-
-  .jumbotron-image img {
-    max-width: 100%;
-    height: auto;
+  .hero-title .highlight {
+    color: #ff8c00;
     display: block;
   }
 
-  /* Green CTA (appears on scroll) */
-  .green-button-container {
-    position: relative;
-    width: 100%;
-    transition: all 0.3s ease;
+  .hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #f0f0f0;
+    margin-bottom: 15px;
+    font-style: italic;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
   }
 
-  .cta-get-quotes-btn {
-    display: none;
-    width: 100%;
-    padding: 1rem;
+  .hero-description {
     font-size: 1.1rem;
+    color: #e0e0e0;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .hero-cta {
+    display: inline-block;
     font-weight: 700;
-    border: none;
-    background: #28a745;
-    color: #fff;
-    cursor: pointer;
+    font-size: 1.2rem;
     text-transform: uppercase;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    transition: background 0.3s ease, box-shadow 0.3s ease;
+    padding: 16px 40px;
+    background: linear-gradient(135deg, #ff8c00, #ffa500);
+    border: none;
+    border-radius: 50px;
+    color: #ffffff;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(255, 140, 0, 0.4);
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
   }
 
-  .cta-get-quotes-btn:hover {
-    background: #218838;
-    box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+  .hero-cta:hover {
+    background: linear-gradient(135deg, #ffa500, #ff8c00);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255, 140, 0, 0.6);
+    color: #ffffff;
+    text-decoration: none;
   }
 
-  /* Responsive layout */
-  @media (max-width: 767px) {
-    .jumbotron-inner {
+  .hero-cta:active {
+    transform: translateY(-1px);
+  }
+
+  .hero-image {
+    flex: 0 0 auto;
+    max-width: 500px;
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+  }
+
+  /* Sticky CTA Button (appears on scroll) */
+  .sticky-cta-container {
+    position: fixed;
+    top: -100px;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .sticky-cta-container.visible {
+    top: 0;
+  }
+
+  .sticky-cta-button {
+    width: 100%;
+    padding: 18px 20px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #ff8c00, #ffa500);
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 1.5px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .sticky-cta-button:hover {
+    background: linear-gradient(135deg, #ffa500, #ff8c00);
+    box-shadow: 0 6px 20px rgba(255, 140, 0, 0.4);
+  }
+
+  .sticky-cta-button::after {
+    content: '→';
+    font-size: 1.4rem;
+    transition: transform 0.3s ease;
+  }
+
+  .sticky-cta-button:hover::after {
+    transform: translateX(5px);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 991px) {
+    .hero-section {
+      min-height: 60vh;
+      padding: 60px 20px;
+    }
+
+    .hero-container {
+      gap: 30px;
+    }
+
+    .hero-title {
+      font-size: 2.8rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+    }
+
+    .hero-description {
+      font-size: 1rem;
+    }
+
+    .hero-image {
+      max-width: 400px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-section {
+      min-height: auto;
+      padding: 50px 20px;
+    }
+
+    .hero-container {
       flex-direction: column;
-      align-items: center;
-      padding: 1rem;
-    }
-
-    .jumbotron-content {
-      max-width: 100%;
-      margin-bottom: 1rem;
       text-align: center;
+      gap: 40px;
     }
 
-    .jumbotron-image {
+    .hero-content {
       max-width: 100%;
-      width: 100%;
-      margin-top: 1rem;
-      justify-content: center;
-      margin-left: 0; /* No extra margin on mobile */
     }
+
+    .hero-title {
+      font-size: 2.2rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+    }
+
+    .hero-description {
+      font-size: 0.95rem;
+      margin-bottom: 25px;
+    }
+
+    .hero-cta {
+      padding: 14px 35px;
+      font-size: 1.1rem;
+    }
+
+    .hero-image {
+      max-width: 350px;
+      width: 100%;
+    }
+
+    .sticky-cta-button {
+      padding: 16px 20px;
+      font-size: 1.1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-title {
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+    }
+
+    .hero-cta {
+      padding: 12px 30px;
+      font-size: 1rem;
+    }
+
+    .hero-image {
+      max-width: 280px;
+    }
+
+    .sticky-cta-button {
+      padding: 14px 15px;
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+  }
+
+  /* Animation */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hero-content {
+    animation: fadeInUp 0.8s ease;
+  }
+
+  .hero-image {
+    animation: fadeInUp 1s ease 0.2s backwards;
   }
 </style>
 
-<header>
-  <div class="jumbotron">
-    <div class="jumbotron-inner">
-      <div class="jumbotron-content">
-        <h1><strong>Dedicated Professional Shippers</strong></h1>
-        <p><em>A Premier Logistics Company</em></p>
-        <p>
-          <a class="btn btn-primary btn-lg" href="/quote/" role="button">Get a Free Quote</a>
-        </p>
-      </div>
-      <div class="jumbotron-image">
-        <img src="/static/accounts/images/ban-img.png" alt="Banner Image">
-      </div>
+<header class="hero-section">
+  <div class="hero-container">
+    <div class="hero-content">
+      <h1 class="hero-title">
+        <span class="highlight">Dedicated</span>
+        Professional Shippers
+      </h1>
+      <p class="hero-subtitle">A Premier Logistics Company</p>
+      <p class="hero-description">
+        Reliable transportation solutions across all 50 states. Your trusted partner for professional equipment shipping and logistics services.
+      </p>
+      <a class="hero-cta" href="/quote/" id="mainCta">Get a Free Quote</a>
+    </div>
+    <div class="hero-image">
+      <img src="/static/accounts/images/ban-img.png" alt="Professional logistics and transportation services">
     </div>
   </div>
 </header>
 
-<!-- Fixed Green CTA Button Container -->
-<div class="green-button-container">
-  <form action="/quote/" method="get">
-    <input id="getQuotesCta" type="submit" class="btn btn-success cta-get-quotes-btn" value="Get a Free Quote">
-  </form>
+<!-- Sticky CTA that appears on scroll -->
+<div class="sticky-cta-container" id="stickyCta">
+  <button class="sticky-cta-button" onclick="window.location.href='/quote/'">
+    Get Your Free Quote
+  </button>
 </div>
 
 <script>
-  window.onscroll = function() {
-    var blueButton = document.querySelector('.jumbotron-content .btn-primary');
-    var greenButton = document.getElementById('getQuotesCta');
-    var greenButtonContainer = document.querySelector('.green-button-container');
+  // Smooth sticky CTA appearance on scroll
+  let lastScrollTop = 0;
+  const stickyCta = document.getElementById('stickyCta');
+  const mainCta = document.getElementById('mainCta');
 
-    var extraOffset = 200;
-    var blueButtonBottom = blueButton.offsetTop + blueButton.offsetHeight + extraOffset;
+  window.addEventListener('scroll', function() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const mainCtaRect = mainCta.getBoundingClientRect();
+    const mainCtaBottom = mainCtaRect.bottom;
 
-    if (window.scrollY > blueButtonBottom) {
-      greenButton.style.display = 'block';
-      greenButtonContainer.style.position = 'fixed';
-      greenButtonContainer.style.top = '0';
-      greenButtonContainer.style.left = '0';
-      greenButtonContainer.style.right = '0';
-      greenButtonContainer.style.zIndex = '9999';
-      greenButtonContainer.style.backgroundColor = '#fff';
+    // Show sticky CTA when main CTA scrolls out of view
+    if (mainCtaBottom < 0) {
+      stickyCta.classList.add('visible');
     } else {
-      greenButton.style.display = 'none';
-      greenButtonContainer.style.position = 'relative';
-      greenButtonContainer.style.backgroundColor = 'transparent';
+      stickyCta.classList.remove('visible');
     }
-  };
+
+    lastScrollTop = scrollTop;
+  }, { passive: true });
+
+  // Add smooth scroll behavior for better UX
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
 </script>
 
 {% endblock %}
