@@ -1,45 +1,316 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bullets Transport LLC | Nationwide Coverage</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-  .forty {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    padding-bottom: 20px;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-  }
-  .forty img {
-      width: 1170px;
-      height: 700px;
-      display: block;
-      margin: auto;
-  }
-  @media (max-width: 991px) {
-    .forty img {
-      width: 100vw;
-      height: auto; /* to maintain aspect ratio */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-  }
-  @media (max-width: 991px) {
-  h1 {
-    font-size: 2.0em; /* 1em is equal to the current font size */
-    text-align: center;
-  }
-}
 
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background: #f8f9fa;
+      color: #333;
+    }
+
+    .coverage-section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding: 80px 20px;
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    }
+
+    .coverage-header {
+      text-align: center;
+      margin-bottom: 50px;
+      max-width: 900px;
+    }
+
+    .coverage-title {
+      font-size: 2.8em;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 15px;
+      line-height: 1.2;
+    }
+
+    .coverage-title .highlight {
+      color: #ff8c00;
+      position: relative;
+      display: inline-block;
+    }
+
+    .coverage-title .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #ff8c00, #ffa500);
+      border-radius: 2px;
+    }
+
+    .coverage-subtitle {
+      font-size: 1.2em;
+      color: #666;
+      font-weight: 400;
+      margin-top: 15px;
+    }
+
+    .map-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .map-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, #ff8c00, #ffa500, #ff8c00);
+      background-size: 200% 100%;
+      animation: gradientShift 3s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+
+    .map-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+      transition: transform 0.3s ease;
+    }
+
+    .map-container:hover img {
+      transform: scale(1.02);
+    }
+
+    .coverage-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      width: 100%;
+      margin-top: 50px;
+    }
+
+    .feature-card {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(255, 140, 0, 0.15);
+      border-color: rgba(255, 140, 0, 0.3);
+    }
+
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #ff8c00, #ffa500);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 28px;
+      color: white;
+    }
+
+    .feature-title {
+      font-size: 1.3em;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .feature-description {
+      font-size: 1em;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 991px) {
+      .coverage-section {
+        padding: 60px 20px;
+      }
+
+      .coverage-title {
+        font-size: 2.2em;
+      }
+
+      .coverage-subtitle {
+        font-size: 1.1em;
+      }
+
+      .map-container {
+        padding: 20px;
+        border-radius: 16px;
+      }
+
+      .coverage-features {
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .coverage-section {
+        padding: 50px 15px;
+      }
+
+      .coverage-title {
+        font-size: 1.8em;
+      }
+
+      .coverage-subtitle {
+        font-size: 1em;
+      }
+
+      .coverage-header {
+        margin-bottom: 35px;
+      }
+
+      .map-container {
+        padding: 15px;
+        border-radius: 12px;
+      }
+
+      .feature-card {
+        padding: 25px 20px;
+      }
+
+      .feature-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+      }
+
+      .feature-title {
+        font-size: 1.1em;
+      }
+
+      .feature-description {
+        font-size: 0.95em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .coverage-title {
+        font-size: 1.5em;
+      }
+
+      .coverage-subtitle {
+        font-size: 0.9em;
+      }
+
+      .coverage-features {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+    }
+
+    /* Animation for fade in */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .coverage-header {
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .map-container {
+      animation: fadeInUp 1s ease 0.2s backwards;
+    }
+
+    .feature-card {
+      animation: fadeInUp 0.8s ease backwards;
+    }
+
+    .feature-card:nth-child(1) { animation-delay: 0.4s; }
+    .feature-card:nth-child(2) { animation-delay: 0.5s; }
+    .feature-card:nth-child(3) { animation-delay: 0.6s; }
   </style>
 </head>
-
 <body>
-  <section>
-  <div class="forty">
-    <h1>Anywhere in the US, we can ship your equipment</h1>
-    <br>
-    <img src="\static\accounts\images\map.png" alt="Map">
-  </div>
-</section>
+  <section class="coverage-section">
+    <div class="coverage-header">
+      <h1 class="coverage-title">
+        <span class="highlight">Anywhere in the US</span>, We Ship Your Equipment
+      </h1>
+      <p class="coverage-subtitle">
+        Coast-to-coast transportation coverage with reliable, professional service
+      </p>
+    </div>
+
+    <div class="map-container">
+      <img src="/static/accounts/images/map.png" alt="United States coverage map showing nationwide transportation services" loading="lazy">
+    </div>
+
+    <div class="coverage-features">
+      <div class="feature-card">
+        <div class="feature-icon">🚚</div>
+        <h3 class="feature-title">50 States Coverage</h3>
+        <p class="feature-description">
+          Complete nationwide coverage across all 50 states with reliable delivery
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3 class="feature-title">Fast & Efficient</h3>
+        <p class="feature-description">
+          Expedited shipping options available for time-sensitive deliveries
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <h3 class="feature-title">Fully Insured</h3>
+        <p class="feature-description">
+          Your equipment is protected with comprehensive insurance coverage
+        </p>
+      </div>
+    </div>
+  </section>
 </body>
 </html>
