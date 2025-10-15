@@ -5,104 +5,289 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="/static/accounts/images/logo.png" type="image/png">
   <title>Bullets Transport LLC | Quote Confirmation</title>
-
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <!-- CSS Styles -->
   <style>
     /* CSS Reset */
     *, *::before, *::after {
       box-sizing: border-box;
+    }
+
+    html, body {
       margin: 0;
       padding: 0;
+      height: 100%;
     }
 
     body {
       font-family: 'Roboto', sans-serif;
       line-height: 1.6;
-      background-color: #f9f9f9;
+      background-color: #d9d9d9;
       color: #333;
     }
 
-    /* Container */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
+    /* Page Container */
+    .page-container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: #d9d9d9;
     }
 
-    /* Header */
-    header {
-      background-color: #fff;
-      padding: 20px 0;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      margin-bottom: 40px;
-    }
-
-    /* Navbar */
-    /* Assuming your navbar is handled in 'accounts/navbar.html' */
-
-    /* Main Content */
-    main {
-      text-align: center;
+    /* Main Content Area */
+    .main-content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       padding: 40px 20px;
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      background-color: #d9d9d9;
     }
 
-    main h1 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      color: #2c3e50;
-    }
-
-    main p {
-      font-size: 1.25rem;
-      color: #555;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    /* Footer */
-    footer {
-      background-color: #333;
-      color: #fff;
-      padding: 20px 0;
+    /* Thank You Card */
+    .thank-you-card {
+      max-width: 850px;
+      width: 100%;
       text-align: center;
-      margin-top: 40px;
+      padding: 60px 50px 70px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    }
+
+    /* Success Icon */
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+      border-radius: 50%;
+      margin: 0 auto 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+      animation: scaleIn 0.5s ease-out;
+    }
+
+    .success-icon svg {
+      width: 45px;
+      height: 45px;
+      stroke: white;
+      stroke-width: 3;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    @keyframes scaleIn {
+      0% {
+        transform: scale(0);
+        opacity: 0;
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .thank-you-card h1 {
+      font-size: 2.75rem;
+      margin-bottom: 25px;
+      color: #2c3e50;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .thank-you-card p {
+      font-size: 1.1rem;
+      color: #666;
+      line-height: 1.85;
+      max-width: 650px;
+      margin: 0 auto 35px;
+    }
+
+    /* Decorative Line */
+    .decorative-line {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #fdb913 0%, #e5a610 100%);
+      margin: 25px auto;
+      border-radius: 2px;
+    }
+
+    /* Contact Box */
+    .contact-box {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border-left: 4px solid #fdb913;
+      padding: 20px 30px;
+      border-radius: 6px;
+      margin-top: 35px;
+      display: inline-block;
+      text-align: left;
+      max-width: 550px;
+    }
+
+    .contact-box h3 {
+      font-size: 1.1rem;
+      color: #2c3e50;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .contact-box p {
+      margin: 0;
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .contact-box a {
+      color: #fdb913;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.25rem;
+      transition: color 0.2s ease;
+      display: inline-block;
+      margin-top: 5px;
+    }
+
+    .contact-box a:hover {
+      color: #e5a610;
     }
 
     /* Responsive Design */
-    @media (max-width: 768px) {
-      main h1 {
-        font-size: 2rem;
+    @media (max-width: 992px) {
+      .thank-you-card {
+        padding: 50px 40px 60px;
       }
 
-      main p {
+      .thank-you-card h1 {
+        font-size: 2.4rem;
+      }
+
+      .success-icon {
+        width: 70px;
+        height: 70px;
+      }
+
+      .success-icon svg {
+        width: 38px;
+        height: 38px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .main-content {
+        padding: 30px 15px;
+      }
+
+      .thank-you-card {
+        padding: 45px 30px 55px;
+      }
+
+      .thank-you-card h1 {
+        font-size: 2.1rem;
+        margin-bottom: 20px;
+      }
+
+      .thank-you-card p {
+        font-size: 1.05rem;
+      }
+
+      .contact-box {
+        padding: 18px 25px;
+      }
+
+      .contact-box a {
+        font-size: 1.15rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .main-content {
+        padding: 25px 10px;
+      }
+
+      .thank-you-card {
+        padding: 35px 25px 45px;
+        border-radius: 6px;
+      }
+
+      .success-icon {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 25px;
+      }
+
+      .success-icon svg {
+        width: 32px;
+        height: 32px;
+      }
+
+      .thank-you-card h1 {
+        font-size: 1.85rem;
+        margin-bottom: 18px;
+      }
+
+      .thank-you-card p {
         font-size: 1rem;
-        padding: 0 10px;
+        line-height: 1.75;
+        margin-bottom: 28px;
+      }
+
+      .contact-box {
+        padding: 16px 20px;
+        text-align: center;
+      }
+
+      .contact-box h3 {
+        font-size: 1rem;
+      }
+
+      .contact-box a {
+        font-size: 1.1rem;
       }
     }
   </style>
 </head>
-
 <body>
-  <!-- Navbar -->
-  {% include 'accounts/navbar.html' %}
+  <div class="page-container">
+    <!-- Navbar -->
+    {% include 'accounts/navbar.html' %}
 
-  <!-- Main Content -->
-  <main class="container">
-    {% block content %}
-      <h1>Thank You</h1>
-      <p>
-        We appreciate you submitting your inquiry. Your load information has been received, and a representative will get in touch with you shortly with a rate. If you require immediate assistance, please call Client Services at <a href="tel:8887130369">888-713-0369</a>.
-      </p>
-    {% endblock %}
-  </main>
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="thank-you-card">
+        {% block content %}
+          <!-- Success Icon -->
+          <div class="success-icon">
+            <svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
 
-  <!-- Footer -->
-  {% include 'accounts/footer.html' %}
+          <h1>Thank You!</h1>
+
+          <div class="decorative-line"></div>
+
+          <p>
+            We appreciate you submitting your inquiry. Your load information has been received, and a representative will get in touch with you shortly with a rate.
+          </p>
+
+          <div class="contact-box">
+            <h3>Need Immediate Assistance?</h3>
+            <p>Call our Client Services team:</p>
+            <a href="tel:8887130369">888-713-0369</a>
+          </div>
+        {% endblock %}
+      </div>
+    </div>
+
+    <!-- Footer -->
+    {% include 'accounts/footer.html' %}
+  </div>
 </body>
 </html>
