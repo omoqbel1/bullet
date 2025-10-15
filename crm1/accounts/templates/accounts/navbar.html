@@ -13,86 +13,99 @@
       --color-background: #000000;
       --color-text: #ffffff;
       --color-accent: #f3a93d;
-      --transition-speed: 0.5s;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #e8eef3;
-      margin: 0;
-      padding: 0;
+      --color-green: #28a745;
+      --transition-speed: 0.3s;
     }
 
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #e8eef3;
     }
 
     ul {
       list-style: none;
-      margin: 0;
-      padding: 0;
     }
 
     a {
       text-decoration: none;
     }
 
-    /* Container */
+    /* Header */
+    .header {
+      background-color: var(--color-background);
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
     .container19 {
       width: 100%;
-      max-width: 1170px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 0 20px;
     }
 
-    /* Row and alignments */
     .row {
       display: flex;
       align-items: center;
-      justify-content: space-between; /* Space between logo and nav */
-      position: relative; /* For positioning toggler */
-    }
-
-    /* Header */
-    .header {
-      background-color: var(--color-background);
-      padding: 10px 0;
+      justify-content: space-between;
       position: relative;
-      z-index: 1000; /* Ensure header stays above other elements */
     }
 
-    .header .logo img {
-      height: 85px;
+    /* Logo */
+    .logo img {
+      height: 70px;
       width: auto;
       display: block;
+      transition: transform var(--transition-speed) ease;
     }
 
-    /* Nav */
-    .nav {
-      margin-left: auto;
+    .logo img:hover {
+      transform: scale(1.05);
     }
 
+    /* Navigation */
     .nav ul {
       display: flex;
       align-items: center;
-    }
-
-    .nav ul li {
-      margin-left: 30px; /* Spacing between menu items */
-    }
-
-    .nav ul li:first-child {
-      margin-left: 0;
+      gap: 35px;
     }
 
     .nav ul li a {
       display: block;
-      font-size: 16px;
+      font-size: 15px;
+      font-weight: 500;
       color: var(--color-text);
-      padding: 5px 0;
-      transition: color var(--transition-speed) ease;
+      padding: 8px 12px;
+      transition: all var(--transition-speed) ease;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
+      position: relative;
+    }
+
+    .nav ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 50%;
+      background-color: var(--color-accent);
+      transition: all var(--transition-speed) ease;
+      transform: translateX(-50%);
+    }
+
+    .nav ul li a:hover::after,
+    .nav ul li a.active::after {
+      width: 80%;
     }
 
     .nav ul li a.active,
@@ -100,34 +113,90 @@
       color: var(--color-accent);
     }
 
+    /* Phone number styling */
+    .nav ul li:last-child a {
+      background: linear-gradient(135deg, var(--color-accent), #ffb84d);
+      color: var(--color-background);
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .nav ul li:last-child a::after {
+      display: none;
+    }
+
+    .nav ul li:last-child a:hover {
+      background: linear-gradient(135deg, #ffb84d, var(--color-accent));
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(243, 169, 61, 0.4);
+    }
+
+    /* Green CTA Button - Hidden on Desktop */
+    .green-button-container {
+      display: none;
+    }
+
+    .cta-get-quotes-btn {
+      width: 100%;
+      padding: 14px 20px;
+      background: linear-gradient(135deg, var(--color-green), #34ce57);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all var(--transition-speed) ease;
+      box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+    }
+
+    .cta-get-quotes-btn:hover {
+      background: linear-gradient(135deg, #34ce57, var(--color-green));
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(40, 167, 69, 0.5);
+    }
+
+    .cta-get-quotes-btn:active {
+      transform: translateY(0);
+    }
+
     /* Mobile Toggle */
     .nav-toggler {
-      height: 34px;
-      width: 44px;
-      background-color: var(--color-text);
-      border-radius: 4px;
+      display: none;
+      height: 40px;
+      width: 40px;
+      background-color: transparent;
+      border: 2px solid var(--color-text);
+      border-radius: 5px;
       cursor: pointer;
-      border: none;
-      display: none; /* Hidden on desktop */
-      position: absolute;
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 1100; /* Above nav */
+      position: relative;
+      transition: all var(--transition-speed) ease;
+    }
+
+    .nav-toggler:hover {
+      border-color: var(--color-accent);
     }
 
     .nav-toggler:focus {
       outline: none;
-      box-shadow: 0 0 15px rgba(255,255,255,0.5);
+      border-color: var(--color-accent);
+      box-shadow: 0 0 10px rgba(243, 169, 61, 0.5);
     }
 
     .nav-toggler span {
       display: block;
-      width: 20px;
+      width: 22px;
       height: 2px;
-      background-color: var(--color-background);
-      position: relative;
-      transition: background-color 0.3s ease;
+      background-color: var(--color-text);
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      transition: all var(--transition-speed) ease;
     }
 
     .nav-toggler span::before,
@@ -136,17 +205,17 @@
       position: absolute;
       left: 0;
       width: 100%;
-      height: 100%;
-      background-color: var(--color-background);
-      transition: transform 0.3s ease;
+      height: 2px;
+      background-color: var(--color-text);
+      transition: all var(--transition-speed) ease;
     }
 
     .nav-toggler span::before {
-      top: -6px;
+      top: -7px;
     }
 
     .nav-toggler span::after {
-      top: 6px;
+      top: 7px;
     }
 
     .nav-toggler.active span {
@@ -154,52 +223,109 @@
     }
 
     .nav-toggler.active span::before {
-      transform: rotate(45deg) translate(5px, 5px);
+      top: 0;
+      transform: rotate(45deg);
+      background-color: var(--color-accent);
     }
 
     .nav-toggler.active span::after {
-      transform: rotate(-45deg) translate(5px, -5px);
+      top: 0;
+      transform: rotate(-45deg);
+      background-color: var(--color-accent);
     }
 
     /* Responsive Styles */
     @media (max-width: 991px) {
-      /* Show the toggle button */
+      .header {
+        padding: 12px 0;
+      }
+
+      .logo img {
+        height: 55px;
+      }
+
       .nav-toggler {
         display: block;
       }
 
-      /* Hide the nav menu by default */
       .nav {
         position: absolute;
-        top: 100%;
+        top: calc(100% + 12px);
         right: 0;
-        width: 100%;
-        background-color: var(--color-background);
+        width: 280px;
+        background: linear-gradient(135deg, #1a1a1a, #000000);
         max-height: 0;
         overflow: hidden;
         transition: max-height var(--transition-speed) ease;
-        border-top: 1px solid rgba(255,255,255,0.2);
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       }
 
       .nav.open {
-        max-height: 500px; /* Adjust based on content */
+        max-height: 600px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
       }
 
       .nav ul {
         flex-direction: column;
-        align-items: flex-end; /* Align menu items to the right */
-        padding: 10px 20px;
+        gap: 0;
+        padding: 15px 0;
       }
 
       .nav ul li {
-        margin: 10px 0;
         width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .nav ul li:last-child {
+        border-bottom: none;
+        padding: 10px 20px;
       }
 
       .nav ul li a {
         width: 100%;
-        text-align: right;
-        padding: 10px 0;
+        text-align: left;
+        padding: 15px 25px;
+        font-size: 14px;
+      }
+
+      .nav ul li a::after {
+        left: 25px;
+        transform: translateX(0);
+      }
+
+      .nav ul li a:hover::after,
+      .nav ul li a.active::after {
+        width: calc(100% - 50px);
+      }
+
+      .nav ul li:last-child a {
+        border-radius: 8px;
+        text-align: center;
+        padding: 12px 20px;
+      }
+
+      /* Show Green CTA Button on Mobile */
+      .green-button-container {
+        display: block;
+        padding: 15px 20px 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container19 {
+        padding: 0 15px;
+      }
+
+      .logo img {
+        height: 50px;
+      }
+
+      .nav {
+        width: calc(100vw - 30px);
+        right: 15px;
       }
     }
   </style>
@@ -207,15 +333,15 @@
 <body>
   <header class="header">
     <div class="container19">
-      <div class="row align-items-center">
-        <!-- Logo on the Left -->
+      <div class="row">
+        <!-- Logo -->
         <div class="logo">
           <a href="/home/">
             <img src="/static/accounts/images/logoo.png" alt="Bullets Transport LLC Logo">
           </a>
         </div>
 
-        <!-- Dropdown Toggler on the Right (Visible on Mobile) -->
+        <!-- Mobile Toggle Button -->
         <button type="button" class="nav-toggler" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbar-menu">
           <span></span>
         </button>
@@ -223,51 +349,77 @@
         <!-- Navigation Menu -->
         <nav class="nav" id="navbar-menu">
           <ul>
-            <li><a href="/home/" class="active">Home</a></li>
+            <li><a href="/home/">Home</a></li>
             <li><a href="/about/">About</a></li>
             <li><a href="/services/">Services</a></li>
             <li><a href="/contact/">Contact Us</a></li>
             <li><a href="tel:888-713-0369">888-713-0369</a></li>
           </ul>
+
+          <!-- Green CTA Button - Only visible on mobile -->
+          <div class="green-button-container">
+            <form action="/quote/" method="get">
+              <input id="getQuotesCta" type="submit" class="btn btn-success cta-get-quotes-btn" value="Get a Free Quote">
+            </form>
+          </div>
         </nav>
       </div>
     </div>
   </header>
 
-  <!-- Optional: Main Content -->
+  <!-- Main Content -->
   <main>
     <!-- Your page content goes here -->
   </main>
 
-  <!-- Embedded JavaScript -->
+  <!-- JavaScript -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       const navToggler = document.querySelector(".nav-toggler");
       const nav = document.querySelector(".nav");
 
+      // Highlight active page based on current URL
+      const currentPath = window.location.pathname;
+      const navLinks = document.querySelectorAll(".nav ul li a");
+
+      navLinks.forEach(link => {
+        // Remove active class from all links first
+        link.classList.remove("active");
+
+        // Get the href and check if it matches current path
+        const href = link.getAttribute("href");
+        if (href === currentPath || (currentPath === "/" && href === "/home/")) {
+          link.classList.add("active");
+        }
+      });
+
+      // Mobile menu toggle
       navToggler.addEventListener("click", function() {
         const isOpen = nav.classList.toggle("open");
         navToggler.classList.toggle("active");
         navToggler.setAttribute("aria-expanded", isOpen);
-
-        if (isOpen) {
-          // Set max-height dynamically based on content
-          nav.style.maxHeight = nav.scrollHeight + "px";
-        } else {
-          nav.style.maxHeight = null;
-        }
       });
 
-      // Optional: Close the nav when clicking outside
+      // Close nav when clicking outside
       document.addEventListener("click", function(event) {
         if (!nav.contains(event.target) && !navToggler.contains(event.target)) {
           if (nav.classList.contains("open")) {
             nav.classList.remove("open");
             navToggler.classList.remove("active");
             navToggler.setAttribute("aria-expanded", "false");
-            nav.style.maxHeight = null;
           }
         }
+      });
+
+      // Close nav when clicking a link (mobile only)
+      navLinks.forEach(link => {
+        link.addEventListener("click", function() {
+          if (window.innerWidth <= 991) {
+            nav.classList.remove("open");
+            navToggler.classList.remove("active");
+            navToggler.setAttribute("aria-expanded", "false");
+          }
+        });
       });
     });
   </script>
