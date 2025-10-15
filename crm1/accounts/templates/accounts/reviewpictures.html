@@ -6,130 +6,273 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <title>Image Slideshow</title>
 <style>
+  * {
+    box-sizing: border-box;
+  }
+
   body {
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
-    background: #f7f7f7;
+    background: #ffffff;
+    min-height: 100vh;
   }
 
   .main-wrapper {
-    width: 100%;
-    margin: auto;
-    overflow: hidden;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
     text-align: center;
-    padding: 20px 0;
-  }
-
-  .heading-area {
-    font-family: 'Roboto Condensed', sans-serif;
-    margin-bottom: 40px;
-    position: relative;
   }
 
   .heading-area h2 {
-    font-size: 3em;
-    font-weight: bold;
-    margin: 0;
-    line-height: 1.2;
-    color: black;
-    opacity: 0;
-    animation: fadeInTitle 1.5s forwards;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    margin: 0 0 40px;
+    color: #1a1a1a;
+    animation: fadeInTitle 1s ease-out;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    display: inline-block;
+  }
+
+  .heading-area h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, #000, #666);
+    border-radius: 2px;
   }
 
   @keyframes fadeInTitle {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
-  .mobile-box {
-    border: 2px solid black;
+  .slideshow-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
     background: #fff;
-    display: inline-block;
-    position: relative;
-    padding: 10px;
-    overflow: visible;
-  }
-
-  .slider-wrapper {
-    position: relative;
-    width: 100%;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    touch-action: pan-y; /* Support swipe */
-  }
-
-  .image-row {
-    width: 100%;
-    display: flex;
-    flex-wrap: nowrap;
+    border: none;
+    padding: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    border-radius: 12px;
     overflow: hidden;
   }
 
-  .image-container {
-    width: 330px;
-    height: 330px;
-    margin: 4px;
-    box-sizing: border-box;
-    flex: 0 0 auto;
+  /* Progress Bar */
+  .progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #000, #444);
+    width: 0%;
+    transition: width 0.1s linear;
+    z-index: 100;
   }
 
-  .image-container img {
+  /* Slide Counter */
+  .slide-counter {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+  }
+
+  .slides-wrapper {
+    position: relative;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
   }
 
-  .mySlides {
-    animation-name: fade;
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
+  .slide-track {
+    display: none;
     opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    flex: 0 0 100%;
   }
 
-  .fade {
-    animation-name: fade;
-    animation-duration: 1.5s;
+  .slide-track.active {
+    display: block;
+    opacity: 1;
   }
 
-  @keyframes fade {
-    from {opacity: .4}
-    to {opacity: 1}
+  .slide-image {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    display: block;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   }
 
-  @media screen and (max-width: 1024px) {
-    .slider-wrapper, .image-row {
-      flex-direction: row;
+  .slide-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  }
+
+  .slide-image.loading {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+  }
+
+  @keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* Navigation Arrows */
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    font-size: 24px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+    user-select: none;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  }
+
+  .arrow:hover {
+    background: rgba(0, 0, 0, 0.95);
+    transform: translateY(-50%) scale(1.15);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  }
+
+  .arrow:active {
+    transform: translateY(-50%) scale(1.05);
+  }
+
+  .arrow-prev {
+    left: 15px;
+  }
+
+  .arrow-next {
+    right: 15px;
+  }
+
+  /* Slide Indicators */
+  .slide-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 25px;
+    padding-bottom: 10px;
+  }
+
+  .indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #d0d0d0;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    position: relative;
+  }
+
+  .indicator::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    transition: all 0.4s ease;
+  }
+
+  .indicator.active {
+    background: #000;
+    transform: scale(1.3);
+  }
+
+  .indicator.active::before {
+    border-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .indicator:hover:not(.active) {
+    background: #666;
+    transform: scale(1.2);
+  }
+
+  /* Mobile: 1 image per slide */
+  @media (max-width: 768px) {
+    .slide-track.active {
+      display: block;
     }
-    .image-container {
-      width: 30%;
-      height: auto;
-      margin: 1%;
-      box-sizing: border-box;
+
+    .arrow {
+      width: 40px;
+      height: 40px;
+      font-size: 22px;
     }
-    .image-container img {
-      width: 100%;
-      height: 100%;
+
+    .arrow-prev {
+      left: 5px;
+    }
+
+    .arrow-next {
+      right: 5px;
     }
   }
 
-  @media screen and (max-width: 600px) {
-    .image-row {
-      display: flex;
-      overflow: hidden;
+  /* Tablet and Desktop: 3 images side by side */
+  @media (min-width: 769px) {
+    .slideshow-container {
+      padding: 30px;
     }
 
-    .image-container {
-      width: 300px;
-      height: 300px;
-      margin: 4px auto;
+    .slides-wrapper {
+      gap: 15px;
     }
 
-    .image-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .slide-track {
+      flex: 0 0 calc(33.333% - 10px);
+      max-width: calc(33.333% - 10px);
+    }
+
+    .slide-track.active {
+      display: block;
     }
   }
 </style>
@@ -141,155 +284,302 @@
     <h2>SHIPMENTS WE HAVE COMPLETED</h2>
   </div>
 
-  <div class="mobile-box" id="slideshowContainer">
-    <div class="slider-wrapper">
-      <div class="mySlides fade">
-        <div class="image-row">
-          <div class="image-container"><img src="/static/accounts/images/img24.png"></div>
-          <div class="image-container"><img src="/static/accounts/images/img1.png"></div>
-          <div class="image-container"><img src="/static/accounts/images/img2.png"></div>
-        </div>
+  <div class="slideshow-container">
+    <div class="progress-bar"></div>
+    <div class="slide-counter">1 / 8</div>
+    <button class="arrow arrow-prev" aria-label="Previous slide">❮</button>
+    <button class="arrow arrow-next" aria-label="Next slide">❯</button>
+
+    <div class="slides-wrapper">
+      <div class="slide-track">
+        <img class="slide-image" src="/static/accounts/images/img24.png" alt="Shipment 1">
       </div>
-
-
-      <div class="mySlides fade">
-        <div class="image-row">
-          <div class="image-container"><img src="/static/accounts/images/img3.png"></div>
-          <div class="image-container"><img src="/static/accounts/images/img22.png"></div>
-          <div class="image-container"><img src="/static/accounts/images/img23.png"></div>
-        </div>
+      <div class="slide-track">
+        <img class="slide-image" src="/static/accounts/images/img1.png" alt="Shipment 2">
       </div>
-
-      <div class="mySlides fade">
-        <div class="image-row">
-          <div class="image-container"><img src="/static/accounts/images/img4.png"></div>
-          <div class="image-container"><img src="/static/accounts/images/img5.png"></div>
-          <div class="image-container"><img src="/static/accounts/images/img6.png"></div>
-        </div>
+      <div class="slide-track">
+        <img class="slide-image" src="/static/accounts/images/img2.png" alt="Shipment 3">
       </div>
-
-      <div class="mySlides fade">
-        <div class="image-row">
-          <div class="image-container"><img src="/static/accounts/images/img7.png"></div>
-          <div class="image-container"><img src="/static/accounts/images/img8.png"></div>
-          <div class="image-container"><img src="/static/accounts/images/img9.png"></div>
-        </div>
+      <div class="slide-track">
+        <img class="slide-image" src="/static/accounts/images/img3.png" alt="Shipment 4">
       </div>
-
-      <div class="mySlides fade">
-        <div class="image-row">
-          <div class="image-container"><img src="/static/accounts/images/img10.png"></div>
-          <div class="image-container"><img src="/static/accounts/images/img11.png"></div>
-          <div class="image-container"><img src="/static/accounts/images/img12.png"></div>
-        </div>
+      <div class="slide-track">
+        <img class="slide-image" src="/static/accounts/images/img22.png" alt="Shipment 5">
       </div>
-
-      <div class="mySlides fade">
-        <div class="image-row">
-          <div class="image-container"><img src="/static/accounts/images/img13.png"></div>
-          <div class="image-container"><img src="/static/accounts/images/img14.png"></div>
-          <div class="image-container"><img src="/static/accounts/images/img15.png"></div>
-        </div>
+      <div class="slide-track">
+        <img class="slide-image" src="/static/accounts/images/img23.png" alt="Shipment 6">
       </div>
-
-      <div class="mySlides fade">
-        <div class="image-row">
-          <div class="image-container"><img src="/static/accounts/images/img16.png"></div>
-          <div class="image-container"><img src="/static/accounts/images/img17.png"></div>
-          <div class="image-container"><img src="/static/accounts/images/img18.png"></div>
-        </div>
+      <div class="slide-track">
+        <img class="slide-image" src="/static/accounts/images/img4.png" alt="Shipment 7">
       </div>
-
-      <div class="mySlides fade">
-        <div class="image-row">
-          <div class="image-container"><img src="/static/accounts/images/img19.png"></div>
-          <div class="image-container"><img src="/static/accounts/images/img20.png"></div>
-          <div class="image-container"><img src="/static/accounts/images/img21.png"></div>
-        </div>
+      <div class="slide-track">
+        <img class="slide-image" src="/static/accounts/images/img5.png" alt="Shipment 8">
+      </div>
+      <div class="slide-track">
+        <img class="slide-image" src="/static/accounts/images/img6.png" alt="Shipment 9">
+      </div>
+      <div class="slide-track">
+        <img class="slide-image" src="/static/accounts/images/img7.png" alt="Shipment 10">
+      </div>
+      <div class="slide-track">
+        <img class="slide-image" src="/static/accounts/images/img8.png" alt="Shipment 11">
+      </div>
+      <div class="slide-track">
+        <img class="slide-image" src="/static/accounts/images/img9.png" alt="Shipment 12">
+      </div>
+      <div class="slide-track">
+        <img class="slide-image" src="/static/accounts/images/img10.png" alt="Shipment 13">
+      </div>
+      <div class="slide-track">
+        <img class="slide-image" src="/static/accounts/images/img11.png" alt="Shipment 14">
+      </div>
+      <div class="slide-track">
+        <img class="slide-image" src="/static/accounts/images/img12.png" alt="Shipment 15">
+      </div>
+      <div class="slide-track">
+        <img class="slide-image" src="/static/accounts/images/img13.png" alt="Shipment 16">
+      </div>
+      <div class="slide-track">
+        <img class="slide-image" src="/static/accounts/images/img14.png" alt="Shipment 17">
+      </div>
+      <div class="slide-track">
+        <img class="slide-image" src="/static/accounts/images/img15.png" alt="Shipment 18">
+      </div>
+      <div class="slide-track">
+        <img class="slide-image" src="/static/accounts/images/img16.png" alt="Shipment 19">
+      </div>
+      <div class="slide-track">
+        <img class="slide-image" src="/static/accounts/images/img17.png" alt="Shipment 20">
+      </div>
+      <div class="slide-track">
+        <img class="slide-image" src="/static/accounts/images/img18.png" alt="Shipment 21">
+      </div>
+      <div class="slide-track">
+        <img class="slide-image" src="/static/accounts/images/img19.png" alt="Shipment 22">
+      </div>
+      <div class="slide-track">
+        <img class="slide-image" src="/static/accounts/images/img20.png" alt="Shipment 23">
+      </div>
+      <div class="slide-track">
+        <img class="slide-image" src="/static/accounts/images/img21.png" alt="Shipment 24">
       </div>
     </div>
+
+    <div class="slide-indicators"></div>
   </div>
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  var slideIndex = 1;
-  var autoSlideTimeout;
-  var slideshowContainer = document.getElementById('slideshowContainer');
+class Slideshow {
+  constructor() {
+    this.allSlides = Array.from(document.querySelectorAll('.slide-track'));
+    this.prevBtn = document.querySelector('.arrow-prev');
+    this.nextBtn = document.querySelector('.arrow-next');
+    this.indicatorsContainer = document.querySelector('.slide-indicators');
+    this.progressBar = document.querySelector('.progress-bar');
+    this.slideCounter = document.querySelector('.slide-counter');
+    this.currentIndex = 0;
+    this.autoPlayInterval = null;
+    this.progressInterval = null;
+    this.autoPlayDelay = 5000;
+    this.isMobile = window.innerWidth <= 768;
+    this.slides = [];
 
-  function showSlides(n) {
-    var i;
-    var slides;
-
-    if (window.innerWidth <= 600) {
-      slides = document.getElementsByClassName("image-container");
-    } else {
-      slides = document.getElementsByClassName("mySlides fade");
-    }
-
-    if (n > slides.length) {slideIndex = 1}
-    if (n < 1) {slideIndex = slides.length}
-
-    for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-    }
-
-    slides[slideIndex-1].style.display = "block";
-
-    // Auto rotate
-    autoSlideTimeout = setTimeout(function() {
-      slideIndex++;
-      showSlides(slideIndex);
-    }, 7500);
+    this.init();
+    this.handleResize();
   }
 
-  // Initialize the slideshow
-  showSlides(slideIndex);
+  init() {
+    this.organizeSlides();
 
-  // Swipe support
-  var xDown = null;
-  var yDown = null;
+    // Event listeners
+    this.prevBtn.addEventListener('click', () => this.previousSlide());
+    this.nextBtn.addEventListener('click', () => this.nextSlide());
 
-  function getTouches(evt) {
-    return evt.touches || evt.originalEvent.touches;
+    // Touch/swipe support
+    this.addSwipeSupport();
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') this.previousSlide();
+      if (e.key === 'ArrowRight') this.nextSlide();
+    });
+
+    // Auto-play with progress bar
+    this.startAutoPlay();
+
+    // Pause on hover
+    const container = document.querySelector('.slideshow-container');
+    container.addEventListener('mouseenter', () => {
+      this.stopAutoPlay();
+      this.stopProgress();
+    });
+    container.addEventListener('mouseleave', () => {
+      this.startAutoPlay();
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', () => this.handleResize());
   }
 
-  function handleTouchStart(evt) {
-    var firstTouch = getTouches(evt)[0];
-    xDown = firstTouch.clientX;
-    yDown = firstTouch.clientY;
-  }
+  organizeSlides() {
+    // Clear existing indicators
+    this.indicatorsContainer.innerHTML = '';
 
-  function handleTouchMove(evt) {
-    if (!xDown || !yDown) {
-      return;
+    // Determine slides per view
+    const slidesPerView = this.isMobile ? 1 : 3;
+
+    // Group slides
+    this.slides = [];
+    for (let i = 0; i < this.allSlides.length; i += slidesPerView) {
+      this.slides.push(this.allSlides.slice(i, i + slidesPerView));
     }
 
-    var xUp = evt.touches[0].clientX;
-    var yUp = evt.touches[0].clientY;
-    var xDiff = xDown - xUp;
-    var yDiff = yDown - yUp;
+    // Create indicators
+    this.slides.forEach((_, index) => {
+      const indicator = document.createElement('div');
+      indicator.classList.add('indicator');
+      indicator.addEventListener('click', () => this.goToSlide(index));
+      this.indicatorsContainer.appendChild(indicator);
+    });
 
-    // Determine swipe direction
-    if (Math.abs(xDiff) > Math.abs(yDiff)) {
-      clearTimeout(autoSlideTimeout);
-      if (xDiff > 0) {
-        // Swipe left: next slide
-        slideIndex++;
-        showSlides(slideIndex);
-      } else {
-        // Swipe right: previous slide
-        slideIndex--;
-        showSlides(slideIndex);
+    this.indicators = document.querySelectorAll('.indicator');
+
+    // Show first slide
+    this.currentIndex = 0;
+    this.showSlide(0);
+    this.updateCounter();
+  }
+
+  showSlide(index) {
+    // Hide all slides first
+    this.allSlides.forEach(slide => {
+      slide.classList.remove('active');
+      slide.style.display = 'none';
+    });
+
+    // Deactivate all indicators
+    this.indicators.forEach(ind => ind.classList.remove('active'));
+
+    // Show current group of slides
+    this.currentIndex = index;
+    const currentGroup = this.slides[this.currentIndex];
+
+    // On desktop, show all images in the group at once
+    // On mobile, show one at a time
+    currentGroup.forEach(slide => {
+      slide.style.display = 'block';
+      setTimeout(() => {
+        slide.classList.add('active');
+      }, 10);
+    });
+
+    // Activate current indicator
+    this.indicators[this.currentIndex].classList.add('active');
+
+    // Update counter
+    this.updateCounter();
+  }
+
+  updateCounter() {
+    this.slideCounter.textContent = `${this.currentIndex + 1} / ${this.slides.length}`;
+  }
+
+  updateProgressBar() {
+    let progress = 0;
+    const step = 100 / (this.autoPlayDelay / 50);
+
+    this.progressInterval = setInterval(() => {
+      progress += step;
+      if (progress >= 100) {
+        progress = 100;
       }
-    }
-
-    xDown = null;
-    yDown = null;
+      this.progressBar.style.width = progress + '%';
+    }, 50);
   }
 
-  slideshowContainer.addEventListener('touchstart', handleTouchStart, false);
-  slideshowContainer.addEventListener('touchmove', handleTouchMove, false);
+  stopProgress() {
+    if (this.progressInterval) {
+      clearInterval(this.progressInterval);
+    }
+  }
+
+  resetProgress() {
+    this.stopProgress();
+    this.progressBar.style.width = '0%';
+    this.updateProgressBar();
+  }
+
+  nextSlide() {
+    const nextIndex = (this.currentIndex + 1) % this.slides.length;
+    this.showSlide(nextIndex);
+    // Don't reset auto-play timer on manual navigation
+  }
+
+  previousSlide() {
+    const prevIndex = (this.currentIndex - 1 + this.slides.length) % this.slides.length;
+    this.showSlide(prevIndex);
+    // Don't reset auto-play timer on manual navigation
+  }
+
+  goToSlide(index) {
+    this.showSlide(index);
+    // Don't reset auto-play timer on manual navigation
+  }
+
+  startAutoPlay() {
+    this.resetProgress();
+    this.autoPlayInterval = setInterval(() => {
+      this.nextSlide();
+      this.resetProgress();
+    }, this.autoPlayDelay);
+  }
+
+  stopAutoPlay() {
+    if (this.autoPlayInterval) {
+      clearInterval(this.autoPlayInterval);
+    }
+  }
+
+  handleResize() {
+    const wasMobile = this.isMobile;
+    this.isMobile = window.innerWidth <= 768;
+
+    // Only reorganize if we crossed the breakpoint
+    if (wasMobile !== this.isMobile) {
+      this.organizeSlides();
+    }
+  }
+
+  addSwipeSupport() {
+    const container = document.querySelector('.slideshow-container');
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    container.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    container.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      this.handleSwipe();
+    });
+
+    this.handleSwipe = () => {
+      const swipeThreshold = 50;
+      if (touchEndX < touchStartX - swipeThreshold) {
+        this.nextSlide();
+      }
+      if (touchEndX > touchStartX + swipeThreshold) {
+        this.previousSlide();
+      }
+    };
+  }
+}
+
+// Initialize slideshow when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  new Slideshow();
 });
 </script>
 
