@@ -1,179 +1,434 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bullets Transport LLC | Services Offered</title>
   <link rel="icon" href="/static/accounts/images/logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Roboto', Arial, sans-serif;
+    * {
       margin: 0;
       padding: 0;
-      background-color: #f5f5f5;
-      color: #333;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background: #f8f9fa;
+      color: #333333;
+      min-height: 100vh;
+      padding: 0;
+      margin: 0;
     }
 
     .main-container {
-      width: 100vw;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 60px 20px;
-      box-sizing: border-box;
-    }
-
-    .servicebars-title-container {
-      text-align: center;
-      margin-bottom: 40px;
       width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 80px 40px;
     }
 
-    .servicebars-title {
-      font-size: 2.5em;
-      font-weight: bold;
-      letter-spacing: 1px;
+    .services-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .services-title {
+      font-size: 3em;
+      font-weight: 700;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      margin: 0;
-      color: #444;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+      color: #ff8c00;
+      margin-bottom: 10px;
     }
 
-    .servicebars-container {
+    .services-subtitle {
+      font-size: 1.2em;
+      color: #666666;
+      font-weight: 400;
+      letter-spacing: 1px;
+    }
+
+    .services-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(200px, 1fr));
-      grid-gap: 40px;
-      max-width: 1200px;
-      width: 100%;
-      box-sizing: border-box;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
     }
 
-    @media (max-width: 1100px) {
-      .servicebars-container {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .servicebars-title {
-        font-size: 2em;
-      }
-    }
-
-    .servicebar {
+    .service-card {
       background: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      border-radius: 16px;
       overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       cursor: pointer;
-      height: 350px; /* Fixed height for consistent layout */
+      position: relative;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(255, 140, 0, 0.1);
     }
 
-    .servicebar:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(255, 140, 0, 0.1) 0%, rgba(255, 165, 0, 0.05) 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
     }
 
-    .servicebar img {
+    .service-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 12px 32px rgba(255, 140, 0, 0.25);
+      border-color: rgba(255, 140, 0, 0.5);
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
+    }
+
+    .service-image-container {
       width: 100%;
-      height: auto;
-      object-fit: contain;
-      flex-grow: 1;
-      background: #fdfdfd;
-      padding: 10px;
-      box-sizing: border-box;
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .servicebar-description {
-      text-align: center;
-      font-size: 1.1em;
-      font-weight: bold;
-      text-transform: uppercase;
-      background: linear-gradient(to right, #b71c1c, #880e4f);
+    .service-image-container::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #ff8c00, #ffa500, #ffb347);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+
+    .service-card:hover .service-image-container::after {
+      transform: scaleX(1);
+    }
+
+    .service-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform 0.4s ease;
+    }
+
+    .service-card:hover img {
+      transform: scale(1.1);
+    }
+
+    .service-label {
+      background: linear-gradient(135deg, #ff8c00 0%, #ff6600 100%);
       color: #ffffff;
-      padding: 15px 0;
-      letter-spacing: 1px;
+      text-align: center;
+      padding: 18px 20px;
+      font-size: 1.1em;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-label::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+
+    .service-card:hover .service-label::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .service-label span {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+      .services-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+      }
+
+      .services-title {
+        font-size: 2.5em;
+      }
+
+      .main-container {
+        padding: 60px 30px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+
+      .services-title {
+        font-size: 1.8em;
+      }
+
+      .services-subtitle {
+        font-size: 0.9em;
+      }
+
+      .main-container {
+        padding: 40px 15px;
+      }
+
+      .service-image-container {
+        height: 160px;
+        padding: 15px;
+      }
+
+      .service-label {
+        padding: 14px 10px;
+        font-size: 0.85em;
+        letter-spacing: 0.5px;
+      }
+    }
+
+    /* Loading Animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .service-card {
+      animation: fadeInUp 0.6s ease forwards;
+      opacity: 0;
+    }
+
+    .service-card:nth-child(1) { animation-delay: 0.1s; }
+    .service-card:nth-child(2) { animation-delay: 0.15s; }
+    .service-card:nth-child(3) { animation-delay: 0.2s; }
+    .service-card:nth-child(4) { animation-delay: 0.25s; }
+    .service-card:nth-child(5) { animation-delay: 0.3s; }
+    .service-card:nth-child(6) { animation-delay: 0.35s; }
+    .service-card:nth-child(7) { animation-delay: 0.4s; }
+    .service-card:nth-child(8) { animation-delay: 0.45s; }
+    .service-card:nth-child(9) { animation-delay: 0.5s; }
+    .service-card:nth-child(10) { animation-delay: 0.55s; }
+    .service-card:nth-child(11) { animation-delay: 0.6s; }
+    .service-card:nth-child(12) { animation-delay: 0.65s; }
+
+    /* Accessibility */
+    .service-card:focus {
+      outline: 3px solid #ff8c00;
+      outline-offset: 3px;
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        background: white;
+        color: black;
+      }
+
+      .service-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ccc;
+      }
     }
   </style>
 </head>
 <body>
   <div class="main-container">
-
-    <div class="servicebars-title-container">
-      <h2 class="servicebars-title">Services We Provide or Transport</h2>
+    <div class="services-header">
+      <h1 class="services-title">Services We Provide</h1>
+      <p class="services-subtitle">Professional Transportation Solutions for Every Need</p>
     </div>
 
-    <div class="servicebars-container">
-
-      <div class="servicebar">
-        <img src="/static/accounts/images/services1.png" alt="Flatbed">
-        <div class="servicebar-description">Flatbed</div>
+    <div class="services-grid">
+      <div class="service-card" tabindex="0" role="button" aria-label="Flatbed transport service">
+        <div class="service-image-container">
+          <img src="/static/accounts/images/services1.png" alt="Flatbed truck for heavy equipment transport" loading="lazy">
+        </div>
+        <div class="service-label">
+          <span>Flatbed</span>
+        </div>
       </div>
 
-      <div class="servicebar">
-        <img src="/static/accounts/images/services2.png" alt="Dryvan">
-        <div class="servicebar-description">Dryvan</div>
+      <div class="service-card" tabindex="0" role="button" aria-label="Dryvan transport service">
+        <div class="service-image-container">
+          <img src="/static/accounts/images/services2.png" alt="Dryvan truck for enclosed cargo transport" loading="lazy">
+        </div>
+        <div class="service-label">
+          <span>Dryvan</span>
+        </div>
       </div>
 
-      <div class="servicebar">
-        <img src="/static/accounts/images/services3.png" alt="Vehicles">
-        <div class="servicebar-description">Vehicles</div>
+      <div class="service-card" tabindex="0" role="button" aria-label="Vehicle transport service">
+        <div class="service-image-container">
+          <img src="/static/accounts/images/services3.png" alt="Vehicle transportation services" loading="lazy">
+        </div>
+        <div class="service-label">
+          <span>Vehicles</span>
+        </div>
       </div>
 
-      <div class="servicebar">
-        <img src="/static/accounts/images/services4.png" alt="Tiltbed">
-        <div class="servicebar-description">Tiltbed</div>
+      <div class="service-card" tabindex="0" role="button" aria-label="Tiltbed transport service">
+        <div class="service-image-container">
+          <img src="/static/accounts/images/services4.png" alt="Tiltbed trailer for easy loading" loading="lazy">
+        </div>
+        <div class="service-label">
+          <span>Tiltbed</span>
+        </div>
       </div>
 
-      <div class="servicebar">
-        <img src="/static/accounts/images/services5.png" alt="Forklift">
-        <div class="servicebar-description">Forklift</div>
+      <div class="service-card" tabindex="0" role="button" aria-label="Forklift service">
+        <div class="service-image-container">
+          <img src="/static/accounts/images/services5.png" alt="Forklift loading and unloading services" loading="lazy">
+        </div>
+        <div class="service-label">
+          <span>Forklift</span>
+        </div>
       </div>
 
-      <div class="servicebar">
-        <img src="/static/accounts/images/services6.png" alt="Power Only">
-        <div class="servicebar-description">Power Only</div>
+      <div class="service-card" tabindex="0" role="button" aria-label="Power only service">
+        <div class="service-image-container">
+          <img src="/static/accounts/images/services6.png" alt="Power only truck services" loading="lazy">
+        </div>
+        <div class="service-label">
+          <span>Power Only</span>
+        </div>
       </div>
 
-      <div class="servicebar">
-        <img src="/static/accounts/images/services7.png" alt="Crane">
-        <div class="servicebar-description">Crane</div>
+      <div class="service-card" tabindex="0" role="button" aria-label="Crane service">
+        <div class="service-image-container">
+          <img src="/static/accounts/images/services7.png" alt="Crane services for heavy lifting" loading="lazy">
+        </div>
+        <div class="service-label">
+          <span>Crane</span>
+        </div>
       </div>
 
-      <div class="servicebar">
-        <img src="/static/accounts/images/services8.png" alt="Expedited">
-        <div class="servicebar-description">Expedited</div>
+      <div class="service-card" tabindex="0" role="button" aria-label="Expedited transport service">
+        <div class="service-image-container">
+          <img src="/static/accounts/images/services8.png" alt="Expedited shipping for urgent deliveries" loading="lazy">
+        </div>
+        <div class="service-label">
+          <span>Expedited</span>
+        </div>
       </div>
 
-      <div class="servicebar">
-        <img src="/static/accounts/images/services9.png" alt="Boxtruck">
-        <div class="servicebar-description">Boxtruck</div>
+      <div class="service-card" tabindex="0" role="button" aria-label="Boxtruck service">
+        <div class="service-image-container">
+          <img src="/static/accounts/images/services9.png" alt="Boxtruck for small to medium shipments" loading="lazy">
+        </div>
+        <div class="service-label">
+          <span>Boxtruck</span>
+        </div>
       </div>
 
-      <div class="servicebar">
-        <img src="/static/accounts/images/services10.png" alt="LiftGate">
-        <div class="servicebar-description">LiftGate</div>
+      <div class="service-card" tabindex="0" role="button" aria-label="LiftGate service">
+        <div class="service-image-container">
+          <img src="/static/accounts/images/services10.png" alt="LiftGate trucks for ground-level loading" loading="lazy">
+        </div>
+        <div class="service-label">
+          <span>LiftGate</span>
+        </div>
       </div>
 
-      <div class="servicebar">
-        <img src="/static/accounts/images/services11.png" alt="Pallets">
-        <div class="servicebar-description">Pallets</div>
+      <div class="service-card" tabindex="0" role="button" aria-label="Pallet transport service">
+        <div class="service-image-container">
+          <img src="/static/accounts/images/services11.png" alt="Pallet shipping and transport" loading="lazy">
+        </div>
+        <div class="service-label">
+          <span>Pallets</span>
+        </div>
       </div>
 
-      <div class="servicebar">
-        <img src="/static/accounts/images/services12.png" alt="Container">
-        <div class="servicebar-description">Container</div>
+      <div class="service-card" tabindex="0" role="button" aria-label="Container transport service">
+        <div class="service-image-container">
+          <img src="/static/accounts/images/services12.png" alt="Shipping container transport" loading="lazy">
+        </div>
+        <div class="service-label">
+          <span>Container</span>
+        </div>
       </div>
-
     </div>
   </div>
 
   <script>
-    document.querySelectorAll('.servicebar').forEach(function(servicebar) {
-      servicebar.addEventListener('click', function() {
-        window.open('/quote/');
+    // Enhanced click handling with smooth navigation
+    document.querySelectorAll('.service-card').forEach(card => {
+      const handleActivation = () => {
+        // Add a subtle click effect
+        card.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          card.style.transform = '';
+          window.location.href = '/quote/';
+        }, 150);
+      };
+
+      // Click event
+      card.addEventListener('click', handleActivation);
+
+      // Keyboard accessibility (Enter and Space keys)
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleActivation();
+        }
       });
     });
+
+    // Optional: Add intersection observer for scroll animations
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+
+      // Observe all service cards for scroll animations
+      document.querySelectorAll('.service-card').forEach(card => {
+        observer.observe(card);
+      });
+    }
   </script>
 </body>
 </html>
