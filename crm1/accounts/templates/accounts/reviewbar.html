@@ -1,286 +1,466 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Badass Isolated Reviews</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Reviews - Bullets Transport</title>
 
-<!-- External CSS and JS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+  <!-- Dependencies -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"/>
+  <script src="https://cdn.tailwindcss.com"></script>
 
-<style>
-  .review-section {
-    background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
-    color: #fff;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    padding: 60px 0;
-    width: 100%;
-    box-sizing: border-box;
-    overflow: hidden;
-    text-align: center;
-  }
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-  .review-section #reviews-slider {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .review-section .review {
-    outline: none;
-    display: flex !important;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .review-section .review-box {
-    position: relative;
-    width: 100%;
-    max-width: 500px;
-    background: #222;
-    border: 2px solid #ffa500;
-    border-radius: 10px;
-    padding: 30px 20px;
-    box-shadow: 0 0 15px rgba(255,165,0,0.3), 0 0 5px rgba(255,165,0,0.5);
-    text-align: center;
-    transition: box-shadow 0.3s ease;
-  }
-
-  /* Removed the hover transform effect */
-  .review-section .review-box:hover {
-    box-shadow: 0 0 25px rgba(255,165,0,0.7), 0 0 10px rgba(255,165,0,0.9);
-  }
-
-  .review-section .review-box p {
-    font-size: 1.1em;
-    line-height: 1.5em;
-    color: #eee;
-    font-style: italic;
-    margin-bottom: 40px;
-  }
-
-  .review-section .review-name {
-    display: block;
-    font-size: 1.3em;
-    font-weight: bold;
-    color: #fff;
-    text-align: left;
-    margin-bottom: 5px;
-  }
-
-  .review-section .review-location {
-    display: block;
-    font-size: 0.95em;
-    font-weight: normal;
-    color: #bbb;
-    text-align: left;
-    margin-bottom: 25px;
-  }
-
-  .review-section .rating-container {
-    text-align: left;
-    display: flex;
-    align-items: center;
-  }
-
-  .review-section .rating-container .fas.fa-star {
-    color: #ffa500;
-    font-size: 1.5em;
-    margin-right: 5px;
-    text-shadow: 0 0 5px #ffa500, 0 0 10px #ffa500;
-  }
-
-  /* Slick Customization */
-  .review-section .slick-slide {
-    padding: 0 10px;
-  }
-
-  /* Responsive */
-  @media only screen and (max-width: 768px) {
-    .review-section .review-box {
-      padding: 20px 15px;
-      margin: 0 20px;
+    * {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
 
-    .review-section .review-box p {
-      font-size: 1em;
-      margin-bottom: 30px;
+    .review-section {
+      background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+      position: relative;
     }
 
-    .review-section .review-name {
-      font-size: 1.1em;
+    .review-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
     }
 
-    .review-section .rating-container .fas.fa-star {
-      font-size: 1.2em;
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff3e0;
+      color: #f97316;
+      padding: 8px 16px;
+      border-radius: 24px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      border: 1px solid #ffedd5;
     }
-  }
-</style>
+
+    .review-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 32px;
+      margin: 0 12px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+      border: 1px solid #f3f4f6;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .review-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #f97316, #fb923c);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .review-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+      border-color: #fed7aa;
+    }
+
+    .review-card:hover::before {
+      opacity: 1;
+    }
+
+    .quote-icon {
+      color: #fdba74;
+      opacity: 0.15;
+      font-size: 64px;
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .review-text {
+      color: #374151;
+      font-size: 17px;
+      line-height: 1.7;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 2;
+      padding-top: 8px;
+    }
+
+    .reviewer-info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 20px;
+      border-top: 1px solid #f3f4f6;
+    }
+
+    .reviewer-details {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .reviewer-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f97316, #fb923c);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .reviewer-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 2px;
+    }
+
+    .reviewer-location {
+      font-size: 14px;
+      color: #6b7280;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .rating-stars {
+      display: flex;
+      gap: 4px;
+    }
+
+    .rating-stars i {
+      color: #f97316;
+      font-size: 16px;
+    }
+
+    .verified-badge {
+      background: #dcfce7;
+      color: #166534;
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 8px;
+    }
+
+    /* Slick Carousel Customization */
+    .slick-prev, .slick-next {
+      width: 48px;
+      height: 48px;
+      background: white !important;
+      border-radius: 50%;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      z-index: 10;
+      border: 1px solid #f3f4f6;
+    }
+
+    .slick-prev:hover, .slick-next:hover {
+      background: #f97316 !important;
+      box-shadow: 0 6px 16px rgba(249, 115, 22, 0.3);
+    }
+
+    .slick-prev:before, .slick-next:before {
+      color: #374151;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .slick-prev:hover:before, .slick-next:hover:before {
+      color: white;
+    }
+
+    .slick-prev {
+      left: -60px;
+    }
+
+    .slick-next {
+      right: -60px;
+    }
+
+    .slick-dots {
+      bottom: -50px;
+    }
+
+    .slick-dots li {
+      width: 8px;
+      height: 8px;
+      margin: 0 6px;
+    }
+
+    .slick-dots li button:before {
+      font-size: 8px;
+      color: #d1d5db;
+      opacity: 1;
+      transition: all 0.3s ease;
+    }
+
+    .slick-dots li.slick-active button:before {
+      color: #f97316;
+      transform: scale(1.5);
+    }
+
+    .slick-dots li:hover button:before {
+      color: #fb923c;
+    }
+
+    @media (max-width: 1024px) {
+      .slick-prev {
+        left: 10px;
+      }
+      .slick-next {
+        right: 10px;
+      }
+      .review-card {
+        padding: 24px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .review-card {
+        padding: 20px;
+      }
+      .quote-icon {
+        font-size: 36px;
+        top: 16px;
+        right: 16px;
+      }
+      .review-text {
+        font-size: 16px;
+      }
+    }
+  </style>
 </head>
-<body>
+<body class="bg-gray-50">
 
-<div class="review-section">
-  <div id="reviews-slider">
-    <div class="review" data-rating="5" data-location="Callahan, Florida">
-      <div class="review-box">
-        <p>"These folks were top notch the whole way. Very professional, excellent communication, and on-schedule delivery."</p>
-        <span class="review-name">Mark F.</span>
-        <span class="review-location"></span>
-        <div class="rating-container">
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-        </div>
+<section class="review-section py-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <div class="flex justify-center">
+        <span class="section-badge">
+          <i class="fas fa-shield-check"></i>
+          Verified Customer Reviews
+        </span>
       </div>
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        What Our Customers Say
+      </h2>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        Real experiences from satisfied customers across the country
+      </p>
     </div>
 
-    <div class="review" data-rating="5" data-location="Houston, Texas">
-      <div class="review-box">
-        <p>"Fantastic delivery! Communicative, flexible, punctual, and incredibly helpful. 100% Recommend!"</p>
-        <span class="review-name">Tony R.</span>
-        <span class="review-location"></span>
-        <div class="rating-container">
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-        </div>
-      </div>
-    </div>
+    <!-- Reviews Slider -->
+    <div id="reviews-slider" class="max-w-6xl mx-auto pb-16">
 
-    <div class="review" data-rating="5" data-location="Lomita, California">
-      <div class="review-box">
-        <p>"Bullets Transport found a hauler when others failed. They made it happen without hassle."</p>
-        <span class="review-name">Adam M.</span>
-        <span class="review-location"></span>
-        <div class="rating-container">
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
+      <!-- Review 1 -->
+      <div class="review-slide">
+        <div class="review-card">
+          <i class="fas fa-quote-right quote-icon"></i>
+          <div class="review-text">
+            Top-notch service! The team was incredibly professional, maintained great communication throughout the entire process, and delivered right on time. Couldn't have asked for a better experience.
+          </div>
+          <div class="reviewer-info">
+            <div class="reviewer-details">
+              <div class="reviewer-avatar">MF</div>
+              <div>
+                <div class="reviewer-name">Mark F.</div>
+                <div class="reviewer-location">
+                  <i class="fas fa-map-marker-alt"></i>
+                  Callahan, Florida
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="rating-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <div class="verified-badge">
+                <i class="fas fa-check-circle"></i>
+                Verified
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="review" data-rating="5" data-location="Pembroke, Georgia">
-      <div class="review-box">
-        <p>"Highly recommend. They tackled issues fast and kept me in the loop every step of the way."</p>
-        <span class="review-name">Eric C.</span>
-        <span class="review-location"></span>
-        <div class="rating-container">
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
+      <!-- Review 2 -->
+      <div class="review-slide">
+        <div class="review-card">
+          <i class="fas fa-quote-right quote-icon"></i>
+          <div class="review-text">
+            Fantastic delivery service! They were communicative every step of the way, incredibly flexible with scheduling, and always punctual. I would 100% recommend them to anyone needing transport services.
+          </div>
+          <div class="reviewer-info">
+            <div class="reviewer-details">
+              <div class="reviewer-avatar">TR</div>
+              <div>
+                <div class="reviewer-name">Tony R.</div>
+                <div class="reviewer-location">
+                  <i class="fas fa-map-marker-alt"></i>
+                  Houston, Texas
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="rating-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <div class="verified-badge">
+                <i class="fas fa-check-circle"></i>
+                Verified
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="review" data-rating="5" data-location="West Palm Beach, Florida">
-      <div class="review-box">
-        <p>"The only shipper who knew exactly what was needed for our unique load."</p>
-        <span class="review-name">Christian M.</span>
-        <span class="review-location"></span>
-        <div class="rating-container">
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
+      <!-- Review 3 -->
+      <div class="review-slide">
+        <div class="review-card">
+          <i class="fas fa-quote-right quote-icon"></i>
+          <div class="review-text">
+            Bullets Transport came through when other companies couldn't. They found a reliable hauler quickly and made the entire process completely hassle-free. Exceptional service from start to finish.
+          </div>
+          <div class="reviewer-info">
+            <div class="reviewer-details">
+              <div class="reviewer-avatar">AM</div>
+              <div>
+                <div class="reviewer-name">Adam M.</div>
+                <div class="reviewer-location">
+                  <i class="fas fa-map-marker-alt"></i>
+                  Lomita, California
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="rating-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <div class="verified-badge">
+                <i class="fas fa-check-circle"></i>
+                Verified
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="review" data-rating="5" data-location="Philadelphia, Pennsylvania">
-      <div class="review-box">
-        <p>"After countless issues with others, these guys delivered. Truly saved the day!"</p>
-        <span class="review-name">Rohn E.</span>
-        <span class="review-location"></span>
-        <div class="rating-container">
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
+      <!-- Review 4 -->
+      <div class="review-slide">
+        <div class="review-card">
+          <i class="fas fa-quote-right quote-icon"></i>
+          <div class="review-text">
+            Highly recommend! Their customer service was outstanding with fast issue resolution whenever needed and constant updates throughout the delivery. Made me feel confident and informed the whole time.
+          </div>
+          <div class="reviewer-info">
+            <div class="reviewer-details">
+              <div class="reviewer-avatar">EC</div>
+              <div>
+                <div class="reviewer-name">Eric C.</div>
+                <div class="reviewer-location">
+                  <i class="fas fa-map-marker-alt"></i>
+                  Pembroke, Georgia
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="rating-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <div class="verified-badge">
+                <i class="fas fa-check-circle"></i>
+                Verified
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="review" data-rating="5" data-location="Green Valley, Illinois">
-      <div class="review-box">
-        <p>"A few hiccups, but they stayed committed, professional, and communicative throughout."</p>
-        <span class="review-name">Jeff M.</span>
-        <span class="review-location"></span>
-        <div class="rating-container">
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="review" data-rating="5" data-location="Cleburne, Texas">
-      <div class="review-box">
-        <p>"Seamless, start to finish. No complaints at all."</p>
-        <span class="review-name">Joshua D.</span>
-        <span class="review-location"></span>
-        <div class="rating-container">
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="review" data-rating="5" data-location="Paxton, Iowa">
-      <div class="review-box">
-        <p>"Bullets Transport LLC made it simple: fast, easy, and great communication."</p>
-        <span class="review-name">Karen A.</span>
-        <span class="review-location"></span>
-        <div class="rating-container">
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-            <div class="fas fa-star"></div>
-        </div>
-      </div>
     </div>
 
   </div>
-</div>
+</section>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
 
 <script>
   $(document).ready(function(){
-    $('.review-section #reviews-slider').slick({
-      dots: false,
-      arrows: false,
+    $('#reviews-slider').slick({
+      dots: true,
+      arrows: true,
       infinite: true,
-      speed: 300,
-      slidesToShow: 1,
-      adaptiveHeight: true,
+      speed: 600,
+      slidesToShow: 2,
+      slidesToScroll: 1,
       autoplay: true,
-      autoplaySpeed: 5000
-    });
-
-    $('.review-section .review').each(function(){
-      var rating = $(this).data('rating');
-      var location = $(this).data('location');
-      $(this).find('.review-location').text(location);
-      $(this).find('.fas.fa-star').slice(0, rating).css('color', '#ffa500');
+      autoplaySpeed: 5000,
+      pauseOnHover: true,
+      adaptiveHeight: false,
+      cssEase: 'cubic-bezier(0.4, 0, 0.2, 1)',
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: true
+          }
+        },
+        {
+          breakpoint: 640,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false
+          }
+        }
+      ]
     });
   });
 </script>
