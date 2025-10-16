@@ -348,16 +348,6 @@
       box-shadow: 0 10px 30px rgba(253, 185, 19, 0.4);
     }
 
-    .btn-back {
-      background: rgba(255, 255, 255, 0.1);
-      color: #fff;
-    }
-
-    .btn-back:hover {
-      background: rgba(255, 255, 255, 0.15);
-      box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
-    }
-
     .btn:disabled {
       opacity: 0.5;
       cursor: not-allowed;
@@ -593,9 +583,11 @@
           <input type="hidden" name="category" id="categoryInput">
 
           <div class="btn-navigation">
-            <div></div>
+            <button type="button" class="btn" onclick="window.history.back()">
+              <i class="fas fa-arrow-left"></i> Back
+            </button>
             <button type="button" class="btn" onclick="nextStepFromCategory()">
-              Next <i class="fas fa-arrow-right ml-2"></i>
+              Next <i class="fas fa-arrow-right"></i>
             </button>
           </div>
         </div>
@@ -635,7 +627,7 @@
           </select>
 
           <div class="btn-navigation">
-            <button type="button" class="btn btn-back" onclick="prevStep()">
+            <button type="button" class="btn" onclick="prevStep()">
               <i class="fas fa-arrow-left"></i> Back
             </button>
             <button type="button" class="btn" onclick="goToStep3()">
@@ -666,7 +658,7 @@
           </select>
 
           <div class="btn-navigation">
-            <button type="button" class="btn btn-back" onclick="prevStep()">
+            <button type="button" class="btn" onclick="prevStep()">
               <i class="fas fa-arrow-left"></i> Back
             </button>
             <button type="button" class="btn" onclick="goToStep3()">
@@ -705,7 +697,7 @@
           </select>
 
           <div class="btn-navigation">
-            <button type="button" class="btn btn-back" onclick="prevStep()">
+            <button type="button" class="btn" onclick="prevStep()">
               <i class="fas fa-arrow-left"></i> Back
             </button>
             <button type="button" class="btn" onclick="goToStep3()">
@@ -739,7 +731,7 @@
           </select>
 
           <div class="btn-navigation">
-            <button type="button" class="btn btn-back" onclick="prevStep()">
+            <button type="button" class="btn" onclick="prevStep()">
               <i class="fas fa-arrow-left"></i> Back
             </button>
             <button type="button" class="btn" onclick="goToStep3()">
@@ -789,7 +781,7 @@
           </div>
 
           <div class="btn-navigation">
-            <button type="button" class="btn btn-back" onclick="prevStep()">
+            <button type="button" class="btn" onclick="prevStep()">
               <i class="fas fa-arrow-left"></i> Back
             </button>
             <button type="button" class="btn" onclick="goToStep3()">
@@ -823,7 +815,7 @@
           </select>
 
           <div class="btn-navigation">
-            <button type="button" class="btn btn-back" onclick="prevStep()">
+            <button type="button" class="btn" onclick="prevStep()">
               <i class="fas fa-arrow-left"></i> Back
             </button>
             <button type="button" class="btn" onclick="goToStep3()">
@@ -852,7 +844,7 @@
           ></textarea>
 
           <div class="btn-navigation">
-            <button type="button" class="btn btn-back" onclick="prevStep()">
+            <button type="button" class="btn" onclick="prevStep()">
               <i class="fas fa-arrow-left"></i> Back
             </button>
             <button type="button" class="btn" onclick="goToStep3()">
@@ -873,7 +865,7 @@
           <input type="file" name="images" multiple accept="image/*" />
 
           <div class="btn-navigation">
-            <button type="button" class="btn btn-back" onclick="prevStep()">
+            <button type="button" class="btn" onclick="prevStep()">
               <i class="fas fa-arrow-left"></i> Back
             </button>
             <button type="button" class="btn" onclick="goToStep4()">
@@ -897,7 +889,7 @@
           />
 
           <div class="btn-navigation">
-            <button type="button" class="btn btn-back" onclick="prevStep()">
+            <button type="button" class="btn" onclick="prevStep()">
               <i class="fas fa-arrow-left"></i> Back
             </button>
             <button type="button" class="btn" onclick="goToStep5()">
@@ -921,7 +913,7 @@
           />
 
           <div class="btn-navigation">
-            <button type="button" class="btn btn-back" onclick="prevStep()">
+            <button type="button" class="btn" onclick="prevStep()">
               <i class="fas fa-arrow-left"></i> Back
             </button>
             <button type="button" class="btn" onclick="goToStep6()">
@@ -977,7 +969,7 @@
           />
 
           <div class="btn-navigation">
-            <button type="button" class="btn btn-back" onclick="prevStep()">
+            <button type="button" class="btn" onclick="prevStep()">
               <i class="fas fa-arrow-left"></i> Back
             </button>
             <button type="button" class="btn" onclick="finalCheckAndSubmit()">
