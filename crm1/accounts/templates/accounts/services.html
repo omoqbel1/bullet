@@ -4,186 +4,553 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Our Services</title>
+  <title>Our Services | Bullets Transport LLC</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      background-color: #f8f9fa;
+      font-family: 'Roboto', sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      overflow-x: hidden;
     }
-    .service-card {
-      border: 1px solid #dee2e6;
-      border-radius: 8px;
-      padding: 20px;
+
+    /* Hero Section */
+    .hero-section {
+      background: #1a1a1a;
+      padding: 80px 0 60px;
       text-align: center;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
     }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg, rgba(26, 26, 26, 0.9) 0%, rgba(26, 26, 26, 0.95) 100%);
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-section h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-section p {
+      font-size: 1.25rem;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .hero-divider {
+      width: 80px;
+      height: 4px;
+      background: #fdb913;
+      margin: 20px auto;
+      border-radius: 2px;
+    }
+
+    /* Services Section */
+    .services-section {
+      padding: 80px 0;
+    }
+
+    .service-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 40px 30px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #fdb913 0%, #e5a610 100%);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+
     .service-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+      transform: translateY(-10px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+      border-color: #fdb913;
     }
+
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .service-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #fdb913 0%, #e5a610 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 25px;
+      font-size: 2rem;
+      color: #fff;
+      transition: all 0.4s ease;
+    }
+
+    .service-card:hover .service-icon {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 8px 20px rgba(253, 185, 19, 0.4);
+    }
+
+    .service-card h5 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 15px;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .service-card p {
+      color: #666;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 25px;
+      flex-grow: 1;
+    }
+
+    .service-card .btn {
+      background: linear-gradient(135deg, #fdb913 0%, #e5a610 100%);
+      border: none;
+      color: #fff;
+      padding: 12px 35px;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: auto;
+    }
+
+    .service-card .btn:hover {
+      background: linear-gradient(135deg, #e5a610 0%, #d69a0f 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(253, 185, 19, 0.4);
+    }
+
+    /* Modal Styling */
+    .modal-content {
+      border-radius: 15px;
+      border: none;
+      overflow: hidden;
+    }
+
+    .modal-header {
+      background: linear-gradient(135deg, #1a2332 0%, #2c3e50 100%);
+      color: #fff;
+      padding: 25px 30px;
+      border: none;
+    }
+
+    .modal-header .modal-title {
+      font-size: 1.75rem;
+      font-weight: 600;
+    }
+
+    .modal-header .close {
+      color: #fff;
+      opacity: 0.9;
+      text-shadow: none;
+      font-size: 2rem;
+    }
+
+    .modal-header .close:hover {
+      opacity: 1;
+      color: #fdb913;
+    }
+
+    .modal-body {
+      padding: 40px;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #555;
+    }
+
+    .modal-body .btn-success {
+      background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+      border: none;
+      padding: 14px 45px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .modal-body .btn-success:hover {
+      background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, #fdb913 0%, #e5a610 100%);
+      padding: 60px 0;
+      text-align: center;
+      color: #fff;
+    }
+
+    .cta-section h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .cta-section p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      opacity: 0.95;
+    }
+
+    .cta-section .btn {
+      background: #fff;
+      color: #fdb913;
+      padding: 15px 50px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 30px;
+      border: none;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .cta-section .btn:hover {
+      background: #2c3e50;
+      color: #fff;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero-section h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero-section p {
+        font-size: 1.1rem;
+      }
+
+      .services-section {
+        padding: 50px 0;
+      }
+
+      .service-card {
+        padding: 30px 20px;
+        margin-bottom: 25px;
+      }
+
+      .service-card h5 {
+        font-size: 1.3rem;
+        min-height: auto;
+      }
+
+      .cta-section h2 {
+        font-size: 2rem;
+      }
+
+      .modal-body {
+        padding: 25px;
+      }
+    }
+
+    /* Animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .service-card {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .service-card:nth-child(1) { animation-delay: 0.1s; }
+    .service-card:nth-child(2) { animation-delay: 0.2s; }
+    .service-card:nth-child(3) { animation-delay: 0.3s; }
+    .service-card:nth-child(4) { animation-delay: 0.4s; }
+    .service-card:nth-child(5) { animation-delay: 0.5s; }
+    .service-card:nth-child(6) { animation-delay: 0.6s; }
   </style>
 </head>
 <body>
   <!-- Navbar -->
   {% include 'accounts/navbar.html' %}
 
-  <section>
-    <div class="container py-5">
-      <div class="text-center mb-4">
-        <h2>OUR SERVICES</h2>
-      </div>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1>Our Services</h1>
+      <div class="hero-divider"></div>
+      <p>Comprehensive transportation solutions tailored to meet your unique shipping needs</p>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services-section">
+    <div class="container">
       <div class="row">
-        <!-- Service Boxes -->
-        <div class="col-sm-6 col-lg-4 mb-4">
+        <!-- Service 1: Automotive Transportation -->
+        <div class="col-md-6 col-lg-4 mb-4">
           <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-car"></i>
+            </div>
             <h5>Automotive Transportation</h5>
-            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#service1">Learn More</button>
+            <p>Professional vehicle shipping with careful planning and attention to detail, ensuring safe and efficient transport.</p>
+            <button class="btn" data-toggle="modal" data-target="#service1">Learn More</button>
           </div>
         </div>
-        <div class="col-sm-6 col-lg-4 mb-4">
+
+        <!-- Service 2: Intermodal Freight Container -->
+        <div class="col-md-6 col-lg-4 mb-4">
           <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-shipping-fast"></i>
+            </div>
             <h5>Intermodal Freight Container</h5>
-            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#service2">Learn More</button>
+            <p>Expert container shipping with proper packing, securing, and efficient transportation logistics.</p>
+            <button class="btn" data-toggle="modal" data-target="#service2">Learn More</button>
           </div>
         </div>
-        <div class="col-sm-6 col-lg-4 mb-4">
+
+        <!-- Service 3: Oversized Shipping -->
+        <div class="col-md-6 col-lg-4 mb-4">
           <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-truck-moving"></i>
+            </div>
             <h5>Oversized Shipping</h5>
-            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#service3">Learn More</button>
+            <p>Specialized transportation for large or bulky items that exceed standard size and weight limits.</p>
+            <button class="btn" data-toggle="modal" data-target="#service3">Learn More</button>
           </div>
         </div>
-        <div class="col-sm-6 col-lg-4 mb-4">
+
+        <!-- Service 4: FTL Shipping -->
+        <div class="col-md-6 col-lg-4 mb-4">
           <div class="service-card">
-            <h5>FTL Shipping</h5>
-            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#service4">Learn More</button>
+            <div class="service-icon">
+              <i class="fas fa-truck"></i>
+            </div>
+            <h5>Full Truckload (FTL)</h5>
+            <p>Dedicated truck service for large shipments, offering cost-effective and efficient transportation.</p>
+            <button class="btn" data-toggle="modal" data-target="#service4">Learn More</button>
           </div>
         </div>
-        <div class="col-sm-6 col-lg-4 mb-4">
+
+        <!-- Service 5: LTL Shipping -->
+        <div class="col-md-6 col-lg-4 mb-4">
           <div class="service-card">
-            <h5>LTL Shipping</h5>
-            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#service5">Learn More</button>
+            <div class="service-icon">
+              <i class="fas fa-boxes"></i>
+            </div>
+            <h5>Less Than Truckload (LTL)</h5>
+            <p>Cost-effective solution for smaller shipments, consolidating multiple loads for efficient delivery.</p>
+            <button class="btn" data-toggle="modal" data-target="#service5">Learn More</button>
           </div>
         </div>
-        <div class="col-sm-6 col-lg-4 mb-4">
+
+        <!-- Service 6: Pro-Active Protection -->
+        <div class="col-md-6 col-lg-4 mb-4">
           <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
             <h5>Pro-Active Protection</h5>
-            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#service6">Learn More</button>
+            <p>Advanced security measures to prevent theft, fraud, and ensure safe delivery of your cargo.</p>
+            <button class="btn" data-toggle="modal" data-target="#service6">Learn More</button>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Get Started?</h2>
+      <p>Contact us today for a free quote and experience our professional transportation services</p>
+      <a href="/quote/" class="btn">Get Your Free Quote</a>
+    </div>
+  </section>
+
   <!-- Modals -->
+  <!-- Modal 1: Automotive Transportation -->
   <div class="modal fade" id="service1" tabindex="-1" role="dialog" aria-labelledby="service1Title" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="service1Title">Automotive Transportation</h5>
+          <h5 class="modal-title" id="service1Title"><i class="fas fa-car mr-2"></i>Automotive Transportation</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <p>Shipping cars professionally requires careful planning and attention to detail to ensure that the vehicle is transported safely and efficiently from one location to another. This may involve selecting the appropriate mode of transportation, such as by air, sea, or land, and ensuring that the car is properly prepared for shipping. This may include removing any personal items, disabling the alarm system, and ensuring that the car is in good working condition. It is also important to consider any necessary documentation, such as insurance and customs paperwork, and to be aware of any potential challenges or delays that may arise during the shipping process. Working with a reputable and experienced shipping company can help to ensure that the car is shipped professionally and without incident.</p>
+          <p>Shipping cars professionally requires careful planning and attention to detail to ensure that the vehicle is transported safely and efficiently from one location to another. This may involve selecting the appropriate mode of transportation, such as by air, sea, or land, and ensuring that the car is properly prepared for shipping.</p>
+          <p>This may include removing any personal items, disabling the alarm system, and ensuring that the car is in good working condition. It is also important to consider any necessary documentation, such as insurance and customs paperwork, and to be aware of any potential challenges or delays that may arise during the shipping process.</p>
+          <p>Working with a reputable and experienced shipping company can help to ensure that the car is shipped professionally and without incident.</p>
           <div class="text-center mt-4">
-            <a href="/quote/" class="btn btn-success">Grab a Quote</a>
+            <a href="/quote/" class="btn btn-success">Get a Quote Now</a>
           </div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Modal 2: Intermodal Freight Container -->
   <div class="modal fade" id="service2" tabindex="-1" role="dialog" aria-labelledby="service2Title" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="service2Title">Intermodal Freight Container</h5>
+          <h5 class="modal-title" id="service2Title"><i class="fas fa-shipping-fast mr-2"></i>Intermodal Freight Container</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <p>Shipping containers professionally requires a thorough understanding of the logistics involved in transporting goods from one location to another. This includes selecting the appropriate type and size of container, ensuring that the container is properly packed and secured, and arranging for transport using the most efficient and cost-effective mode of transportation. It is important to also consider any necessary documentation, such as customs paperwork and insurance, and to be aware of any potential delays or challenges that may arise during the shipping process. To ensure a smooth and successful shipment, it is advisable to work with a reputable and experienced shipping company that can provide expert guidance and support throughout the process.</p>
+          <p>Shipping containers professionally requires a thorough understanding of the logistics involved in transporting goods from one location to another. This includes selecting the appropriate type and size of container, ensuring that the container is properly packed and secured, and arranging for transport using the most efficient and cost-effective mode of transportation.</p>
+          <p>It is important to also consider any necessary documentation, such as customs paperwork and insurance, and to be aware of any potential delays or challenges that may arise during the shipping process. To ensure a smooth and successful shipment, it is advisable to work with a reputable and experienced shipping company that can provide expert guidance and support throughout the process.</p>
           <div class="text-center mt-4">
-            <a href="/quote/" class="btn btn-success">Grab a Quote</a>
+            <a href="/quote/" class="btn btn-success">Get a Quote Now</a>
           </div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Modal 3: Oversized Shipping -->
   <div class="modal fade" id="service3" tabindex="-1" role="dialog" aria-labelledby="service3Title" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="service3Title">Oversized Shipping</h5>
+          <h5 class="modal-title" id="service3Title"><i class="fas fa-truck-moving mr-2"></i>Oversized Shipping</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <p>Oversized shipping refers to the transportation of large or bulky items that exceed the standard size and weight limits for normal shipping. These items may be too large or too heavy to be shipped using standard shipping methods, and may require special equipment or handling to ensure safe and efficient transportation. Oversized shipping may involve the use of specialized vehicles, such as flatbed trucks or lowboys, to accommodate the size and weight of the items being shipped. It may also require the use of special cranes or other lifting equipment to load and unload the items. When shipping oversized items, it is important to carefully consider the size, weight, and shape of the items, as well as any special requirements, such as the need for temperature-controlled transportation or the handling of hazardous materials. Working with a reputable and experienced shipping company can help to ensure that the oversized shipping process goes smoothly and that the items are delivered safely and efficiently.</p>
+          <p>Oversized shipping refers to the transportation of large or bulky items that exceed the standard size and weight limits for normal shipping. These items may be too large or too heavy to be shipped using standard shipping methods, and may require special equipment or handling to ensure safe and efficient transportation.</p>
+          <p>Oversized shipping may involve the use of specialized vehicles, such as flatbed trucks or lowboys, to accommodate the size and weight of the items being shipped. It may also require the use of special cranes or other lifting equipment to load and unload the items.</p>
+          <p>When shipping oversized items, it is important to carefully consider the size, weight, and shape of the items, as well as any special requirements, such as the need for temperature-controlled transportation or the handling of hazardous materials. Working with a reputable and experienced shipping company can help to ensure that the oversized shipping process goes smoothly and that the items are delivered safely and efficiently.</p>
           <div class="text-center mt-4">
-            <a href="/quote/" class="btn btn-success">Grab a Quote</a>
+            <a href="/quote/" class="btn btn-success">Get a Quote Now</a>
           </div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Modal 4: FTL Shipping -->
   <div class="modal fade" id="service4" tabindex="-1" role="dialog" aria-labelledby="service4Title" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="service4Title">FTL Shipping</h5>
+          <h5 class="modal-title" id="service4Title"><i class="fas fa-truck mr-2"></i>Full Truckload (FTL) Shipping</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
+          <p>Full Truckload (FTL) shipping is a transportation method where an entire truck is dedicated to a single shipment. This service is ideal for large shipments that can fill an entire trailer, typically weighing 15,000 pounds or more.</p>
           <p>FTL shipping is typically more cost-effective than LTL shipping for large shipments, as it allows for the use of a dedicated truck and eliminates the need for consolidation and handling of multiple shipments. However, it may be more expensive for smaller shipments or for those that do not require the use of an entire truck.</p>
+          <p>Benefits include faster transit times, reduced handling (which minimizes damage risk), and greater control over your shipment's schedule.</p>
           <div class="text-center mt-4">
-            <a href="/quote/" class="btn btn-success">Grab a Quote</a>
+            <a href="/quote/" class="btn btn-success">Get a Quote Now</a>
           </div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Modal 5: LTL Shipping -->
   <div class="modal fade" id="service5" tabindex="-1" role="dialog" aria-labelledby="service5Title" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="service5Title">LTL Shipping</h5>
+          <h5 class="modal-title" id="service5Title"><i class="fas fa-boxes mr-2"></i>Less Than Truckload (LTL) Shipping</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <p>LTL shipping stands for "less-than-truckload" shipping. It refers to the transportation of small quantities of goods that do not require the use of a full truck. LTL shipments are consolidated with other smaller shipments onto a single truck, allowing for more efficient and cost-effective transportation. LTL shipping is typically used for smaller shipments that do not require the use of a full truck, or for shipments that do not have a consistent or regular shipping schedule. It is generally more cost-effective than full truckload (FTL) shipping for small or infrequent shipments, as it allows for the consolidation of multiple shipments onto a single truck. However, it may be more expensive for larger shipments or for those that require the use of a dedicated truck. When using LTL shipping, it is important to carefully consider the size and weight of the shipment, as well as any special requirements, such as the need for temperature-controlled transportation or the handling of hazardous materials. Working with a reputable and experienced shipping company can help to ensure that the LTL shipping process goes smoothly and that the shipment is delivered safely and efficiently.</p>
+          <p>LTL shipping stands for "less-than-truckload" shipping. It refers to the transportation of small quantities of goods that do not require the use of a full truck. LTL shipments are consolidated with other smaller shipments onto a single truck, allowing for more efficient and cost-effective transportation.</p>
+          <p>LTL shipping is typically used for smaller shipments that do not require the use of a full truck, or for shipments that do not have a consistent or regular shipping schedule. It is generally more cost-effective than full truckload (FTL) shipping for small or infrequent shipments, as it allows for the consolidation of multiple shipments onto a single truck.</p>
+          <p>When using LTL shipping, it is important to carefully consider the size and weight of the shipment, as well as any special requirements, such as the need for temperature-controlled transportation or the handling of hazardous materials. Working with a reputable and experienced shipping company can help to ensure that the LTL shipping process goes smoothly and that the shipment is delivered safely and efficiently.</p>
           <div class="text-center mt-4">
-            <a href="/quote/" class="btn btn-success">Grab a Quote</a>
+            <a href="/quote/" class="btn btn-success">Get a Quote Now</a>
           </div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Modal 6: Pro-Active Protection -->
   <div class="modal fade" id="service6" tabindex="-1" role="dialog" aria-labelledby="service6Title" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="service6Title">Protection</h5>
+          <h5 class="modal-title" id="service6Title"><i class="fas fa-shield-alt mr-2"></i>Pro-Active Protection</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <p>Pro-Active Protection focuses on anticipating potential risks and implementing measures to prevent issues before they arise. In the transportation and logistics industry, one significant threat is the theft or misuse of loads by rogue truck drivers. These individuals may fraudulently claim loads, steal them outright, or hold them ransom, refusing to deliver until a payment demand is met. In some cases, they may even disappear entirely with the cargo, causing substantial financial and operational losses.To combat these risks, companies must adopt stringent vetting processes for drivers and carriers, including verifying credentials, conducting background checks, and ensuring they are working with reputable partners. Leveraging technology like GPS tracking and real-time monitoring can also help to keep tabs on shipments and detect unusual activities promptly. Clear communication, robust contracts, and insurance coverage further bolster protection against these threats. Pro-Active Protection ensures that these measures are in place to minimize vulnerabilities, safeguard assets, and maintain trust within the supply chain.</p>
+          <p>Pro-Active Protection focuses on anticipating potential risks and implementing measures to prevent issues before they arise. In the transportation and logistics industry, one significant threat is the theft or misuse of loads by rogue truck drivers.</p>
+          <p>These individuals may fraudulently claim loads, steal them outright, or hold them ransom, refusing to deliver until a payment demand is met. In some cases, they may even disappear entirely with the cargo, causing substantial financial and operational losses.</p>
+          <p>To combat these risks, companies must adopt stringent vetting processes for drivers and carriers, including verifying credentials, conducting background checks, and ensuring they are working with reputable partners. Leveraging technology like GPS tracking and real-time monitoring can also help to keep tabs on shipments and detect unusual activities promptly.</p>
+          <p>Clear communication, robust contracts, and insurance coverage further bolster protection against these threats. Pro-Active Protection ensures that these measures are in place to minimize vulnerabilities, safeguard assets, and maintain trust within the supply chain.</p>
           <div class="text-center mt-4">
-            <a href="/quote/" class="btn btn-success">Grab a Quote</a>
+            <a href="/quote/" class="btn btn-success">Get a Quote Now</a>
           </div>
         </div>
       </div>
